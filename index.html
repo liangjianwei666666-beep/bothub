@@ -163,6 +163,12 @@ footer p{margin:0}
  .c-top figure{order:3;justify-self:start;max-width:190px;margin-top:6px}
  .custom{padding:26px 18px 22px;border-radius:12px}
 }
+.newver{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:200;display:flex;
+align-items:center;gap:10px;background:var(--ink);color:#FCFAF4;border-radius:999px;
+padding:9px 10px 9px 16px;font-size:13.5px;box-shadow:0 14px 34px -16px rgba(0,0,0,.45)}
+.newver button{border:0;background:#FCFAF4;color:var(--ink);border-radius:999px;padding:7px 14px;
+font-size:13px;cursor:pointer;min-height:32px;font:inherit;font-size:13px}
+.newver button:focus-visible{outline:2px solid #FCFAF4;outline-offset:2px}
 @media (max-width:560px){
  .grp{margin-top:20px} .grp-grid{gap:12px}
  .t-body{padding:11px 13px} .tile h3{font-size:16px} .desc{font-size:13px}
@@ -455,7 +461,7 @@ footer p{margin:0}
 </section>
 
 <footer>
- <p>BOTHUB · 版本 v12 · 更新 2026-11-05</p>
+ <p>BOTHUB · 版本 v13 · 更新 2026-11-05</p>
  <p>包内如含开源底座，许可约束见包内 README。</p>
 </footer>
 </div>
@@ -477,4 +483,13 @@ if(cw){cw.addEventListener('click',async()=>{const t=wid.textContent.trim();
   document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(_){}ta.remove();}
  cw.textContent='已复制 ✓';cw.classList.add('done');
  setTimeout(()=>{cw.textContent='一键复制';cw.classList.remove('done');},1800);});}
+/* 版本检查：服务器上的版本和本页不一致时，提示刷新（绕过浏览器缓存） */
+fetch('version.txt?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.text():'').then(v=>{
+ v=(v||'').trim(); if(!v||v==='v13') return;
+ const bar=document.createElement('div'); bar.className='newver';
+ const t=document.createElement('span'); t.textContent='页面有新版本';
+ const b=document.createElement('button'); b.type='button'; b.textContent='刷新看看';
+ b.addEventListener('click',()=>{location.href=location.pathname+'?v='+Date.now();});
+ bar.appendChild(t); bar.appendChild(b); document.body.appendChild(bar);
+}).catch(()=>{});
 </script></body></html>
