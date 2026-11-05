@@ -19,8 +19,8 @@ img,video{max-width:100%;height:auto}
 h1,h2,h3{letter-spacing:0}
 
 /* ---------- hero ---------- */
-.hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:32px;align-items:end;
-min-width:0;padding:46px 0 22px}
+.hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:32px;align-items:center;
+min-width:0;padding:54px 0 26px}
 .brand{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.2em;
 color:var(--ink3);text-transform:uppercase}
 .brand s{width:26px;height:1px;background:var(--line);display:inline-block}
@@ -29,7 +29,7 @@ letter-spacing:.01em}
 h1 .pun{font-style:normal;padding:0 2px;
 background:linear-gradient(transparent 68%,#F2E1AC 68%,#F2E1AC 92%,transparent 92%)}
 .lede{color:var(--ink2);margin:0 0 20px;font-size:17px}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 22px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:0}
 .btn-primary,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:46px;
 padding:11px 22px;font-size:15px;text-decoration:none;border-radius:4px;
 transition:background .18s ease,color .18s ease,border-color .18s ease}
@@ -38,11 +38,6 @@ transition:background .18s ease,color .18s ease,border-color .18s ease}
 .btn-ghost{border:1px solid var(--line);color:var(--ink2);background:#fff}
 .btn-ghost:hover{border-color:var(--ink3);color:var(--ink)}
 .btn-primary:focus-visible,.btn-ghost:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.stats{display:flex;gap:36px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px}
-.stat b{display:flex;align-items:baseline;gap:2px;font-family:var(--serif);font-size:23px;
-font-variant-numeric:tabular-nums}
-.stat span{font-size:12px;color:var(--ink3);letter-spacing:.04em}
-.stat em{font-style:normal;font-size:13px;font-family:var(--sans)}
 .art{max-width:520px;justify-self:end;width:100%;min-width:0;position:relative}
 .poster{display:block;width:100%;height:auto;border-radius:10px;background:#fff;border:1px solid var(--line);
 box-shadow:0 24px 48px -34px #7E7358,0 2px 0 #F1EAD7}
@@ -170,12 +165,6 @@ footer p{margin:0}
   <div class="cta-row">
    <a class="btn-primary" href="#shelf">逛货架 ↓</a>
    <a class="btn-ghost" href="#custom">定制一个</a>
-  </div>
-  <div class="stats">
-   <div class="stat"><b>25</b><span>个数字员工</span></div>
-   <div class="stat"><b>81<em> MB</em></b><span>一共</span></div>
-   <div class="stat"><b>5</b><span>个门类</span></div>
-   <div class="stat"><b>100<em>%</em></b><span>带指纹</span></div>
   </div>
  </div>
  <figure class="art plate"><video class="poster poster-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero.jpg"><source src="assets/hero-loop.mp4" type="video/mp4"></video><img class="poster poster-still poster-hide" src="assets/hero.jpg" width="1400" height="933" alt="五个小机器人"><figcaption>BOTHUB · 团队小机器人家族</figcaption></figure>
@@ -457,7 +446,7 @@ footer p{margin:0}
 </section>
 
 <footer>
- <p>BOTHUB · 25 个包 · 81 MB · 版本 v7 · 更新 2026-11-05</p>
+ <p>BOTHUB · 版本 v8 · 更新 2026-11-05</p>
  <p>包内如含开源底座，许可约束见包内 README。</p>
 </footer>
 </div>
