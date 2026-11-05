@@ -72,31 +72,42 @@ font:inherit;color:var(--ink2);transition:border-color .16s ease,background .16s
 padding:11px 14px;font-size:15px;color:var(--ink);min-height:46px}
 .searchbar input::placeholder{color:var(--ink3)}
 .searchbar input:focus{outline:none;border-color:var(--ink2);box-shadow:0 0 0 3px #EAE3D0}
-.list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:44px}
-.row{border-bottom:1px solid var(--line2);padding:15px 0 13px;display:grid;
-grid-template-columns:34px minmax(0,1fr);gap:0 12px}
-.thumb{width:34px;height:34px;object-fit:contain;margin-top:2px}
-.rmain{min-width:0}
-.r-top{display:flex;align-items:baseline;gap:8px}
-.row h3{font-size:16.5px;font-weight:600;margin:0}
-.desc{margin:2px 0 0;color:var(--ink2);font-size:13.5px;line-height:1.6;
+.grp{margin-top:26px}
+.grp-h{position:sticky;top:0;z-index:4;display:flex;align-items:center;gap:9px;
+padding:10px 0 8px;background:var(--paper);border-bottom:1px solid var(--line)}
+.grp-h img{width:34px;height:34px;object-fit:contain}
+.grp-h b{font-family:var(--serif);font-weight:600;font-size:19px;color:var(--ink)}
+.grp-h i{font-style:normal;font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums;
+border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.grp-grid{list-style:none;margin:14px 0 0;padding:0;display:grid;
+grid-template-columns:repeat(auto-fill,minmax(296px,1fr));gap:16px;align-items:stretch}
+.tile{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;background:#fff;
+overflow:hidden;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.tile:hover{border-color:#CFC4A9;transform:translateY(-2px);box-shadow:0 18px 32px -28px #6E6349}
+.tile:focus-within{border-color:var(--ink3);box-shadow:0 0 0 3px #EFE8D6}
+.tile::before{content:"";display:block;height:5px;background:var(--a);opacity:.55}
+.tile:hover::before{opacity:.85}
+.t-body{padding:13px 15px 13px;display:flex;flex-direction:column;gap:5px;flex:1;min-width:0}
+.tile h3{font-size:17px;font-weight:600;margin:0;line-height:1.35}
+.desc{margin:0;color:var(--ink2);font-size:13.5px;line-height:1.62;
 display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.r-bot{display:flex;align-items:center;gap:12px;margin-top:5px}
-.meta{font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums;display:inline-flex;
-gap:7px;align-items:center}
-.meta .sep{opacity:.5}.meta code{font:11.5px ui-monospace,SFMono-Regular,Menlo,monospace}
-.get{margin-left:auto;font-size:13.5px;color:var(--ink);text-decoration:none;
-border-bottom:1px solid var(--ink3);padding:2px 1px;min-height:32px;display:inline-flex;
-align-items:center;transition:border-color .16s ease,background .16s ease}
-.get:hover{border-bottom-color:var(--ink);background:#F4EFE1}
+.t-bot{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:10px;
+border-top:1px solid var(--line2)}
+.meta{font-size:11.5px;color:var(--ink3);font-variant-numeric:tabular-nums;display:inline-flex;
+gap:6px;align-items:center;min-width:0}
+.meta .sep{opacity:.5}.meta code{font:11px ui-monospace,SFMono-Regular,Menlo,monospace}
+.get{margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;min-height:34px;padding:6px 14px;
+font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:4px;
+text-decoration:none;transition:background .16s ease,color .16s ease,border-color .16s ease}
+.get:hover{background:var(--ink);border-color:var(--ink);color:#FCFAF4}
 .get:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.how{margin-top:3px}
-.how summary{cursor:pointer;font-size:12.5px;color:var(--ink3);list-style:none;min-height:30px;
+.how{margin-top:2px}
+.how summary{cursor:pointer;font-size:12.5px;color:var(--ink3);list-style:none;min-height:28px;
 display:inline-flex;align-items:center}
 .how summary::-webkit-details-marker{display:none}
 .how summary:hover{color:var(--ink2)}
 .how summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.howtxt{margin:6px 0 2px;color:var(--ink2);font-size:13.5px;line-height:1.65}
+.howtxt{margin:6px 0 2px;color:var(--ink2);font-size:13px;line-height:1.6}
 
 /* ---------- 定制（重头） ---------- */
 .custom{margin-top:56px;background:#FBF7EC;border:1px solid #F1EAD6;border-radius:14px;
@@ -143,7 +154,6 @@ footer p{margin:0}
 @media (max-width:900px){
  .hero{grid-template-columns:minmax(0,1fr);gap:6px;padding-top:28px} .art{order:-1;min-width:0;max-width:none}
  h1{font-size:33px} .lede{font-size:16px}
- .list{grid-template-columns:minmax(0,1fr);column-gap:0}
  .c-top{grid-template-columns:minmax(0,1fr);gap:18px}
  .custom h2{font-size:27px}
  .svcs{grid-template-columns:minmax(0,1fr);gap:10px}
@@ -152,6 +162,11 @@ footer p{margin:0}
  .steps li{justify-content:flex-start;border-radius:8px;padding:9px 14px 9px 10px}
  .c-top figure{order:3;justify-self:start;max-width:190px;margin-top:6px}
  .custom{padding:26px 18px 22px;border-radius:12px}
+}
+@media (max-width:560px){
+ .grp{margin-top:20px} .grp-grid{gap:12px}
+ .t-body{padding:11px 13px} .tile h3{font-size:16px} .desc{font-size:13px}
+ .how summary{min-height:26px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body><div class="wrap">
@@ -187,232 +202,227 @@ footer p{margin:0}
 <section class="sect" id="shelf">
  <div class="s-head"><h2>整层货架</h2><p>点「怎么用」看怎么装</p></div>
  <div class="searchbar"><input type="search" id="q" placeholder="找：塔罗 / 口播 / 审核" aria-label="搜索包"></div>
- <ul class="list" id="list"><li class="row" data-c="命理玄学" data-n="命盘师 四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。" style="--a:#7C5F96">
- <img class="thumb" src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>命盘师</h3></div>
+ <div id="list"><section class="grp" data-c="命理玄学" style="--a:#7C5F96">
+ <div class="grp-h"><img src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="26" height="26" alt="" loading="lazy">
+  <b>命理玄学</b><i>4</i></div>
+ <ul class="grp-grid"><li class="tile" data-c="命理玄学" data-n="命盘师 四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。" style="--a:#7C5F96">
+ <div class="t-body">
+  <h3>命盘师</h3>
   <p class="desc">四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。</p>
-  <div class="r-bot"><span class="meta">55 KB<span class="sep">·</span><code>504a9a64</code></span>
-   <a class="get" href="packages/%E5%91%BD%E7%9B%98%E5%B8%88.zip" download>下载</a></div>
   <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">55 KB<span class="sep">·</span><code>504a9a64</code></span>
+   <a class="get" href="packages/%E5%91%BD%E7%9B%98%E5%B8%88.zip" download>下载 ↓</a></div>
  </div>
-</li><li class="row" data-c="命理玄学" data-n="塔罗师 韦特体系塔罗解读：抽牌、解牌、给可执行的建议，不预测宿命。" style="--a:#7C5F96">
- <img class="thumb" src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>塔罗师</h3></div>
+</li><li class="tile" data-c="命理玄学" data-n="塔罗师 韦特体系塔罗解读：抽牌、解牌、给可执行的建议，不预测宿命。" style="--a:#7C5F96">
+ <div class="t-body">
+  <h3>塔罗师</h3>
   <p class="desc">韦特体系塔罗解读：抽牌、解牌、给可执行的建议，不预测宿命。</p>
-  <div class="r-bot"><span class="meta">3.2 MB<span class="sep">·</span><code>6ac03459</code></span>
-   <a class="get" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88.zip" download>下载</a></div>
   <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">3.2 MB<span class="sep">·</span><code>6ac03459</code></span>
+   <a class="get" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88.zip" download>下载 ↓</a></div>
  </div>
-</li><li class="row" data-c="命理玄学" data-n="塔罗师工作台 塔罗师的本地工作台：牌阵、牌库、抽牌记录，单页 HTML 双击就能开。" style="--a:#7C5F96">
- <img class="thumb" src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>塔罗师工作台</h3></div>
+</li><li class="tile" data-c="命理玄学" data-n="塔罗师工作台 塔罗师的本地工作台：牌阵、牌库、抽牌记录，单页 HTML 双击就能开。" style="--a:#7C5F96">
+ <div class="t-body">
+  <h3>塔罗师工作台</h3>
   <p class="desc">塔罗师的本地工作台：牌阵、牌库、抽牌记录，单页 HTML 双击就能开。</p>
-  <div class="r-bot"><span class="meta">34.1 MB<span class="sep">·</span><code>4cb026b0</code></span>
-   <a class="get" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88%E5%B7%A5%E4%BD%9C%E5%8F%B0.zip" download>下载</a></div>
   <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">34.1 MB<span class="sep">·</span><code>4cb026b0</code></span>
+   <a class="get" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88%E5%B7%A5%E4%BD%9C%E5%8F%B0.zip" download>下载 ↓</a></div>
  </div>
-</li><li class="row" data-c="命理玄学" data-n="易经占卜师 铜钱法起卦、依《周易》通行本解卦，给结构判断与一句可执行的话。" style="--a:#7C5F96">
- <img class="thumb" src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>易经占卜师</h3></div>
+</li><li class="tile" data-c="命理玄学" data-n="易经占卜师 铜钱法起卦、依《周易》通行本解卦，给结构判断与一句可执行的话。" style="--a:#7C5F96">
+ <div class="t-body">
+  <h3>易经占卜师</h3>
   <p class="desc">铜钱法起卦、依《周易》通行本解卦，给结构判断与一句可执行的话。</p>
-  <div class="r-bot"><span class="meta">15.3 MB<span class="sep">·</span><code>1e84d696</code></span>
-   <a class="get" href="packages/%E6%98%93%E7%BB%8F%E5%8D%A0%E5%8D%9C%E5%B8%88.zip" download>下载</a></div>
   <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="内容创作" data-n="PPT大师 把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。" style="--a:#4A6E96">
- <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>PPT大师</h3></div>
-  <p class="desc">把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。</p>
-  <div class="r-bot"><span class="meta">5.9 MB<span class="sep">·</span><code>ade7fb6c</code></span>
-   <a class="get" href="packages/PPT%E5%A4%A7%E5%B8%88.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="内容创作" data-n="信息图大师 把知识点做成一页 3:4 竖版手绘信息图：单点 + 场景 + 反差标题，自带分层规范。" style="--a:#4A6E96">
- <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>信息图大师</h3></div>
-  <p class="desc">把知识点做成一页 3:4 竖版手绘信息图：单点 + 场景 + 反差标题，自带分层规范。</p>
-  <div class="r-bot"><span class="meta">596 KB<span class="sep">·</span><code>74392adf</code></span>
-   <a class="get" href="packages/%E4%BF%A1%E6%81%AF%E5%9B%BE%E5%A4%A7%E5%B8%88.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="内容创作" data-n="公众号流水线 主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。" style="--a:#4A6E96">
- <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>公众号流水线</h3></div>
-  <p class="desc">主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。</p>
-  <div class="r-bot"><span class="meta">8 KB<span class="sep">·</span><code>84f178fc</code></span>
-   <a class="get" href="packages/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%B5%81%E6%B0%B4%E7%BA%BF.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="内容创作" data-n="灵魂歌手 从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。" style="--a:#4A6E96">
- <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>灵魂歌手</h3></div>
-  <p class="desc">从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。</p>
-  <div class="r-bot"><span class="meta">240 KB<span class="sep">·</span><code>712a83fa</code></span>
-   <a class="get" href="packages/%E7%81%B5%E9%AD%82%E6%AD%8C%E6%89%8B.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="内容创作" data-n="珍珠姊妹 天使之泪视频号货盘导购：查货、组货、算佣金、起草口播，不碰运营与后台。" style="--a:#4A6E96">
- <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>珍珠姊妹</h3></div>
-  <p class="desc">天使之泪视频号货盘导购：查货、组货、算佣金、起草口播，不碰运营与后台。</p>
-  <div class="r-bot"><span class="meta">54 KB<span class="sep">·</span><code>92cf1e1b</code></span>
-   <a class="get" href="packages/%E7%8F%8D%E7%8F%A0%E5%A7%8A%E5%A6%B9.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="内容创作" data-n="表情包工坊 一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。" style="--a:#4A6E96">
- <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>表情包工坊</h3></div>
-  <p class="desc">一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。</p>
-  <div class="r-bot"><span class="meta">34 KB<span class="sep">·</span><code>f0a22763</code></span>
-   <a class="get" href="packages/%E8%A1%A8%E6%83%85%E5%8C%85%E5%B7%A5%E5%9D%8A.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="视频与口播" data-n="外教匹配 把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。" style="--a:#A4626F">
- <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>外教匹配</h3></div>
-  <p class="desc">把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。</p>
-  <div class="r-bot"><span class="meta">17.7 MB<span class="sep">·</span><code>53081c29</code></span>
-   <a class="get" href="packages/%E5%A4%96%E6%95%99%E5%8C%B9%E9%85%8D.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="视频与口播" data-n="拉片分析师 把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。" style="--a:#A4626F">
- <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>拉片分析师</h3></div>
-  <p class="desc">把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。</p>
-  <div class="r-bot"><span class="meta">117 KB<span class="sep">·</span><code>f8275b47</code></span>
-   <a class="get" href="packages/%E6%8B%89%E7%89%87%E5%88%86%E6%9E%90%E5%B8%88.tar.gz" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="视频与口播" data-n="教材匹配 按学生水平与目标匹配外教教材，输出课次表与教材清单（源包，不含大素材）。" style="--a:#A4626F">
- <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>教材匹配</h3></div>
-  <p class="desc">按学生水平与目标匹配外教教材，输出课次表与教材清单（源包，不含大素材）。</p>
-  <div class="r-bot"><span class="meta">159 KB<span class="sep">·</span><code>854141c4</code></span>
-   <a class="get" href="packages/%E6%95%99%E6%9D%90%E5%8C%B9%E9%85%8D.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="视频与口播" data-n="数字人口播 文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。" style="--a:#A4626F">
- <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>数字人口播</h3></div>
-  <p class="desc">文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。</p>
-  <div class="r-bot"><span class="meta">41 KB<span class="sep">·</span><code>98324c70</code></span>
-   <a class="get" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%AD.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="视频与口播" data-n="社媒洞察 把社媒真实讨论变成可核对的洞察：趋势、人群、竞品、口碑，不发布不改号。" style="--a:#A4626F">
- <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>社媒洞察</h3></div>
-  <p class="desc">把社媒真实讨论变成可核对的洞察：趋势、人群、竞品、口碑，不发布不改号。</p>
-  <div class="r-bot"><span class="meta">76 KB<span class="sep">·</span><code>0cf1baad</code></span>
-   <a class="get" href="packages/%E7%A4%BE%E5%AA%92%E6%B4%9E%E5%AF%9F.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="视频与口播" data-n="选品雷达 食材供应链选品雷达" style="--a:#A4626F">
- <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>选品雷达</h3></div>
-  <p class="desc">食材供应链选品雷达</p>
-  <div class="r-bot"><span class="meta">116 KB<span class="sep">·</span><code>6bb212b5</code></span>
-   <a class="get" href="packages/%E9%80%89%E5%93%81%E9%9B%B7%E8%BE%BE.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="团队基建" data-n="Agent调度师Bot 同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。" style="--a:#3F7A6B">
- <img class="thumb" src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>Agent调度师Bot</h3></div>
-  <p class="desc">同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。</p>
-  <div class="r-bot"><span class="meta">26 KB<span class="sep">·</span><code>b9b6d407</code></span>
-   <a class="get" href="packages/Agent%E8%B0%83%E5%BA%A6%E5%B8%88Bot.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="团队基建" data-n="下载专家 长视频/播客/讲座转中文文稿，可搜可读，带时间轴。" style="--a:#3F7A6B">
- <img class="thumb" src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>下载专家</h3></div>
-  <p class="desc">长视频/播客/讲座转中文文稿，可搜可读，带时间轴。</p>
-  <div class="r-bot"><span class="meta">22 KB<span class="sep">·</span><code>ffa70ea0</code></span>
-   <a class="get" href="packages/%E4%B8%8B%E8%BD%BD%E4%B8%93%E5%AE%B6.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="团队基建" data-n="文档重建师 PDF/扫描件重建为可编辑 Markdown：公式还原、图片切出、版式校准稿。" style="--a:#3F7A6B">
- <img class="thumb" src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>文档重建师</h3></div>
-  <p class="desc">PDF/扫描件重建为可编辑 Markdown：公式还原、图片切出、版式校准稿。</p>
-  <div class="r-bot"><span class="meta">87 KB<span class="sep">·</span><code>4478e843</code></span>
-   <a class="get" href="packages/%E6%96%87%E6%A1%A3%E9%87%8D%E5%BB%BA%E5%B8%88.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="团队基建" data-n="配装师 团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。" style="--a:#3F7A6B">
- <img class="thumb" src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>配装师</h3></div>
-  <p class="desc">团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。</p>
-  <div class="r-bot"><span class="meta">37 KB<span class="sep">·</span><code>93a60df3</code></span>
-   <a class="get" href="packages/%E9%85%8D%E8%A3%85%E5%B8%88.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="团队基建" data-n="高级审核员 独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。" style="--a:#3F7A6B">
- <img class="thumb" src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>高级审核员</h3></div>
-  <p class="desc">独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。</p>
-  <div class="r-bot"><span class="meta">5 KB<span class="sep">·</span><code>fa71cd59</code></span>
-   <a class="get" href="packages/%E9%AB%98%E7%BA%A7%E5%AE%A1%E6%A0%B8%E5%91%98.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="学习与运营" data-n="学科助手 K12 学科陪练的学生端包：错题本、知识点查询、七板块导航，含 Mac/Win 一键安装器。" style="--a:#96773A">
- <img class="thumb" src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>学科助手</h3></div>
-  <p class="desc">K12 学科陪练的学生端包：错题本、知识点查询、七板块导航，含 Mac/Win 一键安装器。</p>
-  <div class="r-bot"><span class="meta">608 KB<span class="sep">·</span><code>441ac345</code></span>
-   <a class="get" href="packages/%E5%AD%A6%E7%A7%91%E5%8A%A9%E6%89%8B.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="学习与运营" data-n="旋翼工坊 帮初二学生把一架无人机设计出来：需求、推重比、选型、机架、试飞数据与报告。" style="--a:#96773A">
- <img class="thumb" src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>旋翼工坊</h3></div>
-  <p class="desc">帮初二学生把一架无人机设计出来：需求、推重比、选型、机架、试飞数据与报告。</p>
-  <div class="r-bot"><span class="meta">8 KB<span class="sep">·</span><code>5d7b1d67</code></span>
-   <a class="get" href="packages/%E6%97%8B%E7%BF%BC%E5%B7%A5%E5%9D%8A.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="学习与运营" data-n="润途移居助手 海外移居路线研究：比成本、算门槛、给材料清单与时间线。" style="--a:#96773A">
- <img class="thumb" src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>润途移居助手</h3></div>
-  <p class="desc">海外移居路线研究：比成本、算门槛、给材料清单与时间线。</p>
-  <div class="r-bot"><span class="meta">16 KB<span class="sep">·</span><code>b5afa53d</code></span>
-   <a class="get" href="packages/%E6%B6%A6%E9%80%94%E7%A7%BB%E5%B1%85%E5%8A%A9%E6%89%8B.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
- </div>
-</li><li class="row" data-c="学习与运营" data-n="雅思词汇教练 基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。" style="--a:#96773A">
- <img class="thumb" src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="34" height="34" alt="" loading="lazy">
- <div class="rmain">
-  <div class="r-top"><h3>雅思词汇教练</h3></div>
-  <p class="desc">基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。</p>
-  <div class="r-bot"><span class="meta">2.5 MB<span class="sep">·</span><code>daac2de2</code></span>
-   <a class="get" href="packages/%E9%9B%85%E6%80%9D%E8%AF%8D%E6%B1%87%E6%95%99%E7%BB%83.zip" download>下载</a></div>
-  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">15.3 MB<span class="sep">·</span><code>1e84d696</code></span>
+   <a class="get" href="packages/%E6%98%93%E7%BB%8F%E5%8D%A0%E5%8D%9C%E5%B8%88.zip" download>下载 ↓</a></div>
  </div>
 </li></ul>
+</section><section class="grp" data-c="内容创作" style="--a:#4A6E96">
+ <div class="grp-h"><img src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="26" height="26" alt="" loading="lazy">
+  <b>内容创作</b><i>6</i></div>
+ <ul class="grp-grid"><li class="tile" data-c="内容创作" data-n="PPT大师 把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。" style="--a:#4A6E96">
+ <div class="t-body">
+  <h3>PPT大师</h3>
+  <p class="desc">把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">5.9 MB<span class="sep">·</span><code>ade7fb6c</code></span>
+   <a class="get" href="packages/PPT%E5%A4%A7%E5%B8%88.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="内容创作" data-n="信息图大师 把知识点做成一页 3:4 竖版手绘信息图：单点 + 场景 + 反差标题，自带分层规范。" style="--a:#4A6E96">
+ <div class="t-body">
+  <h3>信息图大师</h3>
+  <p class="desc">把知识点做成一页 3:4 竖版手绘信息图：单点 + 场景 + 反差标题，自带分层规范。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">596 KB<span class="sep">·</span><code>74392adf</code></span>
+   <a class="get" href="packages/%E4%BF%A1%E6%81%AF%E5%9B%BE%E5%A4%A7%E5%B8%88.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="内容创作" data-n="公众号流水线 主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。" style="--a:#4A6E96">
+ <div class="t-body">
+  <h3>公众号流水线</h3>
+  <p class="desc">主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">8 KB<span class="sep">·</span><code>84f178fc</code></span>
+   <a class="get" href="packages/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%B5%81%E6%B0%B4%E7%BA%BF.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="内容创作" data-n="灵魂歌手 从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。" style="--a:#4A6E96">
+ <div class="t-body">
+  <h3>灵魂歌手</h3>
+  <p class="desc">从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">240 KB<span class="sep">·</span><code>712a83fa</code></span>
+   <a class="get" href="packages/%E7%81%B5%E9%AD%82%E6%AD%8C%E6%89%8B.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="内容创作" data-n="珍珠姊妹 天使之泪视频号货盘导购：查货、组货、算佣金、起草口播，不碰运营与后台。" style="--a:#4A6E96">
+ <div class="t-body">
+  <h3>珍珠姊妹</h3>
+  <p class="desc">天使之泪视频号货盘导购：查货、组货、算佣金、起草口播，不碰运营与后台。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">54 KB<span class="sep">·</span><code>92cf1e1b</code></span>
+   <a class="get" href="packages/%E7%8F%8D%E7%8F%A0%E5%A7%8A%E5%A6%B9.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="内容创作" data-n="表情包工坊 一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。" style="--a:#4A6E96">
+ <div class="t-body">
+  <h3>表情包工坊</h3>
+  <p class="desc">一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">34 KB<span class="sep">·</span><code>f0a22763</code></span>
+   <a class="get" href="packages/%E8%A1%A8%E6%83%85%E5%8C%85%E5%B7%A5%E5%9D%8A.zip" download>下载 ↓</a></div>
+ </div>
+</li></ul>
+</section><section class="grp" data-c="视频与口播" style="--a:#A4626F">
+ <div class="grp-h"><img src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="26" height="26" alt="" loading="lazy">
+  <b>视频与口播</b><i>6</i></div>
+ <ul class="grp-grid"><li class="tile" data-c="视频与口播" data-n="外教匹配 把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。" style="--a:#A4626F">
+ <div class="t-body">
+  <h3>外教匹配</h3>
+  <p class="desc">把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">17.7 MB<span class="sep">·</span><code>53081c29</code></span>
+   <a class="get" href="packages/%E5%A4%96%E6%95%99%E5%8C%B9%E9%85%8D.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="视频与口播" data-n="拉片分析师 把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。" style="--a:#A4626F">
+ <div class="t-body">
+  <h3>拉片分析师</h3>
+  <p class="desc">把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">117 KB<span class="sep">·</span><code>f8275b47</code></span>
+   <a class="get" href="packages/%E6%8B%89%E7%89%87%E5%88%86%E6%9E%90%E5%B8%88.tar.gz" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="视频与口播" data-n="教材匹配 按学生水平与目标匹配外教教材，输出课次表与教材清单（源包，不含大素材）。" style="--a:#A4626F">
+ <div class="t-body">
+  <h3>教材匹配</h3>
+  <p class="desc">按学生水平与目标匹配外教教材，输出课次表与教材清单（源包，不含大素材）。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">159 KB<span class="sep">·</span><code>854141c4</code></span>
+   <a class="get" href="packages/%E6%95%99%E6%9D%90%E5%8C%B9%E9%85%8D.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="视频与口播" data-n="数字人口播 文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。" style="--a:#A4626F">
+ <div class="t-body">
+  <h3>数字人口播</h3>
+  <p class="desc">文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">41 KB<span class="sep">·</span><code>98324c70</code></span>
+   <a class="get" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%AD.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="视频与口播" data-n="社媒洞察 把社媒真实讨论变成可核对的洞察：趋势、人群、竞品、口碑，不发布不改号。" style="--a:#A4626F">
+ <div class="t-body">
+  <h3>社媒洞察</h3>
+  <p class="desc">把社媒真实讨论变成可核对的洞察：趋势、人群、竞品、口碑，不发布不改号。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">76 KB<span class="sep">·</span><code>0cf1baad</code></span>
+   <a class="get" href="packages/%E7%A4%BE%E5%AA%92%E6%B4%9E%E5%AF%9F.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="视频与口播" data-n="选品雷达 食材供应链选品雷达" style="--a:#A4626F">
+ <div class="t-body">
+  <h3>选品雷达</h3>
+  <p class="desc">食材供应链选品雷达</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">116 KB<span class="sep">·</span><code>6bb212b5</code></span>
+   <a class="get" href="packages/%E9%80%89%E5%93%81%E9%9B%B7%E8%BE%BE.zip" download>下载 ↓</a></div>
+ </div>
+</li></ul>
+</section><section class="grp" data-c="团队基建" style="--a:#3F7A6B">
+ <div class="grp-h"><img src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="26" height="26" alt="" loading="lazy">
+  <b>团队基建</b><i>5</i></div>
+ <ul class="grp-grid"><li class="tile" data-c="团队基建" data-n="Agent调度师Bot 同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。" style="--a:#3F7A6B">
+ <div class="t-body">
+  <h3>Agent调度师Bot</h3>
+  <p class="desc">同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">26 KB<span class="sep">·</span><code>b9b6d407</code></span>
+   <a class="get" href="packages/Agent%E8%B0%83%E5%BA%A6%E5%B8%88Bot.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="团队基建" data-n="下载专家 长视频/播客/讲座转中文文稿，可搜可读，带时间轴。" style="--a:#3F7A6B">
+ <div class="t-body">
+  <h3>下载专家</h3>
+  <p class="desc">长视频/播客/讲座转中文文稿，可搜可读，带时间轴。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">22 KB<span class="sep">·</span><code>ffa70ea0</code></span>
+   <a class="get" href="packages/%E4%B8%8B%E8%BD%BD%E4%B8%93%E5%AE%B6.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="团队基建" data-n="文档重建师 PDF/扫描件重建为可编辑 Markdown：公式还原、图片切出、版式校准稿。" style="--a:#3F7A6B">
+ <div class="t-body">
+  <h3>文档重建师</h3>
+  <p class="desc">PDF/扫描件重建为可编辑 Markdown：公式还原、图片切出、版式校准稿。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">87 KB<span class="sep">·</span><code>4478e843</code></span>
+   <a class="get" href="packages/%E6%96%87%E6%A1%A3%E9%87%8D%E5%BB%BA%E5%B8%88.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="团队基建" data-n="配装师 团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。" style="--a:#3F7A6B">
+ <div class="t-body">
+  <h3>配装师</h3>
+  <p class="desc">团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">37 KB<span class="sep">·</span><code>93a60df3</code></span>
+   <a class="get" href="packages/%E9%85%8D%E8%A3%85%E5%B8%88.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="团队基建" data-n="高级审核员 独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。" style="--a:#3F7A6B">
+ <div class="t-body">
+  <h3>高级审核员</h3>
+  <p class="desc">独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">5 KB<span class="sep">·</span><code>fa71cd59</code></span>
+   <a class="get" href="packages/%E9%AB%98%E7%BA%A7%E5%AE%A1%E6%A0%B8%E5%91%98.zip" download>下载 ↓</a></div>
+ </div>
+</li></ul>
+</section><section class="grp" data-c="学习与运营" style="--a:#96773A">
+ <div class="grp-h"><img src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="26" height="26" alt="" loading="lazy">
+  <b>学习与运营</b><i>4</i></div>
+ <ul class="grp-grid"><li class="tile" data-c="学习与运营" data-n="学科助手 K12 学科陪练的学生端包：错题本、知识点查询、七板块导航，含 Mac/Win 一键安装器。" style="--a:#96773A">
+ <div class="t-body">
+  <h3>学科助手</h3>
+  <p class="desc">K12 学科陪练的学生端包：错题本、知识点查询、七板块导航，含 Mac/Win 一键安装器。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">608 KB<span class="sep">·</span><code>441ac345</code></span>
+   <a class="get" href="packages/%E5%AD%A6%E7%A7%91%E5%8A%A9%E6%89%8B.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="学习与运营" data-n="旋翼工坊 帮初二学生把一架无人机设计出来：需求、推重比、选型、机架、试飞数据与报告。" style="--a:#96773A">
+ <div class="t-body">
+  <h3>旋翼工坊</h3>
+  <p class="desc">帮初二学生把一架无人机设计出来：需求、推重比、选型、机架、试飞数据与报告。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">8 KB<span class="sep">·</span><code>5d7b1d67</code></span>
+   <a class="get" href="packages/%E6%97%8B%E7%BF%BC%E5%B7%A5%E5%9D%8A.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="学习与运营" data-n="润途移居助手 海外移居路线研究：比成本、算门槛、给材料清单与时间线。" style="--a:#96773A">
+ <div class="t-body">
+  <h3>润途移居助手</h3>
+  <p class="desc">海外移居路线研究：比成本、算门槛、给材料清单与时间线。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">16 KB<span class="sep">·</span><code>b5afa53d</code></span>
+   <a class="get" href="packages/%E6%B6%A6%E9%80%94%E7%A7%BB%E5%B1%85%E5%8A%A9%E6%89%8B.zip" download>下载 ↓</a></div>
+ </div>
+</li><li class="tile" data-c="学习与运营" data-n="雅思词汇教练 基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。" style="--a:#96773A">
+ <div class="t-body">
+  <h3>雅思词汇教练</h3>
+  <p class="desc">基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。</p>
+  <details class="how"><summary>怎么用</summary><p class="howtxt">把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p></details>
+  <div class="t-bot"><span class="meta">2.5 MB<span class="sep">·</span><code>daac2de2</code></span>
+   <a class="get" href="packages/%E9%9B%85%E6%80%9D%E8%AF%8D%E6%B1%87%E6%95%99%E7%BB%83.zip" download>下载 ↓</a></div>
+ </div>
+</li></ul>
+</section></div>
 </section>
 
 <section class="custom" id="custom">
@@ -445,16 +455,18 @@ footer p{margin:0}
 </section>
 
 <footer>
- <p>BOTHUB · 版本 v9 · 更新 2026-11-05</p>
+ <p>BOTHUB · 版本 v11 · 更新 2026-11-05</p>
  <p>包内如含开源底座，许可约束见包内 README。</p>
 </footer>
 </div>
 <script>
 const q=document.getElementById('q'),cnt=document.getElementById('cnt'),
-list=[...document.querySelectorAll('.row')],segs=[...document.querySelectorAll('.cat')];let cur='all';
+list=[...document.querySelectorAll('.tile')],segs=[...document.querySelectorAll('.cat')],
+groups=[...document.querySelectorAll('.grp')];let cur='all';
 function apply(){const s=q.value.trim().toLowerCase();let n=0;
  list.forEach(r=>{const okc=cur==='all'||r.dataset.c===cur;const okq=!s||r.dataset.n.toLowerCase().includes(s);
   const show=okc&&okq;r.hidden=!show;if(show)n++;});
+ groups.forEach(g=>{g.hidden=![...g.querySelectorAll('.tile')].some(t=>!t.hidden);});
  cnt.textContent=n+' / '+list.length;
  segs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.c===cur)));}
 q.addEventListener('input',apply);
