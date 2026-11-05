@@ -26,8 +26,6 @@ color:var(--ink2);font-weight:600}
 .brand s{width:30px;height:2px;background:var(--ink3);display:inline-block}
 h1{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.28;margin:14px 0 12px;
 letter-spacing:.01em}
-h1 .pun{font-style:normal;padding:0 0 0 1px;
-background:linear-gradient(transparent 68%,#F2E1AC 68%,#F2E1AC 92%,transparent 92%)}
 .lede{color:var(--ink2);margin:0 0 20px;font-size:17px}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:0}
 .btn-primary,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:46px;
@@ -183,7 +181,7 @@ font-size:13px;cursor:pointer;min-height:32px;font:inherit;font-size:13px}
 <section class="hero">
  <div>
   <span class="brand"><s></s>赛博人事局 · CYBERH</span>
-  <h1>这里有一整屋数字员工<br>等你<i class="pun">挑走</i>。</h1>
+  <h1>这里有一整屋数字员工<br>等你挑走</h1>
   <p class="lede">Bot 力资源市场：一个包，就是一个数字员工。</p>
   <div class="cta-row">
    <a class="btn-primary" href="#shelf">逛货架 ↓</a>
@@ -533,7 +531,7 @@ font-size:13px;cursor:pointer;min-height:32px;font:inherit;font-size:13px}
 </section>
 
 <footer>
- <p>赛博人事局 · CyberHR · 版本 v22 · 更新 2026-11-05</p>
+ <p>赛博人事局 · CyberHR · 版本 v23 · 更新 2026-11-05</p>
  <p>包内如含开源底座，许可约束见包内 README。</p>
 </footer>
 </div>
@@ -558,7 +556,7 @@ if(cw){cw.addEventListener('click',async()=>{const t=wid.textContent.trim();
 /* 版本检查：直接问 GitHub API（不经过 Pages 的 CDN 缓存），版本不一致就提示刷新 */
 fetch('https://api.github.com/repos/liangjianwei666666-beep/bothub/contents/version.txt?t='+Date.now(),
  {cache:'no-store',headers:{'Accept':'application/vnd.github.raw'}}).then(r=>r.ok?r.text():'').then(v=>{
- v=(v||'').trim(); if(!v||v==='v22') return;
+ v=(v||'').trim(); if(!v||v==='v23') return;
  const bar=document.createElement('div'); bar.className='newver';
  const t=document.createElement('span'); t.textContent='页面有新版本';
  const b=document.createElement('button'); b.type='button'; b.textContent='刷新看看';
