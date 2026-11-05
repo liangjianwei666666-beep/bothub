@@ -461,7 +461,7 @@ font-size:13px;cursor:pointer;min-height:32px;font:inherit;font-size:13px}
 </section>
 
 <footer>
- <p>BOTHUB · 版本 v13 · 更新 2026-11-05</p>
+ <p>BOTHUB · 版本 v14 · 更新 2026-11-05</p>
  <p>包内如含开源底座，许可约束见包内 README。</p>
 </footer>
 </div>
@@ -483,9 +483,10 @@ if(cw){cw.addEventListener('click',async()=>{const t=wid.textContent.trim();
   document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(_){}ta.remove();}
  cw.textContent='已复制 ✓';cw.classList.add('done');
  setTimeout(()=>{cw.textContent='一键复制';cw.classList.remove('done');},1800);});}
-/* 版本检查：服务器上的版本和本页不一致时，提示刷新（绕过浏览器缓存） */
-fetch('version.txt?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.text():'').then(v=>{
- v=(v||'').trim(); if(!v||v==='v13') return;
+/* 版本检查：直接问 GitHub API（不经过 Pages 的 CDN 缓存），版本不一致就提示刷新 */
+fetch('https://api.github.com/repos/liangjianwei666666-beep/bothub/contents/version.txt?t='+Date.now(),
+ {cache:'no-store',headers:{'Accept':'application/vnd.github.raw'}}).then(r=>r.ok?r.text():'').then(v=>{
+ v=(v||'').trim(); if(!v||v==='v14') return;
  const bar=document.createElement('div'); bar.className='newver';
  const t=document.createElement('span'); t.textContent='页面有新版本';
  const b=document.createElement('button'); b.type='button'; b.textContent='刷新看看';
