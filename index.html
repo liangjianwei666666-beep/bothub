@@ -23,6 +23,17 @@ h1{font-family:var(--serif);font-weight:600;font-size:52px;line-height:1.14;lett
 margin:16px 0 14px}
 h1 span{display:block;color:var(--ink2);font-size:30px;line-height:1.4;margin-top:10px;letter-spacing:0}
 .lede{color:var(--ink2);margin:0 0 22px;max-width:min(26em,100%)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 22px}
+.btn-primary,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+padding:10px 20px;font-size:14.5px;text-decoration:none;border-radius:4px;transition:background .18s ease,
+color .18s ease,border-color .18s ease}
+.btn-primary{background:var(--ink);color:#FCFAF4;border:1px solid var(--ink)}
+.btn-primary:hover{background:#3A362D}
+.btn-ghost{border:1px solid var(--line);color:var(--ink2);background:#fff}
+.btn-ghost:hover{border-color:var(--ink3);color:var(--ink)}
+.btn-primary:focus-visible,.btn-ghost:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.mini{display:inline-block;font-size:11.5px;letter-spacing:.18em;color:var(--ink3);margin-bottom:8px}
+.hint{margin:12px 0 0;font-size:13.5px;color:var(--ink3)}
 .stats{display:flex;gap:30px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
 .stat b{display:flex;align-items:baseline;gap:3px;font-family:var(--serif);font-size:24px;
 font-variant-numeric:tabular-nums;letter-spacing:-.01em}
@@ -124,21 +135,25 @@ footer p{margin:0}
 
 <section class="hero">
  <div>
-  <span class="brand"><s></s>BOTHUB · BOT PACKAGE HUB</span>
-  <h1>Bot 包仓库<span>团队做好的 Bot，打包好放这儿。</span></h1>
-  <p class="lede">每个包配一句人话简介、一份使用步骤和一个可自校验的 sha256。下完对一下指纹，就知道文件有没有坏。</p>
+  <span class="brand"><s></s>BOTHUB · 开放的 Bot 货架</span>
+  <h1>好用的 Bot，<br>都摆在这一层<span>谁做好，谁放上来；谁需要，随手拿走。</span></h1>
+  <p class="lede">每个包都写清三件事：它能干什么、几步能上手、以及一枚 sha256 指纹。下载后对一下指纹——对不上，说明文件半路坏了。</p>
+  <div class="cta-row">
+   <a class="btn-primary" href="#upload">投稿上架</a>
+   <a class="btn-ghost" href="#shelf">先逛一圈 ↓</a>
+  </div>
   <div class="stats">
-   <div class="stat"><b>25</b><span>个包</span></div>
-   <div class="stat"><b>81<small style="font-size:13px"> MB</small></b><span>合计体积</span></div>
-   <div class="stat"><b>5</b><span>个分类</span></div>
-   <div class="stat"><b>100<small style="font-size:13px">%</small></b><span>带 sha256</span></div>
+   <div class="stat"><b>25</b><span>个包在架</span></div>
+   <div class="stat"><b>81<small style="font-size:13px"> MB</small></b><span>全部加起来</span></div>
+   <div class="stat"><b>5</b><span>个门类</span></div>
+   <div class="stat"><b>100<small style="font-size:13px">%</small></b><span>都带指纹</span></div>
   </div>
  </div>
  <figure class="art plate"><video class="poster poster-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero.jpg"><source src="assets/hero-loop.mp4" type="video/mp4"></video><img class="poster poster-still poster-hide" src="assets/hero.jpg" width="1400" height="933" alt="五个小机器人"><figcaption>BOTHUB · 团队小机器人家族</figcaption></figure>
 </section>
 
 <section class="sect">
- <div class="s-head"><h2>分类</h2><p>点一下只看这一类</p><span class="cnt" id="cnt">25 / 25</span></div>
+ <div class="s-head"><h2>先挑个门类</h2><p>点一下，只留这一类</p><span class="cnt" id="cnt">25 / 25</span></div>
  <div class="segs" role="group" aria-label="按分类筛选">
   <button class="seg" data-c="all" type="button" aria-pressed="true" style="--a:#23211C"><span>全部</span><i>25</i></button>
   <button class="seg" data-c="命理玄学" type="button" style="--a:#7C5F96">
@@ -150,9 +165,9 @@ footer p{margin:0}
  </div>
 </section>
 
-<section class="sect">
- <div class="s-head"><h2>全部包裹</h2><p>按分类排好，同一类里按名字</p></div>
- <div class="searchbar"><input type="search" id="q" placeholder="搜名字或用处，例如 塔罗 / 口播 / 审核" aria-label="搜索包"></div>
+<section class="sect" id="shelf">
+ <div class="s-head"><h2>整层货架</h2><p>同门类里按名字排</p></div>
+ <div class="searchbar"><input type="search" id="q" placeholder="找找看：塔罗 / 口播 / 审核" aria-label="搜索包"></div>
  <ul class="list" id="list"><li class="row" data-c="命理玄学" data-n="命盘师 四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。" style="--a:#7C5F96">
  <div class="r-top"><span class="dot" aria-hidden="true"></span>
    <h3>命盘师</h3><span class="kat">命理玄学</span></div>
@@ -331,22 +346,25 @@ footer p{margin:0}
 </li></ul>
 </section>
 
-<section class="custom" id="custom">
+<section class="custom" id="upload">
  <div>
-  <h2>定制你的个性化 Bot</h2>
+  <span class="mini">投稿 / 定制</span>
+  <h2>想把自己的 Bot 摆上来？</h2>
   <ol>
-   <li><b>改造、升级你的 Bot</b>——已有 Bot 加能力、换流程、接你自己的数据和工具</li>
-   <li><b>定制复杂自动化工作流</b>——多个 Bot 串起来跑，定时、审批、回读都有</li>
+   <li>目前<b>还没开放自助上传</b>——先由管理员过一道手，免得货架上混进半成品</li>
+   <li>加微信说清楚要上什么，附一句「<b>它能替人干什么</b>」</li>
+   <li>通过后我们帮你打包、配图标、写简介，再挂到货架上</li>
   </ol>
-  <div class="wx"><span>扫码或添加微信</span><b id="wxid">583456045</b>
+  <p class="hint">想改造已有 Bot、或者要一条多 Bot 串起来的自动化工作流，也走同一个微信。</p>
+  <div class="wx"><span>管理员微信</span><b id="wxid">583456045</b>
    <button id="copywx" class="copybtn" type="button">复制微信号</button></div>
  </div>
- <div class="qr"><img src="assets/wechat-qr.png" width="360" height="353" alt="微信二维码" loading="lazy">
-  <span>微信扫一扫，说明你想做什么</span></div>
+ <div class="qr"><img src="assets/wechat-qr.png" width="360" height="353" alt="管理员微信二维码" loading="lazy">
+  <span>扫一下，直接找管理员</span></div>
 </section>
 
 <footer>
- <p>BOTHUB · 25 个包 · 81 MB · 版本 v4 · 更新 2026-11-05</p>
+ <p>BOTHUB · 25 个包 · 81 MB · 版本 v5 · 更新 2026-11-05</p>
  <p>包内如含开源底座，许可约束见包内 README。</p>
 </footer>
 </div>
