@@ -1,53 +1,195 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BOTHUB · Bot 包仓库</title><meta name="description" content="团队 Bot 安装包集中下载，含 sha256 校验。">
+<title>BOTHUB · Bot 包仓库</title>
+<meta name="description" content="团队 Bot 安装包集中下载：每个包都有简介、操作指引和 sha256 校验。">
 <style>
-:root{--paper:#F7F3EA;--card:#FBF8F2;--ink:#2B2B2B;--dim:#6E6A62;--mute:#9C968C;--line:#DED7C9;--acc:#2F4F45}
-*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
-.wrap{max-width:1080px;margin:0 auto;padding:0 22px 72px}header{padding:48px 0 22px;border-bottom:1px solid var(--line)}
-.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--mute)}h1{font-size:31px;margin:10px 0 8px}
-.sub{color:var(--dim);max-width:620px}.stats{display:flex;gap:24px;margin-top:18px;flex-wrap:wrap}
-.stat b{display:block;font-size:21px}.stat span{font-size:12.5px;color:var(--mute)}
-h2{font-size:18px;margin:38px 0 4px}h2 .n{color:var(--mute);margin-right:8px;font-weight:500}
-.lead{color:var(--dim);margin:0 0 14px;font-size:14px}.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
-input[type=search]{flex:1;min-width:190px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;font-size:14px}
-.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--dim)}
-.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}.count{font-size:12.5px;color:var(--mute);margin-left:auto}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:4px}
-.row{display:flex;justify-content:space-between;align-items:center}.tag{font-size:11.5px;border-radius:999px;padding:2px 8px;background:#EDE9E0;color:#5E5A52}
-.sz{font-size:12px;color:var(--mute)}.card h3{font-size:14.5px;margin:6px 0 0;line-height:1.4}
-.sha{margin:2px 0 8px;font:11.5px ui-monospace,Menlo,monospace;color:var(--mute)}
-.dl{margin-top:auto;align-self:flex-start;font-size:13px;color:var(--acc);text-decoration:none;border:1px solid var(--acc);border-radius:8px;padding:4px 12px}
-.dl:hover{background:var(--acc);color:#fff}ol.steps{padding-left:20px;color:var(--dim)}ol.steps li{margin:8px 0}
-.faq details{border-bottom:1px solid var(--line);padding:11px 0}.faq summary{cursor:pointer;font-size:14.5px}
-.faq p{margin:8px 0 0;color:var(--dim);font-size:13.5px}footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;color:var(--mute);font-size:12.5px}
-.note{background:#FBF5E9;border:1px solid #E8DCC2;border-radius:10px;padding:12px 14px;font-size:13.5px;color:#6B5A2E;margin-top:14px}
+:root{--paper:#FBF8F1;--card:#FFFDF7;--ink:#2C2A26;--dim:#6F6A5F;--mute:#A39C8C;--line:#DDD5C2;--hand:"Kaiti SC","STKaiti","Xingkai SC","Songti SC",serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);
+background-image:radial-gradient(#E7DFCC 0.8px,transparent 0.8px);background-size:22px 22px;
+font:15.5px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px 80px}
+header{padding:52px 0 22px;text-align:center}
+.kicker{display:inline-block;font-size:12px;letter-spacing:.24em;color:var(--mute);
+border:1px dashed var(--line);border-radius:999px;padding:3px 12px}
+h1{font-family:var(--hand);font-size:40px;margin:14px 0 6px;letter-spacing:.03em}
+.sub{color:var(--dim);max-width:600px;margin:0 auto}
+.stats{display:flex;gap:26px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.stat b{display:block;font-family:var(--hand);font-size:22px}
+.stat span{font-size:12.5px;color:var(--mute)}
+hr.sketch{border:0;border-top:1.5px dashed var(--line);margin:28px 0 10px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 18px}
+input[type=search]{flex:1;min-width:190px;border:1.5px solid var(--line);background:var(--card);border-radius:13px;
+padding:9px 13px;font-size:14px;color:var(--ink);outline:none}
+input[type=search]:focus{border-color:#B9AF95}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 13px;
+font-size:13px;cursor:pointer;color:var(--dim)}
+.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-size:12.5px;color:var(--mute);margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:16px}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:16px 17px;
+box-shadow:2px 3px 0 #E9E1CD;transform:rotate(var(--rot));transition:transform .18s ease,box-shadow .18s ease;
+display:flex;flex-direction:column;gap:8px}
+.card:hover{transform:rotate(0) translateY(-2px);box-shadow:3px 6px 0 #E3DAC3}
+.head{display:flex;gap:11px;align-items:center}
+.ico{width:44px;height:44px;flex:0 0 44px}
+.card h3{font-family:var(--hand);font-size:20px;margin:0;line-height:1.25}
+.cat{font-size:11.5px;color:var(--c);border:1px dashed var(--c);border-radius:999px;padding:0 7px;opacity:.85}
+.intro{margin:2px 0 0;font-size:13.5px;color:var(--dim);min-height:44px}
+.guide{border-top:1px dashed var(--line);padding-top:6px;font-size:13px;color:var(--dim)}
+.guide summary{cursor:pointer;color:var(--c);font-size:12.5px;list-style:none}
+.guide summary::-webkit-details-marker{display:none}
+.guide summary:before{content:"✎ ";opacity:.7}
+.guide ol{margin:6px 0 0;padding-left:18px}
+.guide li{margin:3px 0}
+.foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:6px}
+.meta{font:11.5px ui-monospace,Menlo,monospace;color:var(--mute)}
+.dl{font-size:13px;color:#fff;background:var(--c);text-decoration:none;border-radius:10px;padding:5px 14px}
+.dl:hover{opacity:.88}
+footer{margin-top:44px;text-align:center;color:var(--mute);font-size:12.5px}
+.note{border:1.5px dashed var(--line);border-radius:14px;padding:13px 16px;font-size:13.5px;color:#6B5A2E;
+background:#FDF6E6;margin-top:26px}
+@media(max-width:640px){h1{font-size:31px}header{padding-top:36px}.card{transform:none}}
 </style></head><body><div class="wrap">
-<header><div class="eyebrow">BOTHUB · BOT PACKAGE HUB</div><h1>Bot 包仓库</h1>
-<p class="sub">把团队做好的 Bot 安装包集中放一处：能搜、能筛、能下、知道怎么装。每个包都带 sha256。</p>
-<div class="stats"><div class="stat"><b>26</b><span>个包</span></div><div class="stat"><b>46.7 MB</b><span>合计体积</span></div>
-<div class="stat"><b>6</b><span>个分类</span></div><div class="stat"><b>100%</b><span>带 sha256</span></div></div></header>
-<h2><span class="n">01</span>下载</h2><p class="lead">按分类筛选，或直接搜包名。</p>
-<div class="tools"><input type="search" id="q" placeholder="搜包名，例如 塔罗 / 英语 / 工作台"><button class="chip on" data-g="all">全部 26</button><button class="chip" data-g="学科助手">学科助手 9</button><button class="chip" data-g="玄学命理">玄学命理 3</button><button class="chip" data-g="内容与创意">内容与创意 3</button><button class="chip" data-g="团队基建">团队基建 5</button><button class="chip" data-g="视频与业务">视频与业务 4</button><button class="chip" data-g="其他">其他 2</button><span class="count" id="cnt">26 / 26</span></div>
-<div class="grid" id="g"><article class="card" data-g="学科助手" data-n="安装包_数学助手"><div class="row"><span class="tag">学科助手</span><span class="sz">82 KB</span></div><h3>安装包_数学助手</h3><p class="sha">sha256 05312fae24a0…</p><a class="dl" href="packages/%E5%AE%89%E8%A3%85%E5%8C%85_%E6%95%B0%E5%AD%A6%E5%8A%A9%E6%89%8B.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="数学助手安装包"><div class="row"><span class="tag">学科助手</span><span class="sz">82 KB</span></div><h3>数学助手安装包</h3><p class="sha">sha256 297b6d697188…</p><a class="dl" href="packages/%E6%95%B0%E5%AD%A6%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="数学助手安装包-1"><div class="row"><span class="tag">学科助手</span><span class="sz">82 KB</span></div><h3>数学助手安装包-1</h3><p class="sha">sha256 3dae55a90d96…</p><a class="dl" href="packages/%E6%95%B0%E5%AD%A6%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85-1.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="英语助手BOT安装包"><div class="row"><span class="tag">学科助手</span><span class="sz">1.0 MB</span></div><h3>英语助手BOT安装包</h3><p class="sha">sha256 e3f84d8bbec2…</p><a class="dl" href="packages/%E8%8B%B1%E8%AF%AD%E5%8A%A9%E6%89%8BBOT%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="英语助手安装包"><div class="row"><span class="tag">学科助手</span><span class="sz">51 KB</span></div><h3>英语助手安装包</h3><p class="sha">sha256 723263bf08a0…</p><a class="dl" href="packages/%E8%8B%B1%E8%AF%AD%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="英语助手安装包-1"><div class="row"><span class="tag">学科助手</span><span class="sz">31 KB</span></div><h3>英语助手安装包-1</h3><p class="sha">sha256 cb5ad4199ed6…</p><a class="dl" href="packages/%E8%8B%B1%E8%AF%AD%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85-1.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="语文助手安装包"><div class="row"><span class="tag">学科助手</span><span class="sz">41 KB</span></div><h3>语文助手安装包</h3><p class="sha">sha256 ae284f6a9535…</p><a class="dl" href="packages/%E8%AF%AD%E6%96%87%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="语文助手安装包-1"><div class="row"><span class="tag">学科助手</span><span class="sz">31 KB</span></div><h3>语文助手安装包-1</h3><p class="sha">sha256 b51be6d6c121…</p><a class="dl" href="packages/%E8%AF%AD%E6%96%87%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85-1.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="雅思词汇教练BOT安装包"><div class="row"><span class="tag">学科助手</span><span class="sz">2.5 MB</span></div><h3>雅思词汇教练BOT安装包</h3><p class="sha">sha256 daac2de2bf39…</p><a class="dl" href="packages/%E9%9B%85%E6%80%9D%E8%AF%8D%E6%B1%87%E6%95%99%E7%BB%83BOT%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="玄学命理" data-n="命盘师Bot"><div class="row"><span class="tag">玄学命理</span><span class="sz">51 KB</span></div><h3>命盘师Bot</h3><p class="sha">sha256 504a9a6419b5…</p><a class="dl" href="packages/%E5%91%BD%E7%9B%98%E5%B8%88Bot.zip" download>下载</a></article><article class="card" data-g="玄学命理" data-n="塔罗师Bot-v5"><div class="row"><span class="tag">玄学命理</span><span class="sz">3.2 MB</span></div><h3>塔罗师Bot-v5</h3><p class="sha">sha256 6ac03459944f…</p><a class="dl" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88Bot-v5.zip" download>下载</a></article><article class="card" data-g="玄学命理" data-n="易经占卜师Bot"><div class="row"><span class="tag">玄学命理</span><span class="sz">15.3 MB</span></div><h3>易经占卜师Bot</h3><p class="sha">sha256 1e84d69675a2…</p><a class="dl" href="packages/%E6%98%93%E7%BB%8F%E5%8D%A0%E5%8D%9C%E5%B8%88Bot.zip" download>下载</a></article><article class="card" data-g="内容与创意" data-n="公众号流水线一键安装包"><div class="row"><span class="tag">内容与创意</span><span class="sz">10 KB</span></div><h3>公众号流水线一键安装包</h3><p class="sha">sha256 84f178fcf1a3…</p><a class="dl" href="packages/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="内容与创意" data-n="灵魂歌手Bot-v1.2.0"><div class="row"><span class="tag">内容与创意</span><span class="sz">246 KB</span></div><h3>灵魂歌手Bot-v1.2.0</h3><p class="sha">sha256 712a83fa34da…</p><a class="dl" href="packages/%E7%81%B5%E9%AD%82%E6%AD%8C%E6%89%8BBot-v1.2.0.zip" download>下载</a></article><article class="card" data-g="内容与创意" data-n="表情包工坊-Bot安装包-v1.0.0"><div class="row"><span class="tag">内容与创意</span><span class="sz">31 KB</span></div><h3>表情包工坊-Bot安装包-v1.0.0</h3><p class="sha">sha256 f0a22763e315…</p><a class="dl" href="packages/%E8%A1%A8%E6%83%85%E5%8C%85%E5%B7%A5%E5%9D%8A-Bot%E5%AE%89%E8%A3%85%E5%8C%85-v1.0.0.zip" download>下载</a></article><article class="card" data-g="团队基建" data-n="PPT大师-Bot包-v1"><div class="row"><span class="tag">团队基建</span><span class="sz">5.9 MB</span></div><h3>PPT大师-Bot包-v1</h3><p class="sha">sha256 ade7fb6cd54b…</p><a class="dl" href="packages/PPT%E5%A4%A7%E5%B8%88-Bot%E5%8C%85-v1.zip" download>下载</a></article><article class="card" data-g="团队基建" data-n="下载专家-skill"><div class="row"><span class="tag">团队基建</span><span class="sz">20 KB</span></div><h3>下载专家-skill</h3><p class="sha">sha256 ffa70ea04383…</p><a class="dl" href="packages/%E4%B8%8B%E8%BD%BD%E4%B8%93%E5%AE%B6-skill.zip" download>下载</a></article><article class="card" data-g="团队基建" data-n="配装师Bot-v1"><div class="row"><span class="tag">团队基建</span><span class="sz">41 KB</span></div><h3>配装师Bot-v1</h3><p class="sha">sha256 93a60df35af9…</p><a class="dl" href="packages/%E9%85%8D%E8%A3%85%E5%B8%88Bot-v1.tar.gz" download>下载</a></article><article class="card" data-g="团队基建" data-n="高级审核员Bot-v1.0.0"><div class="row"><span class="tag">团队基建</span><span class="sz">10 KB</span></div><h3>高级审核员Bot-v1.0.0</h3><p class="sha">sha256 fa71cd597a5c…</p><a class="dl" href="packages/%E9%AB%98%E7%BA%A7%E5%AE%A1%E6%A0%B8%E5%91%98Bot-v1.0.0.zip" download>下载</a></article><article class="card" data-g="团队基建" data-n="鹅圈子运营团队Bot包-v1.0_副本"><div class="row"><span class="tag">团队基建</span><span class="sz">41 KB</span></div><h3>鹅圈子运营团队Bot包-v1.0_副本</h3><p class="sha">sha256 0ccc454c752f…</p><a class="dl" href="packages/%E9%B9%85%E5%9C%88%E5%AD%90%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9FBot%E5%8C%85-v1.0_%E5%89%AF%E6%9C%AC.zip" download>下载</a></article><article class="card" data-g="视频与业务" data-n="外教匹配-Bot安装包-v1.0"><div class="row"><span class="tag">视频与业务</span><span class="sz">17.7 MB</span></div><h3>外教匹配-Bot安装包-v1.0</h3><p class="sha">sha256 53081c293805…</p><a class="dl" href="packages/%E5%A4%96%E6%95%99%E5%8C%B9%E9%85%8D-Bot%E5%AE%89%E8%A3%85%E5%8C%85-v1.0.zip" download>下载</a></article><article class="card" data-g="视频与业务" data-n="数字人口播Bot_安装包_v1.0"><div class="row"><span class="tag">视频与业务</span><span class="sz">41 KB</span></div><h3>数字人口播Bot_安装包_v1.0</h3><p class="sha">sha256 98324c70f7f1…</p><a class="dl" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%ADBot_%E5%AE%89%E8%A3%85%E5%8C%85_v1.0.zip" download>下载</a></article><article class="card" data-g="视频与业务" data-n="数字人口播Bot_安装包_v1.0"><div class="row"><span class="tag">视频与业务</span><span class="sz">31 KB</span></div><h3>数字人口播Bot_安装包_v1.0</h3><p class="sha">sha256 e5790a6556e4…</p><a class="dl" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%ADBot_%E5%AE%89%E8%A3%85%E5%8C%85_v1.0.tar.gz" download>下载</a></article><article class="card" data-g="视频与业务" data-n="润途移居助手一键安装包"><div class="row"><span class="tag">视频与业务</span><span class="sz">20 KB</span></div><h3>润途移居助手一键安装包</h3><p class="sha">sha256 b5afa53d2951…</p><a class="dl" href="packages/%E6%B6%A6%E9%80%94%E7%A7%BB%E5%B1%85%E5%8A%A9%E6%89%8B%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="其他" data-n="shot-analyst-bot"><div class="row"><span class="tag">其他</span><span class="sz">113 KB</span></div><h3>shot-analyst-bot</h3><p class="sha">sha256 f8275b47a3b3…</p><a class="dl" href="packages/shot-analyst-bot.tar.gz" download>下载</a></article><article class="card" data-g="其他" data-n="shuangqing-bot-v1"><div class="row"><span class="tag">其他</span><span class="sz">31 KB</span></div><h3>shuangqing-bot-v1</h3><p class="sha">sha256 b9b6d4072a04…</p><a class="dl" href="packages/shuangqing-bot-v1.zip" download>下载</a></article></div>
-<h2><span class="n">02</span>怎么装</h2><div class="card" style="padding:16px 20px"><ol class="steps">
-<li><b>先看包里有没有 install 脚本。</b>有 → 先装运行环境再照 README；没有的多数解压打开网页就能用。</li>
-<li><b>核对 sha256。</b>跟卡片上前 12 位对一下，确认文件完整。</li>
-<li><b>要密钥的包自己填。</b>仓库不代配。</li><li><b>装不上先看 README 的「常见错误」。</b></li></ol></div>
-<h2><span class="n">03</span>常见问题</h2><div class="faq">
-<details><summary>为什么有的包要装环境，有的双击就行？</summary><p>双击类是单文件网页工具，零门槛但能力固定；要装环境的带脚本和依赖，能力更强。</p></details>
-<details><summary>Mac 和 Windows 都能用吗？</summary><p>双击类都能；要装环境的看包内说明。</p></details>
-<details><summary>微信里点下载没反应？</summary><p>微信会拦 .zip 直链，请在浏览器里打开本页。</p></details>
-<details><summary>包可以转给别人吗？</summary><p>团队自制的可给同群用；带开源底座的受原许可限制，不能商用。</p></details>
-<details><summary>下载断了怎么办？</summary><p>重下，sha256 对得上就说明完整。</p></details></div>
-<div class="note">本仓库只做「找得到、下得动、装得上」。包内如含开源底座，许可约束见包内 README。</div>
-<footer><p>BOTHUB · 26 个包 · 46.7 MB · 更新于 2026-11-05</p></footer></div>
+<header><span class="kicker">BOTHUB · BOT PACKAGE HUB</span>
+<h1>Bot 包仓库</h1>
+<p class="sub">团队做好的 Bot 安装包，集中放一处：每个包都有<b>一句简介</b>、<b>怎么用</b>和 <b>sha256</b>，下完能自己校验。</p>
+<div class="stats"><div class="stat"><b>17</b><span>个包</span></div>
+<div class="stat"><b>45.3 MB</b><span>合计</span></div>
+<div class="stat"><b>5</b><span>个分类</span></div>
+<div class="stat"><b>100%</b><span>带 sha256</span></div></div>
+</header><hr class="sketch">
+<div class="tools"><input type="search" id="q" placeholder="搜包名或用途，例如 塔罗 / 口播 / 审核">
+<button class="chip on" data-c="all">全部 17</button><button class="chip" data-c="命理玄学">命理玄学 3</button><button class="chip" data-c="内容创作">内容创作 4</button><button class="chip" data-c="视频与口播">视频与口播 3</button><button class="chip" data-c="团队基建">团队基建 4</button><button class="chip" data-c="学习与运营">学习与运营 3</button><span class="count" id="cnt">17 / 17</span></div>
+<div class="grid" id="g"><article class="card" data-c="命理玄学" data-n="塔罗师" style="--c:#6B4A7A;--rot:0.5deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#6B4A7A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6h28l3 30H8z"/><path d="M24 14l4 8h-8z"/><circle cx="24" cy="28" r="4"/></svg>
+    <div><h3>塔罗师</h3><span class="cat">命理玄学</span></div></div>
+  <p class="intro">韦特体系塔罗解读：抽牌、解牌、给可执行的建议，不预测宿命。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 把「给 Bot 的指令」贴进 Bot 设定</li><li>牌库已内置，无需联网</li><li>问牌时说明问题背景与时间范围，解读更准</li></ol></details>
+  <div class="foot"><span class="meta">3.2 MB · sha256 6ac03459…</span>
+    <a class="dl" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88.zip" download>下载</a></div>
+</article><article class="card" data-c="命理玄学" data-n="命盘师" style="--c:#6B4A7A;--rot:-0.6deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#6B4A7A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="15"/><path d="M24 9v15l11 8"/><path d="M9 24h30"/></svg>
+    <div><h3>命盘师</h3><span class="cat">命理玄学</span></div></div>
+  <p class="intro">四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 贴入指令</li><li>准备出生年月日时（越准越好）</li><li>问方向而不是问吉凶，结论更可用</li></ol></details>
+  <div class="foot"><span class="meta">55 KB · sha256 504a9a64…</span>
+    <a class="dl" href="packages/%E5%91%BD%E7%9B%98%E5%B8%88.zip" download>下载</a></div>
+</article><article class="card" data-c="命理玄学" data-n="易经占卜师" style="--c:#6B4A7A;--rot:0.5deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#6B4A7A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6l14 24H10z"/><path d="M24 42L10 18h28z"/><circle cx="24" cy="24" r="3"/></svg>
+    <div><h3>易经占卜师</h3><span class="cat">命理玄学</span></div></div>
+  <p class="intro">铜钱法起卦、依《周易》通行本解卦，给结构判断与一句可执行的话。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 安装</li><li>起卦前把问题写成一句话</li><li>一次只问一件事，避免连环追问</li></ol></details>
+  <div class="foot"><span class="meta">15.3 MB · sha256 1e84d696…</span>
+    <a class="dl" href="packages/%E6%98%93%E7%BB%8F%E5%8D%A0%E5%8D%9C%E5%B8%88.zip" download>下载</a></div>
+</article><article class="card" data-c="内容创作" data-n="公众号流水线" style="--c:#35507F;--rot:-0.6deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#35507F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10h26v28H8z"/><path d="M34 18h6v18a4 4 0 0 1-4 4h-2z"/><path d="M13 17h16M13 23h16M13 29h10"/></svg>
+    <div><h3>公众号流水线</h3><span class="cat">内容创作</span></div></div>
+  <p class="intro">主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>先读包内 README 的分工说明</li><li>按 INSTALL 建主笔/设计/发布/审核四个 Bot</li><li>群发始终由人工点击，包内不代发</li></ol></details>
+  <div class="foot"><span class="meta">8 KB · sha256 84f178fc…</span>
+    <a class="dl" href="packages/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%B5%81%E6%B0%B4%E7%BA%BF.zip" download>下载</a></div>
+</article><article class="card" data-c="内容创作" data-n="PPT大师" style="--c:#35507F;--rot:0.5deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#35507F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10h30v22H7z"/><path d="M18 32l-4 8M30 32l4 8"/><path d="M13 17h10M13 23h16"/></svg>
+    <div><h3>PPT大师</h3><span class="cat">内容创作</span></div></div>
+  <p class="intro">把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 接入生图/排版脚本</li><li>给它原始材料（文档或长文）</li><li>先要目录再要单页，避免一次生成整本</li></ol></details>
+  <div class="foot"><span class="meta">5.9 MB · sha256 ade7fb6c…</span>
+    <a class="dl" href="packages/PPT%E5%A4%A7%E5%B8%88.zip" download>下载</a></div>
+</article><article class="card" data-c="内容创作" data-n="表情包工坊" style="--c:#35507F;--rot:-0.6deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#35507F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="16"/><circle cx="18" cy="20" r="1.6"/><circle cx="30" cy="20" r="1.6"/><path d="M16 29c4 5 12 5 16 0"/></svg>
+    <div><h3>表情包工坊</h3><span class="cat">内容创作</span></div></div>
+  <p class="intro">一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后配置生图 Key</li><li>先定角色设定（一句话）</li><li>一次出 4–8 张，再挑要的那两张细修</li></ol></details>
+  <div class="foot"><span class="meta">34 KB · sha256 f0a22763…</span>
+    <a class="dl" href="packages/%E8%A1%A8%E6%83%85%E5%8C%85%E5%B7%A5%E5%9D%8A.zip" download>下载</a></div>
+</article><article class="card" data-c="内容创作" data-n="灵魂歌手" style="--c:#35507F;--rot:0.5deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#35507F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 10v20a5 5 0 1 1-4-5"/><path d="M18 12l16-4v18a5 5 0 1 1-4-5"/></svg>
+    <div><h3>灵魂歌手</h3><span class="cat">内容创作</span></div></div>
+  <p class="intro">从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后跑 install.sh，自检 28 项应全过</li><li>先定歌与歌词，再出画面</li><li>五平台发布需自己登录，包内不代发</li></ol></details>
+  <div class="foot"><span class="meta">240 KB · sha256 712a83fa…</span>
+    <a class="dl" href="packages/%E7%81%B5%E9%AD%82%E6%AD%8C%E6%89%8B.zip" download>下载</a></div>
+</article><article class="card" data-c="视频与口播" data-n="数字人口播" style="--c:#7A2F4A;--rot:-0.6deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#7A2F4A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="19" r="9"/><path d="M9 40c2-9 8-13 15-13s13 4 15 13"/></svg>
+    <div><h3>数字人口播</h3><span class="cat">视频与口播</span></div></div>
+  <p class="intro">文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后跑安装脚本，补齐三把 Key</li><li>准备 3–5 句中文文案与一张正面形象图</li><li>先出一条 15 秒样片，确认口型再批量</li></ol></details>
+  <div class="foot"><span class="meta">41 KB · sha256 98324c70…</span>
+    <a class="dl" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%AD.zip" download>下载</a></div>
+</article><article class="card" data-c="视频与口播" data-n="拉片分析师" style="--c:#7A2F4A;--rot:0.5deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#7A2F4A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 12h32v24H8z"/><path d="M8 20h32M8 28h32M16 12v24M32 12v24"/></svg>
+    <div><h3>拉片分析师</h3><span class="cat">视频与口播</span></div></div>
+  <p class="intro">把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后需要 node 与 ffmpeg</li><li>把视频放进目录后运行分析脚本</li><li>报告是单文件 HTML，双击即可看</li></ol></details>
+  <div class="foot"><span class="meta">117 KB · sha256 f8275b47…</span>
+    <a class="dl" href="packages/%E6%8B%89%E7%89%87%E5%88%86%E6%9E%90%E5%B8%88.tar.gz" download>下载</a></div>
+</article><article class="card" data-c="视频与口播" data-n="外教匹配" style="--c:#7A2F4A;--rot:-0.6deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#7A2F4A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="16" r="7"/><path d="M12 40c1-8 6-12 12-12s11 4 12 12"/><path d="M30 22l8-3v10l-8-3z"/></svg>
+    <div><h3>外教匹配</h3><span class="cat">视频与口播</span></div></div>
+  <p class="intro">把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 导入老师资料</li><li>先写清孩子水平与目标</li><li>推荐结果含匹配理由，自己再核实</li></ol></details>
+  <div class="foot"><span class="meta">17.7 MB · sha256 53081c29…</span>
+    <a class="dl" href="packages/%E5%A4%96%E6%95%99%E5%8C%B9%E9%85%8D.zip" download>下载</a></div>
+</article><article class="card" data-c="团队基建" data-n="双擎Bot" style="--c:#2F5A55;--rot:0.5deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#2F5A55" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16h24v18H12z"/><circle cx="19" cy="25" r="2.4"/><circle cx="29" cy="25" r="2.4"/><path d="M24 16v-6M19 34v4M29 34v4"/></svg>
+    <div><h3>双擎Bot</h3><span class="cat">团队基建</span></div></div>
+  <p class="intro">同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后跑 install.sh</li><li>两个 CLI 都要先自行登录</li><li>任务写清输入输出路径，结果才算完</li></ol></details>
+  <div class="foot"><span class="meta">26 KB · sha256 b9b6d407…</span>
+    <a class="dl" href="packages/%E5%8F%8C%E6%93%8EBot.zip" download>下载</a></div>
+</article><article class="card" data-c="团队基建" data-n="高级审核员" style="--c:#2F5A55;--rot:-0.6deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#2F5A55" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 26l8 9L38 12"/><path d="M8 38h32"/></svg>
+    <div><h3>高级审核员</h3><span class="cat">团队基建</span></div></div>
+  <p class="intro">独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 manifest 一键创建</li><li>交给它时附产物路径与验收标准</li><li>它只给裁决，返工仍由原岗位做</li></ol></details>
+  <div class="foot"><span class="meta">5 KB · sha256 fa71cd59…</span>
+    <a class="dl" href="packages/%E9%AB%98%E7%BA%A7%E5%AE%A1%E6%A0%B8%E5%91%98.zip" download>下载</a></div>
+</article><article class="card" data-c="团队基建" data-n="配装师" style="--c:#2F5A55;--rot:0.5deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#2F5A55" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M30 10a8 8 0 0 1 8 12l-5 5-9-9 5-5a8 8 0 0 1 1-3z"/><path d="M24 20L9 35l4 4 15-15"/></svg>
+    <div><h3>配装师</h3><span class="cat">团队基建</span></div></div>
+  <p class="intro">团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后跑 install.sh 与 selfcheck</li><li>它需要读取 state.json</li><li>升级卡里会写清缺什么、先装什么</li></ol></details>
+  <div class="foot"><span class="meta">37 KB · sha256 93a60df3…</span>
+    <a class="dl" href="packages/%E9%85%8D%E8%A3%85%E5%B8%88.zip" download>下载</a></div>
+</article><article class="card" data-c="团队基建" data-n="下载专家" style="--c:#2F5A55;--rot:-0.6deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#2F5A55" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 9v22"/><path d="M15 23l9 9 9-9"/><path d="M9 38h30"/></svg>
+    <div><h3>下载专家</h3><span class="cat">团队基建</span></div></div>
+  <p class="intro">长视频/播客/讲座转中文文稿，可搜可读，带时间轴。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 装依赖</li><li>给它链接或本地文件</li><li>转写完成先核对人名与数字</li></ol></details>
+  <div class="foot"><span class="meta">22 KB · sha256 ffa70ea0…</span>
+    <a class="dl" href="packages/%E4%B8%8B%E8%BD%BD%E4%B8%93%E5%AE%B6.zip" download>下载</a></div>
+</article><article class="card" data-c="学习与运营" data-n="雅思词汇教练" style="--c:#8A6A2E;--rot:0.5deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#8A6A2E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10h13v28H10zM25 10h13v28H25z"/><path d="M23 10v28"/></svg>
+    <div><h3>雅思词汇教练</h3><span class="cat">学习与运营</span></div></div>
+  <p class="intro">基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 建 Bot</li><li>先做一次摸底，按目标分排期</li><li>练靶场是本地网页，双击就能开</li></ol></details>
+  <div class="foot"><span class="meta">2.5 MB · sha256 daac2de2…</span>
+    <a class="dl" href="packages/%E9%9B%85%E6%80%9D%E8%AF%8D%E6%B1%87%E6%95%99%E7%BB%83.zip" download>下载</a></div>
+</article><article class="card" data-c="学习与运营" data-n="鹅圈子运营团队" style="--c:#8A6A2E;--rot:-0.6deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#8A6A2E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="15"/><path d="M24 16v10l7 5"/></svg>
+    <div><h3>鹅圈子运营团队</h3><span class="cat">学习与运营</span></div></div>
+  <p class="intro">小鹅通圈子运营：简介、分区、标签、发帖与置顶，后台动作后回读核对。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后读团队使用手册</li><li>先在后台建好分区与标签</li><li>每个动作都回读确认，不信「跑完了」</li></ol></details>
+  <div class="foot"><span class="meta">38 KB · sha256 0ccc454c…</span>
+    <a class="dl" href="packages/%E9%B9%85%E5%9C%88%E5%AD%90%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9F.zip" download>下载</a></div>
+</article><article class="card" data-c="学习与运营" data-n="润途移居助手" style="--c:#8A6A2E;--rot:0.5deg">
+  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#8A6A2E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 26l32-14-12 30-4-12z"/><path d="M28 30l-4-12"/></svg>
+    <div><h3>润途移居助手</h3><span class="cat">学习与运营</span></div></div>
+  <p class="intro">海外移居路线研究：比成本、算门槛、给材料清单与时间线。</p>
+  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后打开工作台 HTML</li><li>先填背景与目标国</li><li>政策类信息标注核实日期，自己再核一遍</li></ol></details>
+  <div class="foot"><span class="meta">16 KB · sha256 b5afa53d…</span>
+    <a class="dl" href="packages/%E6%B6%A6%E9%80%94%E7%A7%BB%E5%B1%85%E5%8A%A9%E6%89%8B.zip" download>下载</a></div>
+</article></div>
+<div class="note">下载后先对一下卡片上的 sha256 前 8 位；包内有 install 脚本的先读 README。需要 API Key 的包，Key 自己填，仓库不代配。</div>
+<footer><p>BOTHUB · 17 个包 · 45.3 MB · 2026-11-05 更新</p>
+<p>包内如含开源底座，许可约束见包内 README，商业使用前请自行核对。</p></footer>
+</div>
 <script>
 const q=document.getElementById('q'),cnt=document.getElementById('cnt'),cards=[...document.querySelectorAll('.card')];let cur='all';
 function apply(){const s=q.value.trim().toLowerCase();let n=0;
-cards.forEach(c=>{const okg=cur==='all'||c.dataset.g===cur;const okq=!s||c.dataset.n.toLowerCase().includes(s);
-const show=okg&&okq;c.style.display=show?'':'none';if(show)n++;});cnt.textContent=n+' / '+cards.length;}
+cards.forEach(c=>{const okc=cur==='all'||c.dataset.c===cur;const okq=!s||c.dataset.n.toLowerCase().includes(s)||c.innerText.toLowerCase().includes(s);
+const show=okc&&okq;c.style.display=show?'':'none';if(show)n++;});cnt.textContent=n+' / '+cards.length;}
 q.addEventListener('input',apply);
-document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');cur=b.dataset.g;apply();});
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');cur=b.dataset.c;apply();});
 </script></body></html>
