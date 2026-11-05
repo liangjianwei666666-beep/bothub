@@ -1,229 +1,562 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BOTHUB · Bot 包仓库</title>
-<meta name="description" content="团队 Bot 安装包集中下载：每个包都有简介、操作指引和 sha256 校验。">
+<title>BOTHUB · 把 Bot 打包好，装进你电脑里</title>
+<meta name="description" content="团队 Bot 安装包仓库：每个包都有小简介、怎么用和 sha256，下完能自己校验。">
 <style>
-:root{--paper:#FBF8F1;--card:#FFFDF7;--ink:#2C2A26;--dim:#6F6A5F;--mute:#A39C8C;--line:#DDD5C2;--hand:"Kaiti SC","STKaiti","Xingkai SC","Songti SC",serif}
+:root{--bg:#FFFCF4;--ink:#3B372E;--dim:#6E675B;--mute:#A79E8C;--line:#E7DFCC;--card:#FFFFFF;
+--hand:"Kaiti SC","STKaiti","Xingkai SC",serif}
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--paper);color:var(--ink);
-background-image:radial-gradient(#E7DFCC 0.8px,transparent 0.8px);background-size:22px 22px;
-font:15.5px/1.75 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
-.wrap{max-width:1080px;margin:0 auto;padding:0 22px 80px}
-header{padding:52px 0 22px;text-align:center}
-.kicker{display:inline-block;font-size:12px;letter-spacing:.24em;color:var(--mute);
-border:1px dashed var(--line);border-radius:999px;padding:3px 12px}
-h1{font-family:var(--hand);font-size:40px;margin:14px 0 6px;letter-spacing:.03em}
-.sub{color:var(--dim);max-width:600px;margin:0 auto}
-.stats{display:flex;gap:26px;justify-content:center;margin-top:20px;flex-wrap:wrap}
-.stat b{display:block;font-family:var(--hand);font-size:22px}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+background-image:radial-gradient(#EDE4D0 1px,transparent 1px);background-size:24px 24px;
+font:15.5px/1.78 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px 84px}
+header{padding:46px 0 8px;text-align:center;position:relative}
+.kicker{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;letter-spacing:.14em;color:#8C8168;
+border:1.5px dashed var(--line);border-radius:999px;padding:5px 14px;background:#fffdf6}
+.kicker i{width:7px;height:7px;border-radius:50%;background:#E8B84B;display:inline-block}
+h1{font-family:var(--hand);font-size:44px;margin:16px 0 4px;letter-spacing:.02em}
+h1 em{font-style:normal;color:#C98A3E}
+.hero-pets{display:flex;justify-content:center;gap:2px;margin:6px 0 0}
+.hero-pets .pet{width:76px;height:76px;animation:bob 3.4s ease-in-out infinite}
+.hero-pets .pet:nth-child(2){animation-delay:.5s}.hero-pets .pet:nth-child(3){animation-delay:1s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.sub{color:var(--dim);max-width:560px;margin:8px auto 0;font-size:15px}
+.stats{display:flex;gap:28px;justify-content:center;margin:22px 0 6px;flex-wrap:wrap}
+.stat b{display:block;font-family:var(--hand);font-size:23px;color:#4A4438}
 .stat span{font-size:12.5px;color:var(--mute)}
-hr.sketch{border:0;border-top:1.5px dashed var(--line);margin:28px 0 10px}
-.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 18px}
-input[type=search]{flex:1;min-width:190px;border:1.5px solid var(--line);background:var(--card);border-radius:13px;
-padding:9px 13px;font-size:14px;color:var(--ink);outline:none}
-input[type=search]:focus{border-color:#B9AF95}
-.chip{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 13px;
-font-size:13px;cursor:pointer;color:var(--dim)}
-.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tools{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+padding:14px 0;margin:22px 0 6px;background:linear-gradient(var(--bg) 72%,#FFFCf400)}
+input[type=search]{flex:1;min-width:200px;border:1.6px solid var(--line);background:#fff;border-radius:14px;
+padding:10px 14px;font-size:14px;color:var(--ink);outline:none;transition:.18s}
+input[type=search]:focus{border-color:#C9BE9F;box-shadow:0 0 0 4px #F4EEDC}
+.chip{border:1.6px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13px;
+cursor:pointer;color:var(--dim);transition:.16s}
+.chip:hover{transform:translateY(-1px)}
+.chip.on{background:var(--t,#3B372E);border-color:transparent;color:#fff}
 .count{font-size:12.5px;color:var(--mute);margin-left:auto}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:16px}
-.card{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:16px 17px;
-box-shadow:2px 3px 0 #E9E1CD;transform:rotate(var(--rot));transition:transform .18s ease,box-shadow .18s ease;
-display:flex;flex-direction:column;gap:8px}
-.card:hover{transform:rotate(0) translateY(-2px);box-shadow:3px 6px 0 #E3DAC3}
-.head{display:flex;gap:11px;align-items:center}
-.ico{width:44px;height:44px;flex:0 0 44px}
-.card h3{font-family:var(--hand);font-size:20px;margin:0;line-height:1.25}
-.cat{font-size:11.5px;color:var(--c);border:1px dashed var(--c);border-radius:999px;padding:0 7px;opacity:.85}
-.intro{margin:2px 0 0;font-size:13.5px;color:var(--dim);min-height:44px}
-.guide{border-top:1px dashed var(--line);padding-top:6px;font-size:13px;color:var(--dim)}
-.guide summary{cursor:pointer;color:var(--c);font-size:12.5px;list-style:none}
-.guide summary::-webkit-details-marker{display:none}
-.guide summary:before{content:"✎ ";opacity:.7}
-.guide ol{margin:6px 0 0;padding-left:18px}
-.guide li{margin:3px 0}
-.foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px;margin-top:10px}
+.card{background:var(--card);border:1.6px solid #EFE8D6;border-radius:22px;padding:18px 18px 15px;
+box-shadow:0 2px 0 #F0EAD8,0 14px 28px -22px #B9AE93;transform:rotate(var(--rot));
+transition:transform .2s ease,box-shadow .2s ease;display:flex;flex-direction:column;gap:9px}
+.card:hover{transform:rotate(0) translateY(-4px);box-shadow:0 3px 0 #EFE7D3,0 22px 34px -20px #B4A88D}
+.top{display:flex;gap:10px;align-items:center}
+.pet{width:58px;height:58px;flex:0 0 58px}
+.card:hover .pet{animation:wave .6s ease-in-out}
+@keyframes wave{0%,100%{transform:rotate(0)}30%{transform:rotate(-7deg)}70%{transform:rotate(6deg)}}
+.who{min-width:0}.card h3{font-family:var(--hand);font-size:21px;margin:0;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sticker{display:inline-block;margin-top:3px;font-size:11.5px;color:var(--t);background:color-mix(in srgb,var(--t) 14%,#fff);
+border:1.2px dashed var(--t);border-radius:8px;padding:0 7px;transform:rotate(-2deg)}
+.say{margin:2px 0 0;font-size:13.5px;color:var(--dim);min-height:46px;
+background:color-mix(in srgb,var(--t) 6%,#fff);border-radius:4px 14px 14px 14px;padding:9px 11px}
+.how{font-size:13px;color:var(--dim);border-top:1.4px dashed #EDE5D2;padding-top:8px}
+.how summary{cursor:pointer;color:var(--t);font-size:12.5px;list-style:none}
+.how summary::-webkit-details-marker{display:none}
+.how summary:before{content:"✎ ";opacity:.75}
+.how ol{margin:7px 0 0;padding-left:18px}.how li{margin:3px 0}
+.bot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:4px}
 .meta{font:11.5px ui-monospace,Menlo,monospace;color:var(--mute)}
-.dl{font-size:13px;color:#fff;background:var(--c);text-decoration:none;border-radius:10px;padding:5px 14px}
-.dl:hover{opacity:.88}
-footer{margin-top:44px;text-align:center;color:var(--mute);font-size:12.5px}
-.note{border:1.5px dashed var(--line);border-radius:14px;padding:13px 16px;font-size:13.5px;color:#6B5A2E;
-background:#FDF6E6;margin-top:26px}
-@media(max-width:640px){h1{font-size:31px}header{padding-top:36px}.card{transform:none}}
+.dl{font-size:13px;color:#fff;background:var(--t);text-decoration:none;border-radius:999px;
+padding:7px 15px;box-shadow:0 3px 0 color-mix(in srgb,var(--t) 60%,#000 6%);transition:.16s}
+.dl:hover{transform:translateY(1px);box-shadow:0 1px 0 color-mix(in srgb,var(--t) 60%,#000 6%)}
+.dl b{font-weight:600}
+.note{margin-top:26px;border:1.6px dashed var(--line);border-radius:18px;padding:15px 17px;font-size:13.5px;
+color:#7A6A45;background:#FFF9E9;display:flex;gap:10px;align-items:flex-start}
+.note .pet{width:40px;height:40px;flex:0 0 40px}
+footer{margin-top:40px;text-align:center;color:var(--mute);font-size:12.5px}
+.sq{width:120px;height:9px;display:block;margin:2px auto 0;opacity:.7}
+@media(max-width:640px){h1{font-size:33px}.card{transform:none}.hero-pets .pet{width:58px;height:58px}}
 </style></head><body><div class="wrap">
-<header><span class="kicker">BOTHUB · BOT PACKAGE HUB</span>
-<h1>Bot 包仓库</h1>
-<p class="sub">团队做好的 Bot 安装包，集中放一处：每个包都有<b>一句简介</b>、<b>怎么用</b>和 <b>sha256</b>，下完能自己校验。</p>
-<div class="stats"><div class="stat"><b>22</b><span>个包</span></div>
-<div class="stat"><b>80.8 MB</b><span>合计</span></div>
-<div class="stat"><b>5</b><span>个分类</span></div>
-<div class="stat"><b>100%</b><span>带 sha256</span></div></div>
-</header><hr class="sketch">
-<div class="tools"><input type="search" id="q" placeholder="搜包名或用途，例如 塔罗 / 口播 / 审核">
-<button class="chip on" data-c="all">全部 22</button><button class="chip" data-c="命理玄学">命理玄学 4</button><button class="chip" data-c="内容创作">内容创作 5</button><button class="chip" data-c="视频与口播">视频与口播 4</button><button class="chip" data-c="团队基建">团队基建 5</button><button class="chip" data-c="学习与运营">学习与运营 4</button><span class="count" id="cnt">22 / 22</span></div>
-<div class="grid" id="g"><article class="card" data-c="命理玄学" data-n="塔罗师" style="--c:#6B4A7A;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#6B4A7A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6h28l3 30H8z"/><path d="M24 14l4 8h-8z"/><circle cx="24" cy="28" r="4"/></svg>
-    <div><h3>塔罗师</h3><span class="cat">命理玄学</span></div></div>
-  <p class="intro">韦特体系塔罗解读：抽牌、解牌、给可执行的建议，不预测宿命。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 把「给 Bot 的指令」贴进 Bot 设定</li><li>牌库已内置，无需联网</li><li>问牌时说明问题背景与时间范围，解读更准</li></ol></details>
-  <div class="foot"><span class="meta">3.2 MB · sha256 6ac03459…</span>
-    <a class="dl" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88.zip" download>下载</a></div>
-</article><article class="card" data-c="命理玄学" data-n="命盘师" style="--c:#6B4A7A;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#6B4A7A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="15"/><path d="M24 9v15l11 8"/><path d="M9 24h30"/></svg>
-    <div><h3>命盘师</h3><span class="cat">命理玄学</span></div></div>
-  <p class="intro">四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 贴入指令</li><li>准备出生年月日时（越准越好）</li><li>问方向而不是问吉凶，结论更可用</li></ol></details>
-  <div class="foot"><span class="meta">55 KB · sha256 504a9a64…</span>
-    <a class="dl" href="packages/%E5%91%BD%E7%9B%98%E5%B8%88.zip" download>下载</a></div>
-</article><article class="card" data-c="命理玄学" data-n="易经占卜师" style="--c:#6B4A7A;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#6B4A7A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6l14 24H10z"/><path d="M24 42L10 18h28z"/><circle cx="24" cy="24" r="3"/></svg>
-    <div><h3>易经占卜师</h3><span class="cat">命理玄学</span></div></div>
-  <p class="intro">铜钱法起卦、依《周易》通行本解卦，给结构判断与一句可执行的话。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 安装</li><li>起卦前把问题写成一句话</li><li>一次只问一件事，避免连环追问</li></ol></details>
-  <div class="foot"><span class="meta">15.3 MB · sha256 1e84d696…</span>
-    <a class="dl" href="packages/%E6%98%93%E7%BB%8F%E5%8D%A0%E5%8D%9C%E5%B8%88.zip" download>下载</a></div>
-</article><article class="card" data-c="内容创作" data-n="公众号流水线" style="--c:#35507F;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#35507F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10h26v28H8z"/><path d="M34 18h6v18a4 4 0 0 1-4 4h-2z"/><path d="M13 17h16M13 23h16M13 29h10"/></svg>
-    <div><h3>公众号流水线</h3><span class="cat">内容创作</span></div></div>
-  <p class="intro">主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>先读包内 README 的分工说明</li><li>按 INSTALL 建主笔/设计/发布/审核四个 Bot</li><li>群发始终由人工点击，包内不代发</li></ol></details>
-  <div class="foot"><span class="meta">8 KB · sha256 84f178fc…</span>
-    <a class="dl" href="packages/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%B5%81%E6%B0%B4%E7%BA%BF.zip" download>下载</a></div>
-</article><article class="card" data-c="内容创作" data-n="PPT大师" style="--c:#35507F;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#35507F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10h30v22H7z"/><path d="M18 32l-4 8M30 32l4 8"/><path d="M13 17h10M13 23h16"/></svg>
-    <div><h3>PPT大师</h3><span class="cat">内容创作</span></div></div>
-  <p class="intro">把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 接入生图/排版脚本</li><li>给它原始材料（文档或长文）</li><li>先要目录再要单页，避免一次生成整本</li></ol></details>
-  <div class="foot"><span class="meta">5.9 MB · sha256 ade7fb6c…</span>
-    <a class="dl" href="packages/PPT%E5%A4%A7%E5%B8%88.zip" download>下载</a></div>
-</article><article class="card" data-c="内容创作" data-n="表情包工坊" style="--c:#35507F;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#35507F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="16"/><circle cx="18" cy="20" r="1.6"/><circle cx="30" cy="20" r="1.6"/><path d="M16 29c4 5 12 5 16 0"/></svg>
-    <div><h3>表情包工坊</h3><span class="cat">内容创作</span></div></div>
-  <p class="intro">一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后配置生图 Key</li><li>先定角色设定（一句话）</li><li>一次出 4–8 张，再挑要的那两张细修</li></ol></details>
-  <div class="foot"><span class="meta">34 KB · sha256 f0a22763…</span>
-    <a class="dl" href="packages/%E8%A1%A8%E6%83%85%E5%8C%85%E5%B7%A5%E5%9D%8A.zip" download>下载</a></div>
-</article><article class="card" data-c="内容创作" data-n="灵魂歌手" style="--c:#35507F;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#35507F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 10v20a5 5 0 1 1-4-5"/><path d="M18 12l16-4v18a5 5 0 1 1-4-5"/></svg>
-    <div><h3>灵魂歌手</h3><span class="cat">内容创作</span></div></div>
-  <p class="intro">从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后跑 install.sh，自检 28 项应全过</li><li>先定歌与歌词，再出画面</li><li>五平台发布需自己登录，包内不代发</li></ol></details>
-  <div class="foot"><span class="meta">240 KB · sha256 712a83fa…</span>
-    <a class="dl" href="packages/%E7%81%B5%E9%AD%82%E6%AD%8C%E6%89%8B.zip" download>下载</a></div>
-</article><article class="card" data-c="视频与口播" data-n="数字人口播" style="--c:#7A2F4A;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#7A2F4A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="19" r="9"/><path d="M9 40c2-9 8-13 15-13s13 4 15 13"/></svg>
-    <div><h3>数字人口播</h3><span class="cat">视频与口播</span></div></div>
-  <p class="intro">文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后跑安装脚本，补齐三把 Key</li><li>准备 3–5 句中文文案与一张正面形象图</li><li>先出一条 15 秒样片，确认口型再批量</li></ol></details>
-  <div class="foot"><span class="meta">41 KB · sha256 98324c70…</span>
-    <a class="dl" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%AD.zip" download>下载</a></div>
-</article><article class="card" data-c="视频与口播" data-n="拉片分析师" style="--c:#7A2F4A;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#7A2F4A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 12h32v24H8z"/><path d="M8 20h32M8 28h32M16 12v24M32 12v24"/></svg>
-    <div><h3>拉片分析师</h3><span class="cat">视频与口播</span></div></div>
-  <p class="intro">把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后需要 node 与 ffmpeg</li><li>把视频放进目录后运行分析脚本</li><li>报告是单文件 HTML，双击即可看</li></ol></details>
-  <div class="foot"><span class="meta">117 KB · sha256 f8275b47…</span>
-    <a class="dl" href="packages/%E6%8B%89%E7%89%87%E5%88%86%E6%9E%90%E5%B8%88.tar.gz" download>下载</a></div>
-</article><article class="card" data-c="视频与口播" data-n="外教匹配" style="--c:#7A2F4A;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#7A2F4A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="16" r="7"/><path d="M12 40c1-8 6-12 12-12s11 4 12 12"/><path d="M30 22l8-3v10l-8-3z"/></svg>
-    <div><h3>外教匹配</h3><span class="cat">视频与口播</span></div></div>
-  <p class="intro">把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 导入老师资料</li><li>先写清孩子水平与目标</li><li>推荐结果含匹配理由，自己再核实</li></ol></details>
-  <div class="foot"><span class="meta">17.7 MB · sha256 53081c29…</span>
-    <a class="dl" href="packages/%E5%A4%96%E6%95%99%E5%8C%B9%E9%85%8D.zip" download>下载</a></div>
-</article><article class="card" data-c="团队基建" data-n="双擎Bot" style="--c:#2F5A55;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#2F5A55" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16h24v18H12z"/><circle cx="19" cy="25" r="2.4"/><circle cx="29" cy="25" r="2.4"/><path d="M24 16v-6M19 34v4M29 34v4"/></svg>
-    <div><h3>双擎Bot</h3><span class="cat">团队基建</span></div></div>
-  <p class="intro">同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后跑 install.sh</li><li>两个 CLI 都要先自行登录</li><li>任务写清输入输出路径，结果才算完</li></ol></details>
-  <div class="foot"><span class="meta">26 KB · sha256 b9b6d407…</span>
-    <a class="dl" href="packages/%E5%8F%8C%E6%93%8EBot.zip" download>下载</a></div>
-</article><article class="card" data-c="团队基建" data-n="高级审核员" style="--c:#2F5A55;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#2F5A55" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 26l8 9L38 12"/><path d="M8 38h32"/></svg>
-    <div><h3>高级审核员</h3><span class="cat">团队基建</span></div></div>
-  <p class="intro">独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 manifest 一键创建</li><li>交给它时附产物路径与验收标准</li><li>它只给裁决，返工仍由原岗位做</li></ol></details>
-  <div class="foot"><span class="meta">5 KB · sha256 fa71cd59…</span>
-    <a class="dl" href="packages/%E9%AB%98%E7%BA%A7%E5%AE%A1%E6%A0%B8%E5%91%98.zip" download>下载</a></div>
-</article><article class="card" data-c="团队基建" data-n="配装师" style="--c:#2F5A55;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#2F5A55" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M30 10a8 8 0 0 1 8 12l-5 5-9-9 5-5a8 8 0 0 1 1-3z"/><path d="M24 20L9 35l4 4 15-15"/></svg>
-    <div><h3>配装师</h3><span class="cat">团队基建</span></div></div>
-  <p class="intro">团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后跑 install.sh 与 selfcheck</li><li>它需要读取 state.json</li><li>升级卡里会写清缺什么、先装什么</li></ol></details>
-  <div class="foot"><span class="meta">37 KB · sha256 93a60df3…</span>
-    <a class="dl" href="packages/%E9%85%8D%E8%A3%85%E5%B8%88.zip" download>下载</a></div>
-</article><article class="card" data-c="团队基建" data-n="下载专家" style="--c:#2F5A55;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#2F5A55" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 9v22"/><path d="M15 23l9 9 9-9"/><path d="M9 38h30"/></svg>
-    <div><h3>下载专家</h3><span class="cat">团队基建</span></div></div>
-  <p class="intro">长视频/播客/讲座转中文文稿，可搜可读，带时间轴。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 装依赖</li><li>给它链接或本地文件</li><li>转写完成先核对人名与数字</li></ol></details>
-  <div class="foot"><span class="meta">22 KB · sha256 ffa70ea0…</span>
-    <a class="dl" href="packages/%E4%B8%8B%E8%BD%BD%E4%B8%93%E5%AE%B6.zip" download>下载</a></div>
-</article><article class="card" data-c="学习与运营" data-n="雅思词汇教练" style="--c:#8A6A2E;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#8A6A2E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10h13v28H10zM25 10h13v28H25z"/><path d="M23 10v28"/></svg>
-    <div><h3>雅思词汇教练</h3><span class="cat">学习与运营</span></div></div>
-  <p class="intro">基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 建 Bot</li><li>先做一次摸底，按目标分排期</li><li>练靶场是本地网页，双击就能开</li></ol></details>
-  <div class="foot"><span class="meta">2.5 MB · sha256 daac2de2…</span>
-    <a class="dl" href="packages/%E9%9B%85%E6%80%9D%E8%AF%8D%E6%B1%87%E6%95%99%E7%BB%83.zip" download>下载</a></div>
-</article><article class="card" data-c="学习与运营" data-n="鹅圈子运营团队" style="--c:#8A6A2E;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#8A6A2E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="15"/><path d="M24 16v10l7 5"/></svg>
-    <div><h3>鹅圈子运营团队</h3><span class="cat">学习与运营</span></div></div>
-  <p class="intro">小鹅通圈子运营：简介、分区、标签、发帖与置顶，后台动作后回读核对。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后读团队使用手册</li><li>先在后台建好分区与标签</li><li>每个动作都回读确认，不信「跑完了」</li></ol></details>
-  <div class="foot"><span class="meta">38 KB · sha256 0ccc454c…</span>
-    <a class="dl" href="packages/%E9%B9%85%E5%9C%88%E5%AD%90%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9F.zip" download>下载</a></div>
-</article><article class="card" data-c="学习与运营" data-n="润途移居助手" style="--c:#8A6A2E;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#8A6A2E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 26l32-14-12 30-4-12z"/><path d="M28 30l-4-12"/></svg>
-    <div><h3>润途移居助手</h3><span class="cat">学习与运营</span></div></div>
-  <p class="intro">海外移居路线研究：比成本、算门槛、给材料清单与时间线。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后打开工作台 HTML</li><li>先填背景与目标国</li><li>政策类信息标注核实日期，自己再核一遍</li></ol></details>
-  <div class="foot"><span class="meta">16 KB · sha256 b5afa53d…</span>
-    <a class="dl" href="packages/%E6%B6%A6%E9%80%94%E7%A7%BB%E5%B1%85%E5%8A%A9%E6%89%8B.zip" download>下载</a></div>
-</article><article class="card" data-c="学习与运营" data-n="学科助手" style="--c:#8A6A2E;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#8A6A2E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10h13v28H10zM25 10h13v28H25z"/><path d="M23 10v28"/></svg>
-    <div><h3>学科助手</h3><span class="cat">学习与运营</span></div></div>
-  <p class="intro">K12 学科陪练的学生端包：错题本、知识点查询、七板块导航，含 Mac/Win 一键安装器。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>Mac 双击 .command，Windows 双击 .bat</li><li>首次运行允许权限，按提示装到本地目录</li><li>打开学生包里的 index.html 即可用</li></ol></details>
-  <div class="foot"><span class="meta">608 KB · sha256 441ac345…</span>
-    <a class="dl" href="packages/%E5%AD%A6%E7%A7%91%E5%8A%A9%E6%89%8B.zip" download>下载</a></div>
-</article><article class="card" data-c="内容创作" data-n="信息图大师" style="--c:#35507F;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#35507F" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10h30v22H7z"/><path d="M18 32l-4 8M30 32l4 8"/><path d="M13 17h10M13 23h16"/></svg>
-    <div><h3>信息图大师</h3><span class="cat">内容创作</span></div></div>
-  <p class="intro">把知识点做成一页 3:4 竖版手绘信息图：单点 + 场景 + 反差标题，自带分层规范。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后读 安装说明.html</li><li>把「给主 Bot 的指令」贴进 Bot 设定</li><li>批量出图前先出 1 张确认风格</li></ol></details>
-  <div class="foot"><span class="meta">596 KB · sha256 74392adf…</span>
-    <a class="dl" href="packages/%E4%BF%A1%E6%81%AF%E5%9B%BE%E5%A4%A7%E5%B8%88.zip" download>下载</a></div>
-</article><article class="card" data-c="团队基建" data-n="文档重建师" style="--c:#2F5A55;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#2F5A55" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10h26v28H8z"/><path d="M34 18h6v18a4 4 0 0 1-4 4h-2z"/><path d="M13 17h16M13 23h16M13 29h10"/></svg>
-    <div><h3>文档重建师</h3><span class="cat">团队基建</span></div></div>
-  <p class="intro">PDF/扫描件重建为可编辑 Markdown：公式还原、图片切出、版式校准稿。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后按 README 跑 install.sh</li><li>把 PDF 放进输入目录</li><li>重建后逐页比对原稿，别直接当原件</li></ol></details>
-  <div class="foot"><span class="meta">87 KB · sha256 4478e843…</span>
-    <a class="dl" href="packages/%E6%96%87%E6%A1%A3%E9%87%8D%E5%BB%BA%E5%B8%88.zip" download>下载</a></div>
-</article><article class="card" data-c="视频与口播" data-n="教材匹配" style="--c:#7A2F4A;--rot:0.5deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#7A2F4A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="16" r="7"/><path d="M12 40c1-8 6-12 12-12s11 4 12 12"/><path d="M30 22l8-3v10l-8-3z"/></svg>
-    <div><h3>教材匹配</h3><span class="cat">视频与口播</span></div></div>
-  <p class="intro">按学生水平与目标匹配外教教材，输出课次表与教材清单（源包，不含大素材）。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后读 README 与「1-给Bot的指令」</li><li>准备学生水平与目标描述</li><li>数据在 data/，可用 match.py 重新算</li></ol></details>
-  <div class="foot"><span class="meta">159 KB · sha256 854141c4…</span>
-    <a class="dl" href="packages/%E6%95%99%E6%9D%90%E5%8C%B9%E9%85%8D.zip" download>下载</a></div>
-</article><article class="card" data-c="命理玄学" data-n="塔罗师工作台" style="--c:#6B4A7A;--rot:-0.6deg">
-  <div class="head"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#6B4A7A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6h28l3 30H8z"/><path d="M24 14l4 8h-8z"/><circle cx="24" cy="28" r="4"/></svg>
-    <div><h3>塔罗师工作台</h3><span class="cat">命理玄学</span></div></div>
-  <p class="intro">塔罗师的本地工作台：牌阵、牌库、抽牌记录，单页 HTML 双击就能开。</p>
-  <details class="guide"><summary>怎么用 · 3 步</summary><ol><li>解压后打开「点我-打开塔罗工作台.html」</li><li>选牌阵 → 抽牌 → 记录解读</li><li>记录只存在本地浏览器，不上传</li></ol></details>
-  <div class="foot"><span class="meta">34.1 MB · sha256 4cb026b0…</span>
-    <a class="dl" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88%E5%B7%A5%E4%BD%9C%E5%8F%B0.zip" download>下载</a></div>
+<header>
+ <span class="kicker"><i></i>BOTHUB · 团队 Bot 包仓库</span>
+ <h1>把 Bot <em>打包好</em>，装进你电脑里</h1>
+ <svg class="sq" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true"><path d="M2 5c14-6 26 4 40-1s26 4 40-1 24 4 34 0" fill="none" stroke="#E2C489" stroke-width="2.4" stroke-linecap="round"/></svg>
+ <div class="hero-pets"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#B49AD622" stroke="#B49AD6" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#B49AD6" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#B49AD655"/><circle cx="42" cy="39" r="3.4" fill="#B49AD655"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#B49AD6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h12l2 15H1zM9 8l2 4H7z"/></g>
+</svg><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FB4D922" stroke="#8FB4D9" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FB4D9" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FB4D955"/><circle cx="42" cy="39" r="3.4" fill="#8FB4D955"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FB4D9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h11v15H2zM13 6h3v10a2 2 0 0 1-2 2h-1zM5 6h5M5 9h5M5 12h3"/></g>
+</svg><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E6A0B422" stroke="#E6A0B4" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E6A0B4" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E6A0B455"/><circle cx="42" cy="39" r="3.4" fill="#E6A0B455"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E6A0B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 3 6l-3 3-4-4 3-3a4 4 0 0 1 1-2zM10 8L2 16l2 2 8-8"/></g>
+</svg></div>
+ <p class="sub">每个包都有一句人话简介、一份怎么用、一个 sha256。双击就能用的会标出来，别下错了。</p>
+ <div class="stats"><div class="stat"><b>27</b><span>个包在架上</span></div>
+ <div class="stat"><b>96 MB</b><span>合计体积</span></div>
+ <div class="stat"><b>5</b><span>个分类</span></div>
+ <div class="stat"><b>100%</b><span>带 sha256</span></div></div>
+</header>
+<div class="tools"><input type="search" id="q" placeholder="搜名字或用处，比如 塔罗 / 口播 / 审核">
+<button class="chip on" data-c="all">全部 27</button><button class="chip" data-c="命理玄学" style="--t:#B49AD6">命理玄学 4</button><button class="chip" data-c="内容创作" style="--t:#8FB4D9">内容创作 7</button><button class="chip" data-c="视频与口播" style="--t:#E6A0B4">视频与口播 6</button><button class="chip" data-c="团队基建" style="--t:#8FC0B0">团队基建 5</button><button class="chip" data-c="学习与运营" style="--t:#E3C48A">学习与运营 5</button><span class="count" id="cnt">27 / 27</span></div>
+<div class="grid" id="g"><article class="card" data-c="命理玄学" data-n="命盘师 四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。" style="--t:#B49AD6;--rot:-0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#B49AD622" stroke="#B49AD6" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#B49AD6" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#B49AD655"/><circle cx="42" cy="39" r="3.4" fill="#B49AD655"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#B49AD6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="11" r="7"/><path d="M9 4v7l5 4"/></g>
+</svg><div class="who"><h3>命盘师</h3>
+   <span class="sticker">命理玄学</span></div></div>
+ <p class="say">四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后按 README 贴入指令</li><li>准备出生年月日时（越准越好）</li><li>问方向而不是问吉凶，结论更可用</li></ol></details>
+ <div class="bot"><span class="meta">55 KB · 504a9a6</span>
+   <a class="dl" href="packages/%E5%91%BD%E7%9B%98%E5%B8%88.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="命理玄学" data-n="塔罗师 韦特体系塔罗解读：抽牌、解牌、给可执行的建议，不预测宿命。" style="--t:#B49AD6;--rot:0.0deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#B49AD622" stroke="#B49AD6" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#B49AD6" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#B49AD655"/><circle cx="42" cy="39" r="3.4" fill="#B49AD655"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#B49AD6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h12l2 15H1zM9 8l2 4H7z"/></g>
+</svg><div class="who"><h3>塔罗师</h3>
+   <span class="sticker">命理玄学</span></div></div>
+ <p class="say">韦特体系塔罗解读：抽牌、解牌、给可执行的建议，不预测宿命。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后按 README 把「给 Bot 的指令」贴进 Bot 设定</li><li>牌库已内置，无需联网</li><li>问牌时说明问题背景与时间范围，解读更准</li></ol></details>
+ <div class="bot"><span class="meta">3.2 MB · 6ac0345</span>
+   <a class="dl" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="命理玄学" data-n="塔罗师工作台 塔罗师的本地工作台：牌阵、牌库、抽牌记录，单页 HTML 双击就能开。" style="--t:#B49AD6;--rot:0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#B49AD622" stroke="#B49AD6" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#B49AD6" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#B49AD655"/><circle cx="42" cy="39" r="3.4" fill="#B49AD655"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#B49AD6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h12l2 15H1zM9 8l2 4H7z"/></g>
+</svg><div class="who"><h3>塔罗师工作台</h3>
+   <span class="sticker">命理玄学</span></div></div>
+ <p class="say">塔罗师的本地工作台：牌阵、牌库、抽牌记录，单页 HTML 双击就能开。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后打开「点我-打开塔罗工作台.html」</li><li>选牌阵 → 抽牌 → 记录解读</li><li>记录只存在本地浏览器，不上传</li></ol></details>
+ <div class="bot"><span class="meta">34.1 MB · 4cb026b</span>
+   <a class="dl" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88%E5%B7%A5%E4%BD%9C%E5%8F%B0.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="命理玄学" data-n="易经占卜师 铜钱法起卦、依《周易》通行本解卦，给结构判断与一句可执行的话。" style="--t:#B49AD6;--rot:-0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#B49AD622" stroke="#B49AD6" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#B49AD6" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#B49AD655"/><circle cx="42" cy="39" r="3.4" fill="#B49AD655"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#B49AD6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3l6 9H3zM9 19L3 10h12z"/></g>
+</svg><div class="who"><h3>易经占卜师</h3>
+   <span class="sticker">命理玄学</span></div></div>
+ <p class="say">铜钱法起卦、依《周易》通行本解卦，给结构判断与一句可执行的话。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后按 README 安装</li><li>起卦前把问题写成一句话</li><li>一次只问一件事，避免连环追问</li></ol></details>
+ <div class="bot"><span class="meta">15.3 MB · 1e84d69</span>
+   <a class="dl" href="packages/%E6%98%93%E7%BB%8F%E5%8D%A0%E5%8D%9C%E5%B8%88.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="内容创作" data-n="PPT大师 把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。" style="--t:#8FB4D9;--rot:0.0deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FB4D922" stroke="#8FB4D9" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FB4D9" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FB4D955"/><circle cx="42" cy="39" r="3.4" fill="#8FB4D955"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FB4D9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h15v10H2zM6 13l-2 5M12 13l2 5M4 6h5M4 9h8"/></g>
+</svg><div class="who"><h3>PPT大师</h3>
+   <span class="sticker">内容创作</span></div></div>
+ <p class="say">把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后按 README 接入生图/排版脚本</li><li>给它原始材料（文档或长文）</li><li>先要目录再要单页，避免一次生成整本</li></ol></details>
+ <div class="bot"><span class="meta">5.9 MB · ade7fb6</span>
+   <a class="dl" href="packages/PPT%E5%A4%A7%E5%B8%88.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="内容创作" data-n="信息图大师 把知识点做成一页 3:4 竖版手绘信息图：单点 + 场景 + 反差标题，自带分层规范。" style="--t:#8FB4D9;--rot:0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FB4D922" stroke="#8FB4D9" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FB4D9" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FB4D955"/><circle cx="42" cy="39" r="3.4" fill="#8FB4D955"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FB4D9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h15v10H2zM6 13l-2 5M12 13l2 5M4 6h5M4 9h8"/></g>
+</svg><div class="who"><h3>信息图大师</h3>
+   <span class="sticker">内容创作</span></div></div>
+ <p class="say">把知识点做成一页 3:4 竖版手绘信息图：单点 + 场景 + 反差标题，自带分层规范。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后读 安装说明.html</li><li>把「给主 Bot 的指令」贴进 Bot 设定</li><li>批量出图前先出 1 张确认风格</li></ol></details>
+ <div class="bot"><span class="meta">596 KB · 74392ad</span>
+   <a class="dl" href="packages/%E4%BF%A1%E6%81%AF%E5%9B%BE%E5%A4%A7%E5%B8%88.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="内容创作" data-n="公众号流水线 主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。" style="--t:#8FB4D9;--rot:-0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FB4D922" stroke="#8FB4D9" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FB4D9" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FB4D955"/><circle cx="42" cy="39" r="3.4" fill="#8FB4D955"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FB4D9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h11v15H2zM13 6h3v10a2 2 0 0 1-2 2h-1zM5 6h5M5 9h5M5 12h3"/></g>
+</svg><div class="who"><h3>公众号流水线</h3>
+   <span class="sticker">内容创作</span></div></div>
+ <p class="say">主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>先读包内 README 的分工说明</li><li>按 INSTALL 建主笔/设计/发布/审核四个 Bot</li><li>群发始终由人工点击，包内不代发</li></ol></details>
+ <div class="bot"><span class="meta">8 KB · 84f178f</span>
+   <a class="dl" href="packages/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%B5%81%E6%B0%B4%E7%BA%BF.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="内容创作" data-n="毛衫开发 基于 110 个参考款做毛衫新款延伸：算元素空位、出款、出中英双语客户提案。" style="--t:#8FB4D9;--rot:0.0deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FB4D922" stroke="#8FB4D9" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FB4D9" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FB4D955"/><circle cx="42" cy="39" r="3.4" fill="#8FB4D955"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FB4D9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="10" r="6.5"/><path d="M5 7c3 2 5 4 6 8M12 6c-2 3-4 5-8 6"/></g>
+</svg><div class="who"><h3>毛衫开发</h3>
+   <span class="sticker">内容创作</span></div></div>
+ <p class="say">基于 110 个参考款做毛衫新款延伸：算元素空位、出款、出中英双语客户提案。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后先读 使用说明.md</li><li>styles.json 是参考款库，可先跑 出款引擎.py</li><li>出款后按提案模板交付</li></ol></details>
+ <div class="bot"><span class="meta">15.4 MB · 13915fc</span>
+   <a class="dl" href="packages/%E6%AF%9B%E8%A1%AB%E5%BC%80%E5%8F%91.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="内容创作" data-n="灵魂歌手 从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。" style="--t:#8FB4D9;--rot:0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FB4D922" stroke="#8FB4D9" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FB4D9" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FB4D955"/><circle cx="42" cy="39" r="3.4" fill="#8FB4D955"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FB4D9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v9a2.5 2.5 0 1 1-2-2.4"/><path d="M6 5l8-2v8a2.5 2.5 0 1 1-2-2.4"/></g>
+</svg><div class="who"><h3>灵魂歌手</h3>
+   <span class="sticker">内容创作</span></div></div>
+ <p class="say">从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后跑 install.sh，自检 28 项应全过</li><li>先定歌与歌词，再出画面</li><li>五平台发布需自己登录，包内不代发</li></ol></details>
+ <div class="bot"><span class="meta">240 KB · 712a83f</span>
+   <a class="dl" href="packages/%E7%81%B5%E9%AD%82%E6%AD%8C%E6%89%8B.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="内容创作" data-n="珍珠姊妹 天使之泪视频号货盘导购：查货、组货、算佣金、起草口播，不碰运营与后台。" style="--t:#8FB4D9;--rot:-0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FB4D922" stroke="#8FB4D9" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FB4D9" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FB4D955"/><circle cx="42" cy="39" r="3.4" fill="#8FB4D955"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FB4D9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3l5 5-5 9-5-9z"/><path d="M4 8h10"/></g>
+</svg><div class="who"><h3>珍珠姊妹</h3>
+   <span class="sticker">内容创作</span></div></div>
+ <p class="say">天使之泪视频号货盘导购：查货、组货、算佣金、起草口播，不碰运营与后台。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后打开 导购工作台.html</li><li>507 款货盘在 products.csv，可搜索筛选</li><li>组货后一键算佣金、生成话术草稿</li></ol></details>
+ <div class="bot"><span class="meta">54 KB · 92cf1e1</span>
+   <a class="dl" href="packages/%E7%8F%8D%E7%8F%A0%E5%A7%8A%E5%A6%B9.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="内容创作" data-n="表情包工坊 一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。" style="--t:#8FB4D9;--rot:0.0deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FB4D922" stroke="#8FB4D9" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FB4D9" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FB4D955"/><circle cx="42" cy="39" r="3.4" fill="#8FB4D955"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FB4D9" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="10" r="7"/><circle cx="6.5" cy="8.5" r=".9"/><circle cx="11.5" cy="8.5" r=".9"/><path d="M6 12c2 2 4 2 6 0"/></g>
+</svg><div class="who"><h3>表情包工坊</h3>
+   <span class="sticker">内容创作</span></div></div>
+ <p class="say">一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后配置生图 Key</li><li>先定角色设定（一句话）</li><li>一次出 4–8 张，再挑要的那两张细修</li></ol></details>
+ <div class="bot"><span class="meta">34 KB · f0a2276</span>
+   <a class="dl" href="packages/%E8%A1%A8%E6%83%85%E5%8C%85%E5%B7%A5%E5%9D%8A.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="视频与口播" data-n="外教匹配 把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。" style="--t:#E6A0B4;--rot:0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E6A0B422" stroke="#E6A0B4" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E6A0B4" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E6A0B455"/><circle cx="42" cy="39" r="3.4" fill="#E6A0B455"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E6A0B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="3.4"/><path d="M3 17c.6-4 3-6 6-6s5.4 2 6 6"/><path d="M12 8l4-1.6v5L12 8z"/></g>
+</svg><div class="who"><h3>外教匹配</h3>
+   <span class="sticker">视频与口播</span></div></div>
+ <p class="say">把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后按 README 导入老师资料</li><li>先写清孩子水平与目标</li><li>推荐结果含匹配理由，自己再核实</li></ol></details>
+ <div class="bot"><span class="meta">17.7 MB · 53081c2</span>
+   <a class="dl" href="packages/%E5%A4%96%E6%95%99%E5%8C%B9%E9%85%8D.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="视频与口播" data-n="拉片分析师 把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。" style="--t:#E6A0B4;--rot:-0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E6A0B422" stroke="#E6A0B4" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E6A0B4" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E6A0B455"/><circle cx="42" cy="39" r="3.4" fill="#E6A0B455"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E6A0B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h15v11H2zM2 8h15M2 11h15M6 4v11M12 4v11"/></g>
+</svg><div class="who"><h3>拉片分析师</h3>
+   <span class="sticker">视频与口播</span></div></div>
+ <p class="say">把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后需要 node 与 ffmpeg</li><li>把视频放进目录后运行分析脚本</li><li>报告是单文件 HTML，双击即可看</li></ol></details>
+ <div class="bot"><span class="meta">117 KB · f8275b4</span>
+   <a class="dl" href="packages/%E6%8B%89%E7%89%87%E5%88%86%E6%9E%90%E5%B8%88.tar.gz" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="视频与口播" data-n="教材匹配 按学生水平与目标匹配外教教材，输出课次表与教材清单（源包，不含大素材）。" style="--t:#E6A0B4;--rot:0.0deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E6A0B422" stroke="#E6A0B4" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E6A0B4" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E6A0B455"/><circle cx="42" cy="39" r="3.4" fill="#E6A0B455"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E6A0B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="3.4"/><path d="M3 17c.6-4 3-6 6-6s5.4 2 6 6"/><path d="M12 8l4-1.6v5L12 8z"/></g>
+</svg><div class="who"><h3>教材匹配</h3>
+   <span class="sticker">视频与口播</span></div></div>
+ <p class="say">按学生水平与目标匹配外教教材，输出课次表与教材清单（源包，不含大素材）。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后读 README 与「1-给Bot的指令」</li><li>准备学生水平与目标描述</li><li>数据在 data/，可用 match.py 重新算</li></ol></details>
+ <div class="bot"><span class="meta">159 KB · 854141c</span>
+   <a class="dl" href="packages/%E6%95%99%E6%9D%90%E5%8C%B9%E9%85%8D.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="视频与口播" data-n="数字人口播 文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。" style="--t:#E6A0B4;--rot:0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E6A0B422" stroke="#E6A0B4" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E6A0B4" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E6A0B455"/><circle cx="42" cy="39" r="3.4" fill="#E6A0B455"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E6A0B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 17c1-4 4-6 7-6s6 2 7 6"/></g>
+</svg><div class="who"><h3>数字人口播</h3>
+   <span class="sticker">视频与口播</span></div></div>
+ <p class="say">文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后跑安装脚本，补齐三把 Key</li><li>准备 3–5 句中文文案与一张正面形象图</li><li>先出一条 15 秒样片，确认口型再批量</li></ol></details>
+ <div class="bot"><span class="meta">41 KB · 98324c7</span>
+   <a class="dl" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%AD.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="视频与口播" data-n="社媒洞察 把社媒真实讨论变成可核对的洞察：趋势、人群、竞品、口碑，不发布不改号。" style="--t:#E6A0B4;--rot:-0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E6A0B422" stroke="#E6A0B4" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E6A0B4" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E6A0B455"/><circle cx="42" cy="39" r="3.4" fill="#E6A0B455"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E6A0B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l7-4v12l-7-4H3z"/><path d="M16 7c1.5 1 1.5 5 0 6"/></g>
+</svg><div class="who"><h3>社媒洞察</h3>
+   <span class="sticker">视频与口播</span></div></div>
+ <p class="say">把社媒真实讨论变成可核对的洞察：趋势、人群、竞品、口碑，不发布不改号。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后读 安装说明-0元浏览器版.md</li><li>tools/ 是采集脚本，需自己配登录态</li><li>它给讨论与链接，结论自己复核</li></ol></details>
+ <div class="bot"><span class="meta">76 KB · 0cf1baa</span>
+   <a class="dl" href="packages/%E7%A4%BE%E5%AA%92%E6%B4%9E%E5%AF%9F.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="视频与口播" data-n="选品雷达 锅圈火锅/烧烤品类的选品雷达：找「下一款可能爆的新品」，并说清为什么。" style="--t:#E6A0B4;--rot:0.0deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E6A0B422" stroke="#E6A0B4" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E6A0B4" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E6A0B455"/><circle cx="42" cy="39" r="3.4" fill="#E6A0B455"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E6A0B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15a9 9 0 0 1 12-12"/><path d="M6 15a6 6 0 0 1 8-8"/><circle cx="9" cy="15" r="1"/></g>
+</svg><div class="who"><h3>选品雷达</h3>
+   <span class="sticker">视频与口播</span></div></div>
+ <p class="say">锅圈火锅/烧烤品类的选品雷达：找「下一款可能爆的新品」，并说清为什么。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后打开选品雷达工作台.html</li><li>信号/证据/工具三目录分工不同，先读 README</li><li>它给候选与理由，售价销量仍需人工核</li></ol></details>
+ <div class="bot"><span class="meta">116 KB · 6bb212b</span>
+   <a class="dl" href="packages/%E9%80%89%E5%93%81%E9%9B%B7%E8%BE%BE.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="团队基建" data-n="下载专家 长视频/播客/讲座转中文文稿，可搜可读，带时间轴。" style="--t:#8FC0B0;--rot:0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FC0B022" stroke="#8FC0B0" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FC0B0" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FC0B055"/><circle cx="42" cy="39" r="3.4" fill="#8FC0B055"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FC0B0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v9M5 9l4 4 4-4M3 16h12"/></g>
+</svg><div class="who"><h3>下载专家</h3>
+   <span class="sticker">团队基建</span></div></div>
+ <p class="say">长视频/播客/讲座转中文文稿，可搜可读，带时间轴。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后按 README 装依赖</li><li>给它链接或本地文件</li><li>转写完成先核对人名与数字</li></ol></details>
+ <div class="bot"><span class="meta">22 KB · ffa70ea</span>
+   <a class="dl" href="packages/%E4%B8%8B%E8%BD%BD%E4%B8%93%E5%AE%B6.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="团队基建" data-n="双擎Bot 同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。" style="--t:#8FC0B0;--rot:-0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FC0B022" stroke="#8FC0B0" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FC0B0" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FC0B055"/><circle cx="42" cy="39" r="3.4" fill="#8FC0B055"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FC0B0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h11v9H4z"/><circle cx="7" cy="10" r="1.2"/><circle cx="12" cy="10" r="1.2"/><path d="M9.5 6V3M7 15v2M12 15v2"/></g>
+</svg><div class="who"><h3>双擎Bot</h3>
+   <span class="sticker">团队基建</span></div></div>
+ <p class="say">同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后跑 install.sh</li><li>两个 CLI 都要先自行登录</li><li>任务写清输入输出路径，结果才算完</li></ol></details>
+ <div class="bot"><span class="meta">26 KB · b9b6d40</span>
+   <a class="dl" href="packages/%E5%8F%8C%E6%93%8EBot.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="团队基建" data-n="文档重建师 PDF/扫描件重建为可编辑 Markdown：公式还原、图片切出、版式校准稿。" style="--t:#8FC0B0;--rot:0.0deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FC0B022" stroke="#8FC0B0" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FC0B0" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FC0B055"/><circle cx="42" cy="39" r="3.4" fill="#8FC0B055"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FC0B0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h11v15H2zM13 6h3v10a2 2 0 0 1-2 2h-1zM5 6h5M5 9h5M5 12h3"/></g>
+</svg><div class="who"><h3>文档重建师</h3>
+   <span class="sticker">团队基建</span></div></div>
+ <p class="say">PDF/扫描件重建为可编辑 Markdown：公式还原、图片切出、版式校准稿。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后按 README 跑 install.sh</li><li>把 PDF 放进输入目录</li><li>重建后逐页比对原稿，别直接当原件</li></ol></details>
+ <div class="bot"><span class="meta">87 KB · 4478e84</span>
+   <a class="dl" href="packages/%E6%96%87%E6%A1%A3%E9%87%8D%E5%BB%BA%E5%B8%88.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="团队基建" data-n="配装师 团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。" style="--t:#8FC0B0;--rot:0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FC0B022" stroke="#8FC0B0" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FC0B0" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FC0B055"/><circle cx="42" cy="39" r="3.4" fill="#8FC0B055"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FC0B0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 3 6l-3 3-4-4 3-3a4 4 0 0 1 1-2zM10 8L2 16l2 2 8-8"/></g>
+</svg><div class="who"><h3>配装师</h3>
+   <span class="sticker">团队基建</span></div></div>
+ <p class="say">团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后跑 install.sh 与 selfcheck</li><li>它需要读取 state.json</li><li>升级卡里会写清缺什么、先装什么</li></ol></details>
+ <div class="bot"><span class="meta">37 KB · 93a60df</span>
+   <a class="dl" href="packages/%E9%85%8D%E8%A3%85%E5%B8%88.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="团队基建" data-n="高级审核员 独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。" style="--t:#8FC0B0;--rot:-0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FC0B022" stroke="#8FC0B0" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FC0B0" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FC0B055"/><circle cx="42" cy="39" r="3.4" fill="#8FC0B055"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FC0B0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l3 4 9-9M2 16h14"/></g>
+</svg><div class="who"><h3>高级审核员</h3>
+   <span class="sticker">团队基建</span></div></div>
+ <p class="say">独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后按 manifest 一键创建</li><li>交给它时附产物路径与验收标准</li><li>它只给裁决，返工仍由原岗位做</li></ol></details>
+ <div class="bot"><span class="meta">5 KB · fa71cd5</span>
+   <a class="dl" href="packages/%E9%AB%98%E7%BA%A7%E5%AE%A1%E6%A0%B8%E5%91%98.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="学习与运营" data-n="学科助手 K12 学科陪练的学生端包：错题本、知识点查询、七板块导航，含 Mac/Win 一键安装器。" style="--t:#E3C48A;--rot:0.0deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E3C48A22" stroke="#E3C48A" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E3C48A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E3C48A55"/><circle cx="42" cy="39" r="3.4" fill="#E3C48A55"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E3C48A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6v14H2zM10 3h6v14h-6zM8.5 3v14"/></g>
+</svg><div class="who"><h3>学科助手</h3>
+   <span class="sticker">学习与运营</span></div></div>
+ <p class="say">K12 学科陪练的学生端包：错题本、知识点查询、七板块导航，含 Mac/Win 一键安装器。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>Mac 双击 .command，Windows 双击 .bat</li><li>首次运行允许权限，按提示装到本地目录</li><li>打开学生包里的 index.html 即可用</li></ol></details>
+ <div class="bot"><span class="meta">608 KB · 441ac34</span>
+   <a class="dl" href="packages/%E5%AD%A6%E7%A7%91%E5%8A%A9%E6%89%8B.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="学习与运营" data-n="旋翼工坊 帮初二学生把一架无人机设计出来：需求、推重比、选型、机架、试飞数据与报告。" style="--t:#E3C48A;--rot:0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E3C48A22" stroke="#E3C48A" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E3C48A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E3C48A55"/><circle cx="42" cy="39" r="3.4" fill="#E3C48A55"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E3C48A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h8M9 8v4M3 4l4 4M15 4l-4 4M7 15h4"/><circle cx="9" cy="15" r="1.6"/></g>
+</svg><div class="who"><h3>旋翼工坊</h3>
+   <span class="sticker">学习与运营</span></div></div>
+ <p class="say">帮初二学生把一架无人机设计出来：需求、推重比、选型、机架、试飞数据与报告。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后读 README 与 BOT.md</li><li>把 BOT.md 的指令贴进 Bot 设定</li><li>先给载重与预算，它会先算推重比再选型</li></ol></details>
+ <div class="bot"><span class="meta">8 KB · 5d7b1d6</span>
+   <a class="dl" href="packages/%E6%97%8B%E7%BF%BC%E5%B7%A5%E5%9D%8A.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="学习与运营" data-n="润途移居助手 海外移居路线研究：比成本、算门槛、给材料清单与时间线。" style="--t:#E3C48A;--rot:-0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E3C48A22" stroke="#E3C48A" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E3C48A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E3C48A55"/><circle cx="42" cy="39" r="3.4" fill="#E3C48A55"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E3C48A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l14-6-5 13-2-5z"/></g>
+</svg><div class="who"><h3>润途移居助手</h3>
+   <span class="sticker">学习与运营</span></div></div>
+ <p class="say">海外移居路线研究：比成本、算门槛、给材料清单与时间线。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后打开工作台 HTML</li><li>先填背景与目标国</li><li>政策类信息标注核实日期，自己再核一遍</li></ol></details>
+ <div class="bot"><span class="meta">16 KB · b5afa53</span>
+   <a class="dl" href="packages/%E6%B6%A6%E9%80%94%E7%A7%BB%E5%B1%85%E5%8A%A9%E6%89%8B.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="学习与运营" data-n="雅思词汇教练 基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。" style="--t:#E3C48A;--rot:0.0deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E3C48A22" stroke="#E3C48A" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E3C48A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E3C48A55"/><circle cx="42" cy="39" r="3.4" fill="#E3C48A55"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E3C48A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6v14H2zM10 3h6v14h-6zM8.5 3v14"/></g>
+</svg><div class="who"><h3>雅思词汇教练</h3>
+   <span class="sticker">学习与运营</span></div></div>
+ <p class="say">基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后按 README 建 Bot</li><li>先做一次摸底，按目标分排期</li><li>练靶场是本地网页，双击就能开</li></ol></details>
+ <div class="bot"><span class="meta">2.5 MB · daac2de</span>
+   <a class="dl" href="packages/%E9%9B%85%E6%80%9D%E8%AF%8D%E6%B1%87%E6%95%99%E7%BB%83.zip" download>抱走 <b>↓</b></a></div>
+</article><article class="card" data-c="学习与运营" data-n="鹅圈子运营团队 小鹅通圈子运营：简介、分区、标签、发帖与置顶，后台动作后回读核对。" style="--t:#E3C48A;--rot:0.5deg">
+ <div class="top"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#E3C48A22" stroke="#E3C48A" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#E3C48A" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#E3C48A55"/><circle cx="42" cy="39" r="3.4" fill="#E3C48A55"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#E3C48A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="10" r="6.5"/><path d="M9 6v4l3 2"/></g>
+</svg><div class="who"><h3>鹅圈子运营团队</h3>
+   <span class="sticker">学习与运营</span></div></div>
+ <p class="say">小鹅通圈子运营：简介、分区、标签、发帖与置顶，后台动作后回读核对。</p>
+ <details class="how"><summary>它怎么帮你 · 3 步</summary><ol><li>解压后读团队使用手册</li><li>先在后台建好分区与标签</li><li>每个动作都回读确认，不信「跑完了」</li></ol></details>
+ <div class="bot"><span class="meta">38 KB · 0ccc454</span>
+   <a class="dl" href="packages/%E9%B9%85%E5%9C%88%E5%AD%90%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9F.zip" download>抱走 <b>↓</b></a></div>
 </article></div>
-<div class="note">下载后先对一下卡片上的 sha256 前 8 位；包内有 install 脚本的先读 README。需要 API Key 的包，Key 自己填，仓库不代配。</div>
-<footer><p>BOTHUB · 22 个包 · 80.8 MB · 2026-11-05 更新</p>
+<div class="note"><svg class="pet" viewBox="0 0 64 64" aria-hidden="true">
+<g transform="rotate(-4 32 34)">
+  <ellipse cx="32" cy="35" rx="20" ry="17" fill="#8FC0B022" stroke="#8FC0B0" stroke-width="2.2"/>
+  <path d="M20 21c2-5 8-6 12-2" stroke="#8FC0B0" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <circle cx="26" cy="33" r="2.4" fill="#3B372E"/><circle cx="38" cy="33" r="2.4" fill="#3B372E"/>
+  <circle cx="22" cy="39" r="3.4" fill="#8FC0B055"/><circle cx="42" cy="39" r="3.4" fill="#8FC0B055"/>
+  <path d="M28 40q4 4 8 0" stroke="#3B372E" stroke-width="2" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(42 40) scale(0.62)" fill="none" stroke="#8FC0B0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l3 4 9-9M2 16h14"/></g>
+</svg><div><b>下完先做一件事：</b>对一下卡片上的 sha256 前 7 位。带 install 脚本的包，先读包里 README；要 API Key 的，Key 自己填，仓库不代配。</div></div>
+<footer><p>BOTHUB · 27 个包 · 96 MB · 2026-11-05 更新</p>
 <p>包内如含开源底座，许可约束见包内 README，商业使用前请自行核对。</p></footer>
 </div>
 <script>
 const q=document.getElementById('q'),cnt=document.getElementById('cnt'),cards=[...document.querySelectorAll('.card')];let cur='all';
 function apply(){const s=q.value.trim().toLowerCase();let n=0;
-cards.forEach(c=>{const okc=cur==='all'||c.dataset.c===cur;const okq=!s||c.dataset.n.toLowerCase().includes(s)||c.innerText.toLowerCase().includes(s);
+cards.forEach(c=>{const okc=cur==='all'||c.dataset.c===cur;const okq=!s||c.dataset.n.toLowerCase().includes(s);
 const show=okc&&okq;c.style.display=show?'':'none';if(show)n++;});cnt.textContent=n+' / '+cards.length;}
 q.addEventListener('input',apply);
 document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');cur=b.dataset.c;apply();});
