@@ -29,9 +29,10 @@ font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 .stat span{font-size:12px;color:var(--ink3);letter-spacing:.04em}
 .art{position:relative}
 .poster-video{display:block}.poster.poster-hide{display:none}
-.poster{display:block;width:100%;height:auto;border-radius:4px;mix-blend-mode:multiply;
--webkit-mask-image:radial-gradient(120% 115% at 50% 45%,#000 70%,transparent 100%);
-mask-image:radial-gradient(120% 115% at 50% 45%,#000 70%,transparent 100%)}
+.poster{display:block;width:100%;height:auto;border-radius:10px;background:#fff;
+border:1px solid var(--line);box-shadow:0 24px 48px -34px #7E7358,0 2px 0 #F1EAD7}
+.plate{margin:0}.plate figcaption{margin-top:10px;font-size:12px;color:var(--ink3);
+letter-spacing:.02em;text-align:right}
 
 /* ---------- sections ---------- */
 .sect{margin-top:44px}
@@ -133,7 +134,7 @@ footer p{margin:0}
    <div class="stat"><b>100<small style="font-size:13px">%</small></b><span>带 sha256</span></div>
   </div>
  </div>
- <div class="art"><video class="poster poster-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero.jpg"><source src="assets/hero-loop.mp4" type="video/mp4"></video><img class="poster poster-still poster-hide" src="assets/hero.jpg" width="1400" height="933" alt="五个小机器人"></div>
+ <figure class="art plate"><video class="poster poster-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero.jpg"><source src="assets/hero-loop.mp4" type="video/mp4"></video><img class="poster poster-still poster-hide" src="assets/hero.jpg" width="1400" height="933" alt="五个小机器人"><figcaption>BOTHUB · 团队小机器人家族</figcaption></figure>
 </section>
 
 <section class="sect">
