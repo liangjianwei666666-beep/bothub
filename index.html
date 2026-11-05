@@ -1,0 +1,183 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BOTHUB · Bot 包仓库</title>
+<meta name="description" content="团队 Bot 安装包集中下载，含 sha256 校验与安装说明。">
+<style>
+:root{--paper:#F7F3EA;--card:#FBF8F2;--ink:#2B2B2B;--dim:#6E6A62;--mute:#9C968C;--line:#DED7C9;--acc:#2F4F45}
+*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink);
+font:15px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px 72px}
+header{padding:48px 0 22px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--mute)}
+h1{font-size:31px;margin:10px 0 8px;letter-spacing:-.01em}
+.sub{color:var(--dim);max-width:620px}
+.stats{display:flex;gap:24px;margin-top:18px;flex-wrap:wrap}
+.stat b{display:block;font-size:21px}.stat span{font-size:12.5px;color:var(--mute)}
+h2{font-size:18px;margin:38px 0 4px}h2 .n{color:var(--mute);margin-right:8px;font-weight:500}
+.lead{color:var(--dim);margin:0 0 14px;font-size:14px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+input[type=search]{flex:1;min-width:190px;border:1px solid var(--line);background:#fff;border-radius:10px;
+padding:9px 12px;font-size:14px;color:var(--ink)}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:13px;
+cursor:pointer;color:var(--dim)}.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{font-size:12.5px;color:var(--mute);margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:4px}
+.row{display:flex;justify-content:space-between;align-items:center}
+.tag{font-size:11.5px;border-radius:999px;padding:2px 8px;background:#EDE9E0;color:#5E5A52}
+.sz{font-size:12px;color:var(--mute)}.card h3{font-size:14.5px;margin:6px 0 0;line-height:1.4}
+.sha{margin:2px 0 8px;font:11.5px ui-monospace,Menlo,monospace;color:var(--mute)}
+.dl{margin-top:auto;align-self:flex-start;font-size:13px;color:var(--acc);text-decoration:none;
+border:1px solid var(--acc);border-radius:8px;padding:4px 12px}.dl:hover{background:var(--acc);color:#fff}
+ol.steps{padding-left:20px;color:var(--dim)}ol.steps li{margin:8px 0}ol.steps b{color:var(--ink)}
+.faq details{border-bottom:1px solid var(--line);padding:11px 0}
+.faq summary{cursor:pointer;font-size:14.5px}.faq p{margin:8px 0 0;color:var(--dim);font-size:13.5px}
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;color:var(--mute);font-size:12.5px}
+.note{background:#FBF5E9;border:1px solid #E8DCC2;border-radius:10px;padding:12px 14px;font-size:13.5px;color:#6B5A2E;margin-top:14px}
+code{font:12px ui-monospace,Menlo,monospace;background:#EFE9DC;padding:1px 5px;border-radius:4px}
+@media(max-width:640px){h1{font-size:25px}header{padding-top:34px}}
+</style></head><body><div class="wrap">
+<header><div class="eyebrow">BOTHUB · BOT PACKAGE HUB</div>
+<h1>Bot 包仓库</h1>
+<p class="sub">把团队做好的 Bot 安装包集中放一处：能搜、能筛、能下、知道怎么装。每个包都带 sha256，可自校验。</p>
+<div class="stats"><div class="stat"><b>25</b><span>个包</span></div>
+<div class="stat"><b>46.7 MB</b><span>合计体积</span></div>
+<div class="stat"><b>6</b><span>个分类</span></div>
+<div class="stat"><b>100%</b><span>带 sha256</span></div></div></header>
+
+<h2><span class="n">01</span>下载</h2>
+<p class="lead">按分类筛选，或直接搜包名。带「双击可用」能力的是单文件网页工具，解压就能开。</p>
+<div class="tools"><input type="search" id="q" placeholder="搜包名，例如 塔罗 / 英语 / 工作台">
+<button class="chip on" data-g="all">全部 25</button><button class="chip" data-g="学科助手">学科助手 9</button><button class="chip" data-g="玄学命理">玄学命理 3</button><button class="chip" data-g="内容与创意">内容与创意 3</button><button class="chip" data-g="团队基建">团队基建 4</button><button class="chip" data-g="视频与业务">视频与业务 4</button><button class="chip" data-g="其他">其他 2</button><span class="count" id="cnt">25 / 25</span></div>
+<div class="grid" id="g"><article class="card" data-g="学科助手" data-n="安装包_数学助手">
+<div class="row"><span class="tag">学科助手</span><span class="sz">82 KB</span></div>
+<h3>安装包_数学助手</h3>
+<p class="sha">sha256 05312fae24a0…</p>
+<a class="dl" href="packages/%E5%AE%89%E8%A3%85%E5%8C%85_%E6%95%B0%E5%AD%A6%E5%8A%A9%E6%89%8B.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="数学助手安装包">
+<div class="row"><span class="tag">学科助手</span><span class="sz">82 KB</span></div>
+<h3>数学助手安装包</h3>
+<p class="sha">sha256 297b6d697188…</p>
+<a class="dl" href="packages/%E6%95%B0%E5%AD%A6%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="数学助手安装包-1">
+<div class="row"><span class="tag">学科助手</span><span class="sz">82 KB</span></div>
+<h3>数学助手安装包-1</h3>
+<p class="sha">sha256 3dae55a90d96…</p>
+<a class="dl" href="packages/%E6%95%B0%E5%AD%A6%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85-1.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="英语助手BOT安装包">
+<div class="row"><span class="tag">学科助手</span><span class="sz">1.0 MB</span></div>
+<h3>英语助手BOT安装包</h3>
+<p class="sha">sha256 e3f84d8bbec2…</p>
+<a class="dl" href="packages/%E8%8B%B1%E8%AF%AD%E5%8A%A9%E6%89%8BBOT%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="英语助手安装包">
+<div class="row"><span class="tag">学科助手</span><span class="sz">51 KB</span></div>
+<h3>英语助手安装包</h3>
+<p class="sha">sha256 723263bf08a0…</p>
+<a class="dl" href="packages/%E8%8B%B1%E8%AF%AD%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="英语助手安装包-1">
+<div class="row"><span class="tag">学科助手</span><span class="sz">31 KB</span></div>
+<h3>英语助手安装包-1</h3>
+<p class="sha">sha256 cb5ad4199ed6…</p>
+<a class="dl" href="packages/%E8%8B%B1%E8%AF%AD%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85-1.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="语文助手安装包">
+<div class="row"><span class="tag">学科助手</span><span class="sz">41 KB</span></div>
+<h3>语文助手安装包</h3>
+<p class="sha">sha256 ae284f6a9535…</p>
+<a class="dl" href="packages/%E8%AF%AD%E6%96%87%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="语文助手安装包-1">
+<div class="row"><span class="tag">学科助手</span><span class="sz">31 KB</span></div>
+<h3>语文助手安装包-1</h3>
+<p class="sha">sha256 b51be6d6c121…</p>
+<a class="dl" href="packages/%E8%AF%AD%E6%96%87%E5%8A%A9%E6%89%8B%E5%AE%89%E8%A3%85%E5%8C%85-1.zip" download>下载</a></article><article class="card" data-g="学科助手" data-n="雅思词汇教练BOT安装包">
+<div class="row"><span class="tag">学科助手</span><span class="sz">2.5 MB</span></div>
+<h3>雅思词汇教练BOT安装包</h3>
+<p class="sha">sha256 daac2de2bf39…</p>
+<a class="dl" href="packages/%E9%9B%85%E6%80%9D%E8%AF%8D%E6%B1%87%E6%95%99%E7%BB%83BOT%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="玄学命理" data-n="命盘师Bot">
+<div class="row"><span class="tag">玄学命理</span><span class="sz">51 KB</span></div>
+<h3>命盘师Bot</h3>
+<p class="sha">sha256 504a9a6419b5…</p>
+<a class="dl" href="packages/%E5%91%BD%E7%9B%98%E5%B8%88Bot.zip" download>下载</a></article><article class="card" data-g="玄学命理" data-n="塔罗师Bot-v5">
+<div class="row"><span class="tag">玄学命理</span><span class="sz">3.2 MB</span></div>
+<h3>塔罗师Bot-v5</h3>
+<p class="sha">sha256 6ac03459944f…</p>
+<a class="dl" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88Bot-v5.zip" download>下载</a></article><article class="card" data-g="玄学命理" data-n="易经占卜师Bot">
+<div class="row"><span class="tag">玄学命理</span><span class="sz">15.3 MB</span></div>
+<h3>易经占卜师Bot</h3>
+<p class="sha">sha256 1e84d69675a2…</p>
+<a class="dl" href="packages/%E6%98%93%E7%BB%8F%E5%8D%A0%E5%8D%9C%E5%B8%88Bot.zip" download>下载</a></article><article class="card" data-g="内容与创意" data-n="公众号流水线一键安装包">
+<div class="row"><span class="tag">内容与创意</span><span class="sz">10 KB</span></div>
+<h3>公众号流水线一键安装包</h3>
+<p class="sha">sha256 84f178fcf1a3…</p>
+<a class="dl" href="packages/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="内容与创意" data-n="灵魂歌手Bot-v1.2.0">
+<div class="row"><span class="tag">内容与创意</span><span class="sz">246 KB</span></div>
+<h3>灵魂歌手Bot-v1.2.0</h3>
+<p class="sha">sha256 712a83fa34da…</p>
+<a class="dl" href="packages/%E7%81%B5%E9%AD%82%E6%AD%8C%E6%89%8BBot-v1.2.0.zip" download>下载</a></article><article class="card" data-g="内容与创意" data-n="表情包工坊-Bot安装包-v1.0.0">
+<div class="row"><span class="tag">内容与创意</span><span class="sz">31 KB</span></div>
+<h3>表情包工坊-Bot安装包-v1.0.0</h3>
+<p class="sha">sha256 f0a22763e315…</p>
+<a class="dl" href="packages/%E8%A1%A8%E6%83%85%E5%8C%85%E5%B7%A5%E5%9D%8A-Bot%E5%AE%89%E8%A3%85%E5%8C%85-v1.0.0.zip" download>下载</a></article><article class="card" data-g="团队基建" data-n="PPT大师-Bot包-v1">
+<div class="row"><span class="tag">团队基建</span><span class="sz">5.9 MB</span></div>
+<h3>PPT大师-Bot包-v1</h3>
+<p class="sha">sha256 ade7fb6cd54b…</p>
+<a class="dl" href="packages/PPT%E5%A4%A7%E5%B8%88-Bot%E5%8C%85-v1.zip" download>下载</a></article><article class="card" data-g="团队基建" data-n="配装师Bot-v1">
+<div class="row"><span class="tag">团队基建</span><span class="sz">41 KB</span></div>
+<h3>配装师Bot-v1</h3>
+<p class="sha">sha256 93a60df35af9…</p>
+<a class="dl" href="packages/%E9%85%8D%E8%A3%85%E5%B8%88Bot-v1.tar.gz" download>下载</a></article><article class="card" data-g="团队基建" data-n="高级审核员Bot-v1.0.0">
+<div class="row"><span class="tag">团队基建</span><span class="sz">10 KB</span></div>
+<h3>高级审核员Bot-v1.0.0</h3>
+<p class="sha">sha256 fa71cd597a5c…</p>
+<a class="dl" href="packages/%E9%AB%98%E7%BA%A7%E5%AE%A1%E6%A0%B8%E5%91%98Bot-v1.0.0.zip" download>下载</a></article><article class="card" data-g="团队基建" data-n="鹅圈子运营团队Bot包-v1.0_副本">
+<div class="row"><span class="tag">团队基建</span><span class="sz">41 KB</span></div>
+<h3>鹅圈子运营团队Bot包-v1.0_副本</h3>
+<p class="sha">sha256 0ccc454c752f…</p>
+<a class="dl" href="packages/%E9%B9%85%E5%9C%88%E5%AD%90%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9FBot%E5%8C%85-v1.0_%E5%89%AF%E6%9C%AC.zip" download>下载</a></article><article class="card" data-g="视频与业务" data-n="外教匹配-Bot安装包-v1.0">
+<div class="row"><span class="tag">视频与业务</span><span class="sz">17.7 MB</span></div>
+<h3>外教匹配-Bot安装包-v1.0</h3>
+<p class="sha">sha256 53081c293805…</p>
+<a class="dl" href="packages/%E5%A4%96%E6%95%99%E5%8C%B9%E9%85%8D-Bot%E5%AE%89%E8%A3%85%E5%8C%85-v1.0.zip" download>下载</a></article><article class="card" data-g="视频与业务" data-n="数字人口播Bot_安装包_v1.0">
+<div class="row"><span class="tag">视频与业务</span><span class="sz">41 KB</span></div>
+<h3>数字人口播Bot_安装包_v1.0</h3>
+<p class="sha">sha256 98324c70f7f1…</p>
+<a class="dl" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%ADBot_%E5%AE%89%E8%A3%85%E5%8C%85_v1.0.zip" download>下载</a></article><article class="card" data-g="视频与业务" data-n="数字人口播Bot_安装包_v1.0">
+<div class="row"><span class="tag">视频与业务</span><span class="sz">31 KB</span></div>
+<h3>数字人口播Bot_安装包_v1.0</h3>
+<p class="sha">sha256 e5790a6556e4…</p>
+<a class="dl" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%ADBot_%E5%AE%89%E8%A3%85%E5%8C%85_v1.0.tar.gz" download>下载</a></article><article class="card" data-g="视频与业务" data-n="润途移居助手一键安装包">
+<div class="row"><span class="tag">视频与业务</span><span class="sz">20 KB</span></div>
+<h3>润途移居助手一键安装包</h3>
+<p class="sha">sha256 b5afa53d2951…</p>
+<a class="dl" href="packages/%E6%B6%A6%E9%80%94%E7%A7%BB%E5%B1%85%E5%8A%A9%E6%89%8B%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%8C%85.zip" download>下载</a></article><article class="card" data-g="其他" data-n="shot-analyst-bot">
+<div class="row"><span class="tag">其他</span><span class="sz">113 KB</span></div>
+<h3>shot-analyst-bot</h3>
+<p class="sha">sha256 f8275b47a3b3…</p>
+<a class="dl" href="packages/shot-analyst-bot.tar.gz" download>下载</a></article><article class="card" data-g="其他" data-n="shuangqing-bot-v1">
+<div class="row"><span class="tag">其他</span><span class="sz">31 KB</span></div>
+<h3>shuangqing-bot-v1</h3>
+<p class="sha">sha256 b9b6d4072a04…</p>
+<a class="dl" href="packages/shuangqing-bot-v1.zip" download>下载</a></article></div>
+
+<h2><span class="n">02</span>怎么装</h2>
+<div class="card" style="padding:16px 20px">
+<ol class="steps">
+<li><b>先看包里有没有 install 脚本。</b>有 → 先装运行环境再照 README；没有 install 的，多数是解压打开网页就能用。</li>
+<li><b>核对 sha256。</b>下载后跟卡片上的前 12 位对一下，确认文件完整、没被替换。</li>
+<li><b>要密钥的包自己填。</b>生图、视频类需要 API key，包内说明写了填在哪，仓库不代配。</li>
+<li><b>装不上先看 README 的「常见错误」。</b>还不行就把报错原文贴出来。</li>
+</ol></div>
+
+<h2><span class="n">03</span>常见问题</h2>
+<div class="faq">
+<details><summary>为什么有的包要装环境，有的双击就行？</summary><p>双击能用的是单文件网页工具，零门槛但能力固定；要装环境的带脚本和依赖，能力更强，装不上就用不了。</p></details>
+<details><summary>Mac 和 Windows 都能用吗？</summary><p>双击类都能；要装环境的看包内说明，多数两个系统都覆盖，脚本不同。</p></details>
+<details><summary>微信里点下载没反应？</summary><p>微信会拦 .zip 直链，请在浏览器里打开本页再下。</p></details>
+<details><summary>包可以转给别人吗？</summary><p>团队自制的可以给同群的人用；带开源底座的受原许可约束（多为非商业），不能用于收费交付。</p></details>
+<details><summary>下载断了怎么办？</summary><p>重新下一次，sha256 对得上就说明文件完整。</p></details>
+</div>
+
+<div class="note">本仓库只做「找得到、下得动、装得上」，未接账号、支付、会员。所有包上传前已核过结构与 sha256。</div>
+<footer><p>BOTHUB · 25 个包 · 46.7 MB · 生成于 2026-11-05</p>
+<p>包内如含开源底座，许可约束写在包内 README，使用前请自行核对。</p></footer>
+</div>
+<script>
+const q=document.getElementById('q'),cnt=document.getElementById('cnt'),cards=[...document.querySelectorAll('.card')];let cur='all';
+function apply(){const s=q.value.trim().toLowerCase();let n=0;
+cards.forEach(c=>{const okg=cur==='all'||c.dataset.g===cur;const okq=!s||c.dataset.n.toLowerCase().includes(s);
+const show=okg&&okq;c.style.display=show?'':'none';if(show)n++;});cnt.textContent=n+' / '+cards.length;}
+q.addEventListener('input',apply);
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');cur=b.dataset.g;apply();});
+</script></body></html>
