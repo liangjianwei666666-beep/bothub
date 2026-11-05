@@ -1,9 +1,9 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>BOTHUB · 开放的 Bot 货架</title>
-<meta name="description" content="社区里传着用的 Bot 包，谁做好谁放上来。每个包都带一句简介、使用步骤和 sha256 指纹。">
+<meta name="description" content="社区里传着用的 Bot 包。挑一个，下载，就能用。也能按你的需求定制一个。">
 <meta property="og:title" content="BOTHUB · 开放的 Bot 货架">
-<meta property="og:description" content="25 个 Bot 包，谁做好谁放上来，谁需要随手拿走。每个包都带简介、步骤和指纹。">
+<meta property="og:description" content="25 个 Bot 包随便拿。没有合适的，就定制一个。">
 <meta property="og:image" content="https://liangjianwei666666-beep.github.io/bothub/assets/hero.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -12,370 +12,455 @@
 --serif:"Songti SC","STSong","SimSun",serif;--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",sans-serif}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.72 var(--sans);
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 var(--sans);
 -webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,video{max-width:100%;height:auto}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px 88px}
+h1,h2,h3{letter-spacing:0}
 
 /* ---------- hero ---------- */
-.hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:32px;align-items:end;min-width:0;
-padding:48px 0 26px}
-.art{max-width:520px;justify-self:end;width:100%;min-width:0}
+.hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:32px;align-items:end;
+min-width:0;padding:46px 0 22px}
 .brand{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.2em;
 color:var(--ink3);text-transform:uppercase}
 .brand s{width:26px;height:1px;background:var(--line);display:inline-block}
-h1{font-family:var(--serif);font-weight:600;font-size:52px;line-height:1.14;letter-spacing:-.01em;
-margin:16px 0 14px}
-h1 span{display:block;color:var(--ink2);font-size:30px;line-height:1.4;margin-top:10px;letter-spacing:0}
-.lede{color:var(--ink2);margin:0 0 22px;max-width:min(26em,100%)}
+h1{font-family:var(--serif);font-weight:600;font-size:50px;line-height:1.16;margin:14px 0 12px}
+.lede{color:var(--ink2);margin:0 0 20px;font-size:17px}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 22px}
-.btn-primary,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:44px;
-padding:10px 20px;font-size:14.5px;text-decoration:none;border-radius:4px;transition:background .18s ease,
-color .18s ease,border-color .18s ease}
+.btn-primary,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:46px;
+padding:11px 22px;font-size:15px;text-decoration:none;border-radius:4px;
+transition:background .18s ease,color .18s ease,border-color .18s ease}
 .btn-primary{background:var(--ink);color:#FCFAF4;border:1px solid var(--ink)}
 .btn-primary:hover{background:#3A362D}
 .btn-ghost{border:1px solid var(--line);color:var(--ink2);background:#fff}
 .btn-ghost:hover{border-color:var(--ink3);color:var(--ink)}
 .btn-primary:focus-visible,.btn-ghost:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.mini{display:inline-block;font-size:11.5px;letter-spacing:.18em;color:var(--ink3);margin-bottom:8px}
-.hint{margin:12px 0 0;font-size:13.5px;color:var(--ink3)}
-.stats{display:flex;gap:30px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
-.stat b{display:flex;align-items:baseline;gap:3px;font-family:var(--serif);font-size:24px;
-font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.stats{display:flex;gap:28px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px}
+.stat b{display:flex;align-items:baseline;gap:2px;font-family:var(--serif);font-size:23px;
+font-variant-numeric:tabular-nums}
 .stat span{font-size:12px;color:var(--ink3);letter-spacing:.04em}
-.art{position:relative}
+.stat em{font-style:normal;font-size:13px;font-family:var(--sans)}
+.art{max-width:520px;justify-self:end;width:100%;min-width:0;position:relative}
+.poster{display:block;width:100%;height:auto;border-radius:10px;background:#fff;border:1px solid var(--line);
+box-shadow:0 24px 48px -34px #7E7358,0 2px 0 #F1EAD7}
 .poster-video{display:block}.poster.poster-hide{display:none}
-.poster{display:block;width:100%;height:auto;border-radius:10px;background:#fff;
-border:1px solid var(--line);box-shadow:0 24px 48px -34px #7E7358,0 2px 0 #F1EAD7}
-.plate{margin:0}.plate figcaption{margin-top:10px;font-size:12px;color:var(--ink3);
-letter-spacing:.02em;text-align:right}
+.plate{margin:0}.plate figcaption{margin-top:9px;font-size:12px;color:var(--ink3);text-align:right}
 
-/* ---------- sections ---------- */
-.sect{margin-top:44px}
-.s-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:10px}
-.s-head h2{font-family:var(--serif);font-weight:600;font-size:22px;margin:0;letter-spacing:0}
+/* ---------- section head ---------- */
+.sect{margin-top:38px}
+.s-head{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.s-head h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:0}
 .s-head p{margin:0;font-size:13px;color:var(--ink3)}
 .s-head .cnt{margin-left:auto;font-size:12.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
 
-/* ---------- category segment ---------- */
-.segs{display:flex;gap:2px;flex-wrap:wrap;margin-top:14px;max-width:100%;min-width:0}
-.seg{display:inline-flex;align-items:center;gap:8px;border:0;background:transparent;cursor:pointer;
-padding:9px 12px 10px;font-size:14px;color:var(--ink2);border-bottom:2px solid transparent;
-min-height:44px;flex:0 0 auto;white-space:nowrap;transition:color .18s ease,border-color .18s ease}
-.seg span{white-space:nowrap}
-.seg img{width:34px;height:34px;object-fit:contain;opacity:.85;background:#fff;border:1px solid var(--line2);
-border-radius:50%;padding:2px;transition:opacity .18s ease,border-color .18s ease}
-.seg img{width:26px;height:26px;object-fit:contain;opacity:.8;transition:opacity .18s ease}
-.seg i{font-style:normal;font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums}
-.seg:hover{color:var(--ink)}.seg:hover img{opacity:1}
-.seg[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--a)}
-.seg[aria-pressed="true"] img{opacity:1}
-.seg:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:2px}
+/* ---------- category tiles ---------- */
+.cats{display:flex;gap:10px;margin-top:14px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cat{flex:1 1 0;min-width:106px;border:1px solid var(--line);background:#fff;border-radius:8px;
+padding:14px 8px 11px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;
+font:inherit;color:var(--ink2);transition:border-color .16s ease,background .16s ease,transform .16s ease}
+.cat img{width:72px;height:72px;object-fit:contain}
+.cat b{font-weight:600;font-size:13.5px;color:var(--ink);white-space:nowrap}
+.cat i{font-style:normal;font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums}
+.cat:hover{border-color:var(--ink3)}
+.cat[aria-pressed="true"]{border-color:var(--a);background:#FFFCEE;box-shadow:inset 0 0 0 1px var(--a)}
+.cat[aria-pressed="true"] b{color:var(--a)}
+.cat:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.cat.all img{width:58px;height:58px}
 
-/* ---------- list ---------- */
-.searchbar{display:flex;align-items:center;gap:12px;margin:18px 0 6px}
-.searchbar input{flex:1;border:1px solid var(--line);background:#fff;border-radius:4px;padding:11px 14px;
-font-size:15px;color:var(--ink);min-height:44px}
+/* ---------- search + list ---------- */
+.searchbar{margin:16px 0 4px}
+.searchbar input{width:100%;border:1px solid var(--line);background:#fff;border-radius:4px;
+padding:11px 14px;font-size:15px;color:var(--ink);min-height:46px}
 .searchbar input::placeholder{color:var(--ink3)}
 .searchbar input:focus{outline:none;border-color:var(--ink2);box-shadow:0 0 0 3px #EAE3D0}
 .list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:44px}
-.row{border-bottom:1px solid var(--line2);padding:16px 0 14px;display:flex;flex-direction:column;gap:6px}
-.r-top{display:flex;align-items:baseline;gap:9px}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--a);flex:0 0 6px;transform:translateY(-3px)}
-.row h3{font-size:16.5px;font-weight:600;margin:0;letter-spacing:0}
-.kat{font-size:11.5px;color:var(--ink3);letter-spacing:.04em}
-.desc{margin:0;color:var(--ink2);font-size:14px;line-height:1.62}
-.r-bot{display:flex;align-items:center;gap:12px;margin-top:2px}
-.meta{font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums;display:inline-flex;gap:7px;align-items:center}
+.row{border-bottom:1px solid var(--line2);padding:15px 0 13px;display:grid;
+grid-template-columns:34px minmax(0,1fr);gap:0 12px}
+.thumb{width:34px;height:34px;object-fit:contain;margin-top:2px}
+.rmain{min-width:0}
+.r-top{display:flex;align-items:baseline;gap:8px}
+.row h3{font-size:16.5px;font-weight:600;margin:0}
+.desc{margin:2px 0 0;color:var(--ink2);font-size:13.5px;line-height:1.6;
+display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.r-bot{display:flex;align-items:center;gap:12px;margin-top:5px}
+.meta{font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums;display:inline-flex;
+gap:7px;align-items:center}
 .meta .sep{opacity:.5}.meta code{font:11.5px ui-monospace,SFMono-Regular,Menlo,monospace}
 .get{margin-left:auto;font-size:13.5px;color:var(--ink);text-decoration:none;
-border-bottom:1px solid var(--ink3);padding:2px 1px;min-height:32px;display:inline-flex;align-items:center;
-transition:border-color .16s ease,background .16s ease}
+border-bottom:1px solid var(--ink3);padding:2px 1px;min-height:32px;display:inline-flex;
+align-items:center;transition:border-color .16s ease,background .16s ease}
 .get:hover{border-bottom-color:var(--ink);background:#F4EFE1}
 .get:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.how{margin-top:4px}
+.how{margin-top:3px}
 .how summary{cursor:pointer;font-size:12.5px;color:var(--ink3);list-style:none;min-height:30px;
 display:inline-flex;align-items:center}
 .how summary::-webkit-details-marker{display:none}
 .how summary:hover{color:var(--ink2)}
 .how summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.how ol{margin:8px 0 2px;padding-left:18px;color:var(--ink2);font-size:13.5px}
+.how ol{margin:7px 0 2px;padding-left:18px;color:var(--ink2);font-size:13.5px}
 .how li{margin:4px 0}
 
-/* ---------- custom ---------- */
-.custom{margin-top:52px;border-top:1px solid var(--line);padding-top:30px;
-display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:36px;align-items:center}
-.custom h2{font-family:var(--serif);font-weight:600;font-size:26px;margin:0 0 12px}
-.custom ol{margin:0;padding-left:20px;color:var(--ink2);font-size:14.5px}
-.custom li{margin:7px 0}.custom li b{color:var(--ink);font-weight:600}
-.wx{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
-.wx span{font-size:12.5px;color:var(--ink3)}
-.wx b{font:16px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em}
-.copybtn{border:1px solid var(--line);background:#fff;border-radius:4px;padding:8px 14px;font-size:13px;
-color:var(--ink2);cursor:pointer;min-height:40px;transition:background .16s ease,border-color .16s ease}
+/* ---------- 定制（重头） ---------- */
+.custom{margin-top:56px;background:#FBF7EC;border:1px solid #F1EAD6;border-radius:14px;
+padding:34px 30px 26px}
+.c-top{display:grid;grid-template-columns:minmax(0,1fr) 244px;gap:30px;align-items:start}
+.mini{display:inline-block;font-size:11.5px;letter-spacing:.18em;color:var(--ink3);margin-bottom:6px}
+.custom h2{font-family:var(--serif);font-weight:600;font-size:34px;line-height:1.22;margin:0 0 10px}
+.custom .sub{margin:0;color:var(--ink2);font-size:15.5px}
+.note{margin:14px 0 0;font-size:13px;color:var(--ink3);border-left:2px solid var(--line);padding-left:10px}
+.c-top figure{margin:0;justify-self:end;width:100%;max-width:244px}
+.c-top figcaption{margin-top:8px;font-size:12px;color:var(--ink3)}
+.qr-img{width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff;padding:10px;
+box-shadow:0 18px 36px -30px #7E7358}
+.svcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.card{border:1px solid var(--line);background:#fff;border-radius:10px;padding:20px 18px 18px}
+.ico{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;
+border-radius:50%;background:#F6F1E3;color:#5E5644;margin-bottom:12px}
+.ico svg{width:22px;height:22px}
+.card h3{margin:0 0 6px;font-size:16.5px;font-weight:600}
+.card p{margin:0;color:var(--ink2);font-size:14px;line-height:1.65}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 0;padding:0;list-style:none;
+align-items:center;color:var(--ink2);font-size:14px}
+.steps li{display:inline-flex;align-items:center;gap:8px;background:#F8F4E7;border-radius:999px;
+padding:8px 15px 8px 9px}
+.steps .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+border-radius:50%;background:var(--ink);color:#FCFAF4;font-size:12px;font-variant-numeric:tabular-nums}
+.steps .arw{color:var(--ink3)}
+.wx{margin-top:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+border-top:1px solid #EFE7D2;padding-top:14px;max-width:420px}
+.wx .lab{font-size:12.5px;color:var(--ink3);width:100%}
+.wx b{font:22px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;
+font-variant-numeric:tabular-nums}
+.copybtn{border:1px solid var(--line);background:#fff;border-radius:4px;padding:9px 16px;font-size:13.5px;
+color:var(--ink2);cursor:pointer;min-height:42px;transition:background .16s ease,border-color .16s ease}
 .copybtn:hover{background:#F6F1E3;border-color:var(--ink3)}
 .copybtn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .copybtn.done{border-color:#8CA97E;color:#3F6B37;background:#F1F6EE}
-.qr{text-align:center}
-.qr img{width:168px;height:auto;border:1px solid var(--line);border-radius:4px;background:#fff;padding:6px}
-.qr span{display:block;margin-top:8px;font-size:12px;color:var(--ink3)}
+.contact .or{margin-left:auto;font-size:12.5px;color:var(--ink3)}
 
-footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;
-display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--ink3);font-size:12.5px}
+footer{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;display:flex;
+justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--ink3);font-size:12.5px}
 footer p{margin:0}
 
 @media (max-width:900px){
- .hero{grid-template-columns:minmax(0,1fr);gap:8px;padding-top:30px} .art{order:-1;min-width:0}
- h1{font-size:36px} h1 span{font-size:22px;margin-top:6px}
+ .hero{grid-template-columns:minmax(0,1fr);gap:6px;padding-top:28px} .art{order:-1;min-width:0;max-width:none}
+ h1{font-size:33px} .lede{font-size:16px}
  .list{grid-template-columns:minmax(0,1fr);column-gap:0}
- .custom{grid-template-columns:1fr;gap:20px} .qr{order:-1}
+ .c-top{grid-template-columns:minmax(0,1fr);gap:18px}
+ .custom h2{font-size:27px}
+ .svcs{grid-template-columns:minmax(0,1fr);gap:10px}
  .poster-video{display:none!important} .poster-still{display:block!important}
- .segs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;-webkit-overflow-scrolling:touch;
- scrollbar-width:none} .segs::-webkit-scrollbar{display:none}
+ .steps{flex-direction:column;align-items:stretch;gap:6px} .steps .arw{display:none}
+ .steps li{justify-content:flex-start;border-radius:8px;padding:9px 14px 9px 10px}
+ .c-top figure{order:3;justify-self:start;max-width:190px;margin-top:6px}
+ .custom{padding:26px 18px 22px;border-radius:12px}
 }
-@media (prefers-reduced-motion:reduce){
- *{animation:none!important;transition:none!important}
-}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body><div class="wrap">
 
 <section class="hero">
  <div>
   <span class="brand"><s></s>BOTHUB · 开放的 Bot 货架</span>
-  <h1>好用的 Bot，<br>都摆在这一层<span>谁做好谁放上来，谁需要随手拿走。</span></h1>
-  <p class="lede">每个包都写清三件事：它能干什么、几步能上手、以及一枚 sha256 指纹。下载后对一下指纹——对不上，说明文件半路坏了。</p>
+  <h1>好用的 Bot<br>都在这一层</h1>
+  <p class="lede">看中哪个，点「下载」抱走。</p>
   <div class="cta-row">
-   <a class="btn-primary" href="#upload">投稿上架</a>
-   <a class="btn-ghost" href="#shelf">先逛一圈 ↓</a>
+   <a class="btn-primary" href="#shelf">逛货架 ↓</a>
+   <a class="btn-ghost" href="#custom">定制一个</a>
   </div>
   <div class="stats">
-   <div class="stat"><b>25</b><span>个包在架</span></div>
-   <div class="stat"><b>81<small style="font-size:13px"> MB</small></b><span>全部加起来</span></div>
+   <div class="stat"><b>25</b><span>个 Bot</span></div>
+   <div class="stat"><b>81<em> MB</em></b><span>一共</span></div>
    <div class="stat"><b>5</b><span>个门类</span></div>
-   <div class="stat"><b>100<small style="font-size:13px">%</small></b><span>都带指纹</span></div>
+   <div class="stat"><b>100<em>%</em></b><span>带指纹</span></div>
   </div>
  </div>
  <figure class="art plate"><video class="poster poster-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero.jpg"><source src="assets/hero-loop.mp4" type="video/mp4"></video><img class="poster poster-still poster-hide" src="assets/hero.jpg" width="1400" height="933" alt="五个小机器人"><figcaption>BOTHUB · 团队小机器人家族</figcaption></figure>
 </section>
 
 <section class="sect">
- <div class="s-head"><h2>先挑个门类</h2><p>点一下，只留这一类</p><span class="cnt" id="cnt">25 / 25</span></div>
- <div class="segs" role="group" aria-label="按分类筛选">
-  <button class="seg" data-c="all" type="button" aria-pressed="true" style="--a:#23211C"><span>全部</span><i>25</i></button>
-  <button class="seg" data-c="命理玄学" type="button" style="--a:#7C5F96">
- <img src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="26" height="26" alt="" loading="lazy"><span>命理玄学</span><i>4</i></button><button class="seg" data-c="内容创作" type="button" style="--a:#4A6E96">
- <img src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="26" height="26" alt="" loading="lazy"><span>内容创作</span><i>6</i></button><button class="seg" data-c="视频与口播" type="button" style="--a:#A4626F">
- <img src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="26" height="26" alt="" loading="lazy"><span>视频与口播</span><i>6</i></button><button class="seg" data-c="团队基建" type="button" style="--a:#3F7A6B">
- <img src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="26" height="26" alt="" loading="lazy"><span>团队基建</span><i>5</i></button><button class="seg" data-c="学习与运营" type="button" style="--a:#96773A">
- <img src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="26" height="26" alt="" loading="lazy"><span>学习与运营</span><i>4</i></button>
+ <div class="s-head"><h2>挑个门类</h2><p>点一下，只看这一类</p><span class="cnt" id="cnt">25 / 25</span></div>
+ <div class="cats" role="group" aria-label="按分类筛选">
+  <button class="cat all" data-c="all" type="button" aria-pressed="true" style="--a:#23211C">
+   <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#555046" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="15" height="15" rx="3"/><rect x="32" y="9" width="15" height="15" rx="3"/><rect x="9" y="32" width="15" height="15" rx="3"/><rect x="32" y="32" width="15" height="15" rx="3"/></svg>
+   <b>全部</b><i>25</i></button>
+  <button class="cat" data-c="命理玄学" type="button" style="--a:#7C5F96" aria-pressed="false">
+ <img src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="56" height="56" alt="" loading="lazy"><b>命理玄学</b><i>4</i></button><button class="cat" data-c="内容创作" type="button" style="--a:#4A6E96" aria-pressed="false">
+ <img src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="56" height="56" alt="" loading="lazy"><b>内容创作</b><i>6</i></button><button class="cat" data-c="视频与口播" type="button" style="--a:#A4626F" aria-pressed="false">
+ <img src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="56" height="56" alt="" loading="lazy"><b>视频与口播</b><i>6</i></button><button class="cat" data-c="团队基建" type="button" style="--a:#3F7A6B" aria-pressed="false">
+ <img src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="56" height="56" alt="" loading="lazy"><b>团队基建</b><i>5</i></button><button class="cat" data-c="学习与运营" type="button" style="--a:#96773A" aria-pressed="false">
+ <img src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="56" height="56" alt="" loading="lazy"><b>学习与运营</b><i>4</i></button>
  </div>
 </section>
 
 <section class="sect" id="shelf">
- <div class="s-head"><h2>整层货架</h2><p>同门类里按名字排</p></div>
- <div class="searchbar"><input type="search" id="q" placeholder="找找看：塔罗 / 口播 / 审核" aria-label="搜索包"></div>
+ <div class="s-head"><h2>整层货架</h2><p>点「怎么用」看上手三步</p></div>
+ <div class="searchbar"><input type="search" id="q" placeholder="找：塔罗 / 口播 / 审核" aria-label="搜索包"></div>
  <ul class="list" id="list"><li class="row" data-c="命理玄学" data-n="命盘师 四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。" style="--a:#7C5F96">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>命盘师</h3><span class="kat">命理玄学</span></div>
- <p class="desc">四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。</p>
- <div class="r-bot"><span class="meta">55 KB<span class="sep">·</span><code>504a9a64</code></span>
-  <a class="get" href="packages/%E5%91%BD%E7%9B%98%E5%B8%88.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后按 README 贴入指令</li><li>准备出生年月日时（越准越好）</li><li>问方向而不是问吉凶，结论更可用</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>命盘师</h3></div>
+  <p class="desc">四柱八字结构分析：讲某段时间为什么难熬，不做吉凶预测。</p>
+  <div class="r-bot"><span class="meta">55 KB<span class="sep">·</span><code>504a9a64</code></span>
+   <a class="get" href="packages/%E5%91%BD%E7%9B%98%E5%B8%88.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后按 README 贴入指令</li><li>准备出生年月日时（越准越好）</li><li>问方向而不是问吉凶，结论更可用</li></ol></details>
+ </div>
 </li><li class="row" data-c="命理玄学" data-n="塔罗师 韦特体系塔罗解读：抽牌、解牌、给可执行的建议，不预测宿命。" style="--a:#7C5F96">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>塔罗师</h3><span class="kat">命理玄学</span></div>
- <p class="desc">韦特体系塔罗解读：抽牌、解牌、给可执行的建议，不预测宿命。</p>
- <div class="r-bot"><span class="meta">3.2 MB<span class="sep">·</span><code>6ac03459</code></span>
-  <a class="get" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后按 README 把「给 Bot 的指令」贴进 Bot 设定</li><li>牌库已内置，无需联网</li><li>问牌时说明问题背景与时间范围，解读更准</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>塔罗师</h3></div>
+  <p class="desc">韦特体系塔罗解读：抽牌、解牌、给可执行的建议，不预测宿命。</p>
+  <div class="r-bot"><span class="meta">3.2 MB<span class="sep">·</span><code>6ac03459</code></span>
+   <a class="get" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后按 README 把「给 Bot 的指令」贴进 Bot 设定</li><li>牌库已内置，无需联网</li><li>问牌时说明问题背景与时间范围，解读更准</li></ol></details>
+ </div>
 </li><li class="row" data-c="命理玄学" data-n="塔罗师工作台 塔罗师的本地工作台：牌阵、牌库、抽牌记录，单页 HTML 双击就能开。" style="--a:#7C5F96">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>塔罗师工作台</h3><span class="kat">命理玄学</span></div>
- <p class="desc">塔罗师的本地工作台：牌阵、牌库、抽牌记录，单页 HTML 双击就能开。</p>
- <div class="r-bot"><span class="meta">34.1 MB<span class="sep">·</span><code>4cb026b0</code></span>
-  <a class="get" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88%E5%B7%A5%E4%BD%9C%E5%8F%B0.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后打开「点我-打开塔罗工作台.html」</li><li>选牌阵 → 抽牌 → 记录解读</li><li>记录只存在本地浏览器，不上传</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>塔罗师工作台</h3></div>
+  <p class="desc">塔罗师的本地工作台：牌阵、牌库、抽牌记录，单页 HTML 双击就能开。</p>
+  <div class="r-bot"><span class="meta">34.1 MB<span class="sep">·</span><code>4cb026b0</code></span>
+   <a class="get" href="packages/%E5%A1%94%E7%BD%97%E5%B8%88%E5%B7%A5%E4%BD%9C%E5%8F%B0.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后打开「点我-打开塔罗工作台.html」</li><li>选牌阵 → 抽牌 → 记录解读</li><li>记录只存在本地浏览器，不上传</li></ol></details>
+ </div>
 </li><li class="row" data-c="命理玄学" data-n="易经占卜师 铜钱法起卦、依《周易》通行本解卦，给结构判断与一句可执行的话。" style="--a:#7C5F96">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>易经占卜师</h3><span class="kat">命理玄学</span></div>
- <p class="desc">铜钱法起卦、依《周易》通行本解卦，给结构判断与一句可执行的话。</p>
- <div class="r-bot"><span class="meta">15.3 MB<span class="sep">·</span><code>1e84d696</code></span>
-  <a class="get" href="packages/%E6%98%93%E7%BB%8F%E5%8D%A0%E5%8D%9C%E5%B8%88.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后按 README 安装</li><li>起卦前把问题写成一句话</li><li>一次只问一件事，避免连环追问</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%91%BD%E7%90%86%E7%8E%84%E5%AD%A6.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>易经占卜师</h3></div>
+  <p class="desc">铜钱法起卦、依《周易》通行本解卦，给结构判断与一句可执行的话。</p>
+  <div class="r-bot"><span class="meta">15.3 MB<span class="sep">·</span><code>1e84d696</code></span>
+   <a class="get" href="packages/%E6%98%93%E7%BB%8F%E5%8D%A0%E5%8D%9C%E5%B8%88.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后按 README 安装</li><li>起卦前把问题写成一句话</li><li>一次只问一件事，避免连环追问</li></ol></details>
+ </div>
 </li><li class="row" data-c="内容创作" data-n="PPT大师 把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。" style="--a:#4A6E96">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>PPT大师</h3><span class="kat">内容创作</span></div>
- <p class="desc">把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。</p>
- <div class="r-bot"><span class="meta">5.9 MB<span class="sep">·</span><code>ade7fb6c</code></span>
-  <a class="get" href="packages/PPT%E5%A4%A7%E5%B8%88.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后按 README 接入生图/排版脚本</li><li>给它原始材料（文档或长文）</li><li>先要目录再要单页，避免一次生成整本</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>PPT大师</h3></div>
+  <p class="desc">把一份材料做成能讲的演示稿：结构、页序、图表与讲稿一起给。</p>
+  <div class="r-bot"><span class="meta">5.9 MB<span class="sep">·</span><code>ade7fb6c</code></span>
+   <a class="get" href="packages/PPT%E5%A4%A7%E5%B8%88.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后按 README 接入生图/排版脚本</li><li>给它原始材料（文档或长文）</li><li>先要目录再要单页，避免一次生成整本</li></ol></details>
+ </div>
 </li><li class="row" data-c="内容创作" data-n="信息图大师 把知识点做成一页 3:4 竖版手绘信息图：单点 + 场景 + 反差标题，自带分层规范。" style="--a:#4A6E96">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>信息图大师</h3><span class="kat">内容创作</span></div>
- <p class="desc">把知识点做成一页 3:4 竖版手绘信息图：单点 + 场景 + 反差标题，自带分层规范。</p>
- <div class="r-bot"><span class="meta">596 KB<span class="sep">·</span><code>74392adf</code></span>
-  <a class="get" href="packages/%E4%BF%A1%E6%81%AF%E5%9B%BE%E5%A4%A7%E5%B8%88.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后读 安装说明.html</li><li>把「给主 Bot 的指令」贴进 Bot 设定</li><li>批量出图前先出 1 张确认风格</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>信息图大师</h3></div>
+  <p class="desc">把知识点做成一页 3:4 竖版手绘信息图：单点 + 场景 + 反差标题，自带分层规范。</p>
+  <div class="r-bot"><span class="meta">596 KB<span class="sep">·</span><code>74392adf</code></span>
+   <a class="get" href="packages/%E4%BF%A1%E6%81%AF%E5%9B%BE%E5%A4%A7%E5%B8%88.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后读 安装说明.html</li><li>把「给主 Bot 的指令」贴进 Bot 设定</li><li>批量出图前先出 1 张确认风格</li></ol></details>
+ </div>
 </li><li class="row" data-c="内容创作" data-n="公众号流水线 主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。" style="--a:#4A6E96">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>公众号流水线</h3><span class="kat">内容创作</span></div>
- <p class="desc">主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。</p>
- <div class="r-bot"><span class="meta">8 KB<span class="sep">·</span><code>84f178fc</code></span>
-  <a class="get" href="packages/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%B5%81%E6%B0%B4%E7%BA%BF.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>先读包内 README 的分工说明</li><li>按 INSTALL 建主笔/设计/发布/审核四个 Bot</li><li>群发始终由人工点击，包内不代发</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>公众号流水线</h3></div>
+  <p class="desc">主笔 → 设计 → 发布 → 审核四岗位流水线：从选题到草稿箱的完整协作包。</p>
+  <div class="r-bot"><span class="meta">8 KB<span class="sep">·</span><code>84f178fc</code></span>
+   <a class="get" href="packages/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%B5%81%E6%B0%B4%E7%BA%BF.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>先读包内 README 的分工说明</li><li>按 INSTALL 建主笔/设计/发布/审核四个 Bot</li><li>群发始终由人工点击，包内不代发</li></ol></details>
+ </div>
 </li><li class="row" data-c="内容创作" data-n="灵魂歌手 从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。" style="--a:#4A6E96">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>灵魂歌手</h3><span class="kat">内容创作</span></div>
- <p class="desc">从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。</p>
- <div class="r-bot"><span class="meta">240 KB<span class="sep">·</span><code>712a83fa</code></span>
-  <a class="get" href="packages/%E7%81%B5%E9%AD%82%E6%AD%8C%E6%89%8B.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后跑 install.sh，自检 28 项应全过</li><li>先定歌与歌词，再出画面</li><li>五平台发布需自己登录，包内不代发</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>灵魂歌手</h3></div>
+  <p class="desc">从歌词到成片的 MV 流水线：写词、配乐、生成画面、拼接字幕。</p>
+  <div class="r-bot"><span class="meta">240 KB<span class="sep">·</span><code>712a83fa</code></span>
+   <a class="get" href="packages/%E7%81%B5%E9%AD%82%E6%AD%8C%E6%89%8B.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后跑 install.sh，自检 28 项应全过</li><li>先定歌与歌词，再出画面</li><li>五平台发布需自己登录，包内不代发</li></ol></details>
+ </div>
 </li><li class="row" data-c="内容创作" data-n="珍珠姊妹 天使之泪视频号货盘导购：查货、组货、算佣金、起草口播，不碰运营与后台。" style="--a:#4A6E96">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>珍珠姊妹</h3><span class="kat">内容创作</span></div>
- <p class="desc">天使之泪视频号货盘导购：查货、组货、算佣金、起草口播，不碰运营与后台。</p>
- <div class="r-bot"><span class="meta">54 KB<span class="sep">·</span><code>92cf1e1b</code></span>
-  <a class="get" href="packages/%E7%8F%8D%E7%8F%A0%E5%A7%8A%E5%A6%B9.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后打开 导购工作台.html</li><li>507 款货盘在 products.csv，可搜索筛选</li><li>组货后一键算佣金、生成话术草稿</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>珍珠姊妹</h3></div>
+  <p class="desc">天使之泪视频号货盘导购：查货、组货、算佣金、起草口播，不碰运营与后台。</p>
+  <div class="r-bot"><span class="meta">54 KB<span class="sep">·</span><code>92cf1e1b</code></span>
+   <a class="get" href="packages/%E7%8F%8D%E7%8F%A0%E5%A7%8A%E5%A6%B9.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后打开 导购工作台.html</li><li>507 款货盘在 products.csv，可搜索筛选</li><li>组货后一键算佣金、生成话术草稿</li></ol></details>
+ </div>
 </li><li class="row" data-c="内容创作" data-n="表情包工坊 一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。" style="--a:#4A6E96">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>表情包工坊</h3><span class="kat">内容创作</span></div>
- <p class="desc">一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。</p>
- <div class="r-bot"><span class="meta">34 KB<span class="sep">·</span><code>f0a22763</code></span>
-  <a class="get" href="packages/%E8%A1%A8%E6%83%85%E5%8C%85%E5%B7%A5%E5%9D%8A.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后配置生图 Key</li><li>先定角色设定（一句话）</li><li>一次出 4–8 张，再挑要的那两张细修</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%86%85%E5%AE%B9%E5%88%9B%E4%BD%9C.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>表情包工坊</h3></div>
+  <p class="desc">一句话生成成套表情包：统一角色、统一画风、批量导出可直接发。</p>
+  <div class="r-bot"><span class="meta">34 KB<span class="sep">·</span><code>f0a22763</code></span>
+   <a class="get" href="packages/%E8%A1%A8%E6%83%85%E5%8C%85%E5%B7%A5%E5%9D%8A.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后配置生图 Key</li><li>先定角色设定（一句话）</li><li>一次出 4–8 张，再挑要的那两张细修</li></ol></details>
+ </div>
 </li><li class="row" data-c="视频与口播" data-n="外教匹配 把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。" style="--a:#A4626F">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>外教匹配</h3><span class="kat">视频与口播</span></div>
- <p class="desc">把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。</p>
- <div class="r-bot"><span class="meta">17.7 MB<span class="sep">·</span><code>53081c29</code></span>
-  <a class="get" href="packages/%E5%A4%96%E6%95%99%E5%8C%B9%E9%85%8D.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后按 README 导入老师资料</li><li>先写清孩子水平与目标</li><li>推荐结果含匹配理由，自己再核实</li></ol></details>
+ <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>外教匹配</h3></div>
+  <p class="desc">把「孩子要学什么」和「合适的外教」对上：带照片、介绍与可约时段。</p>
+  <div class="r-bot"><span class="meta">17.7 MB<span class="sep">·</span><code>53081c29</code></span>
+   <a class="get" href="packages/%E5%A4%96%E6%95%99%E5%8C%B9%E9%85%8D.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后按 README 导入老师资料</li><li>先写清孩子水平与目标</li><li>推荐结果含匹配理由，自己再核实</li></ol></details>
+ </div>
 </li><li class="row" data-c="视频与口播" data-n="拉片分析师 把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。" style="--a:#A4626F">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>拉片分析师</h3><span class="kat">视频与口播</span></div>
- <p class="desc">把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。</p>
- <div class="r-bot"><span class="meta">117 KB<span class="sep">·</span><code>f8275b47</code></span>
-  <a class="get" href="packages/%E6%8B%89%E7%89%87%E5%88%86%E6%9E%90%E5%B8%88.tar.gz" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后需要 node 与 ffmpeg</li><li>把视频放进目录后运行分析脚本</li><li>报告是单文件 HTML，双击即可看</li></ol></details>
+ <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>拉片分析师</h3></div>
+  <p class="desc">把一条成片拆成逐镜头分析表：时长、景别、运镜、画面，并出可交互拉片报告。</p>
+  <div class="r-bot"><span class="meta">117 KB<span class="sep">·</span><code>f8275b47</code></span>
+   <a class="get" href="packages/%E6%8B%89%E7%89%87%E5%88%86%E6%9E%90%E5%B8%88.tar.gz" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后需要 node 与 ffmpeg</li><li>把视频放进目录后运行分析脚本</li><li>报告是单文件 HTML，双击即可看</li></ol></details>
+ </div>
 </li><li class="row" data-c="视频与口播" data-n="教材匹配 按学生水平与目标匹配外教教材，输出课次表与教材清单（源包，不含大素材）。" style="--a:#A4626F">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>教材匹配</h3><span class="kat">视频与口播</span></div>
- <p class="desc">按学生水平与目标匹配外教教材，输出课次表与教材清单（源包，不含大素材）。</p>
- <div class="r-bot"><span class="meta">159 KB<span class="sep">·</span><code>854141c4</code></span>
-  <a class="get" href="packages/%E6%95%99%E6%9D%90%E5%8C%B9%E9%85%8D.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后读 README 与「1-给Bot的指令」</li><li>准备学生水平与目标描述</li><li>数据在 data/，可用 match.py 重新算</li></ol></details>
+ <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>教材匹配</h3></div>
+  <p class="desc">按学生水平与目标匹配外教教材，输出课次表与教材清单（源包，不含大素材）。</p>
+  <div class="r-bot"><span class="meta">159 KB<span class="sep">·</span><code>854141c4</code></span>
+   <a class="get" href="packages/%E6%95%99%E6%9D%90%E5%8C%B9%E9%85%8D.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后读 README 与「1-给Bot的指令」</li><li>准备学生水平与目标描述</li><li>数据在 data/，可用 match.py 重新算</li></ol></details>
+ </div>
 </li><li class="row" data-c="视频与口播" data-n="数字人口播 文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。" style="--a:#A4626F">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>数字人口播</h3><span class="kat">视频与口播</span></div>
- <p class="desc">文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。</p>
- <div class="r-bot"><span class="meta">41 KB<span class="sep">·</span><code>98324c70</code></span>
-  <a class="get" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%AD.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后跑安装脚本，补齐三把 Key</li><li>准备 3–5 句中文文案与一张正面形象图</li><li>先出一条 15 秒样片，确认口型再批量</li></ol></details>
+ <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>数字人口播</h3></div>
+  <p class="desc">文案 + 形象 + 声音 → 1080×1920 竖屏口播片：手绘动画 + 对口型 + 字幕。</p>
+  <div class="r-bot"><span class="meta">41 KB<span class="sep">·</span><code>98324c70</code></span>
+   <a class="get" href="packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%AD.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后跑安装脚本，补齐三把 Key</li><li>准备 3–5 句中文文案与一张正面形象图</li><li>先出一条 15 秒样片，确认口型再批量</li></ol></details>
+ </div>
 </li><li class="row" data-c="视频与口播" data-n="社媒洞察 把社媒真实讨论变成可核对的洞察：趋势、人群、竞品、口碑，不发布不改号。" style="--a:#A4626F">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>社媒洞察</h3><span class="kat">视频与口播</span></div>
- <p class="desc">把社媒真实讨论变成可核对的洞察：趋势、人群、竞品、口碑，不发布不改号。</p>
- <div class="r-bot"><span class="meta">76 KB<span class="sep">·</span><code>0cf1baad</code></span>
-  <a class="get" href="packages/%E7%A4%BE%E5%AA%92%E6%B4%9E%E5%AF%9F.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后读 安装说明-0元浏览器版.md</li><li>tools/ 是采集脚本，需自己配登录态</li><li>它给讨论与链接，结论自己复核</li></ol></details>
+ <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>社媒洞察</h3></div>
+  <p class="desc">把社媒真实讨论变成可核对的洞察：趋势、人群、竞品、口碑，不发布不改号。</p>
+  <div class="r-bot"><span class="meta">76 KB<span class="sep">·</span><code>0cf1baad</code></span>
+   <a class="get" href="packages/%E7%A4%BE%E5%AA%92%E6%B4%9E%E5%AF%9F.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后读 安装说明-0元浏览器版.md</li><li>tools/ 是采集脚本，需自己配登录态</li><li>它给讨论与链接，结论自己复核</li></ol></details>
+ </div>
 </li><li class="row" data-c="视频与口播" data-n="选品雷达 食材供应链选品雷达" style="--a:#A4626F">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>选品雷达</h3><span class="kat">视频与口播</span></div>
- <p class="desc">食材供应链选品雷达</p>
- <div class="r-bot"><span class="meta">116 KB<span class="sep">·</span><code>6bb212b5</code></span>
-  <a class="get" href="packages/%E9%80%89%E5%93%81%E9%9B%B7%E8%BE%BE.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后打开选品雷达工作台.html</li><li>信号/证据/工具三目录分工不同，先读 README</li><li>它给候选与理由，售价销量仍需人工核</li></ol></details>
+ <img class="thumb" src="assets/cat-%E8%A7%86%E9%A2%91%E4%B8%8E%E5%8F%A3%E6%92%AD.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>选品雷达</h3></div>
+  <p class="desc">食材供应链选品雷达</p>
+  <div class="r-bot"><span class="meta">116 KB<span class="sep">·</span><code>6bb212b5</code></span>
+   <a class="get" href="packages/%E9%80%89%E5%93%81%E9%9B%B7%E8%BE%BE.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后打开选品雷达工作台.html</li><li>信号/证据/工具三目录分工不同，先读 README</li><li>它给候选与理由，售价销量仍需人工核</li></ol></details>
+ </div>
 </li><li class="row" data-c="团队基建" data-n="Agent调度师Bot 同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。" style="--a:#3F7A6B">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>Agent调度师Bot</h3><span class="kat">团队基建</span></div>
- <p class="desc">同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。</p>
- <div class="r-bot"><span class="meta">26 KB<span class="sep">·</span><code>b9b6d407</code></span>
-  <a class="get" href="packages/Agent%E8%B0%83%E5%BA%A6%E5%B8%88Bot.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后跑 install.sh</li><li>两个 CLI 都要先自行登录</li><li>任务写清输入输出路径，结果才算完</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>Agent调度师Bot</h3></div>
+  <p class="desc">同时驱动 codex 与 pi 两个命令行智能体，替你在本机跑编码任务。</p>
+  <div class="r-bot"><span class="meta">26 KB<span class="sep">·</span><code>b9b6d407</code></span>
+   <a class="get" href="packages/Agent%E8%B0%83%E5%BA%A6%E5%B8%88Bot.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后跑 install.sh</li><li>两个 CLI 都要先自行登录</li><li>任务写清输入输出路径，结果才算完</li></ol></details>
+ </div>
 </li><li class="row" data-c="团队基建" data-n="下载专家 长视频/播客/讲座转中文文稿，可搜可读，带时间轴。" style="--a:#3F7A6B">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>下载专家</h3><span class="kat">团队基建</span></div>
- <p class="desc">长视频/播客/讲座转中文文稿，可搜可读，带时间轴。</p>
- <div class="r-bot"><span class="meta">22 KB<span class="sep">·</span><code>ffa70ea0</code></span>
-  <a class="get" href="packages/%E4%B8%8B%E8%BD%BD%E4%B8%93%E5%AE%B6.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后按 README 装依赖</li><li>给它链接或本地文件</li><li>转写完成先核对人名与数字</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>下载专家</h3></div>
+  <p class="desc">长视频/播客/讲座转中文文稿，可搜可读，带时间轴。</p>
+  <div class="r-bot"><span class="meta">22 KB<span class="sep">·</span><code>ffa70ea0</code></span>
+   <a class="get" href="packages/%E4%B8%8B%E8%BD%BD%E4%B8%93%E5%AE%B6.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后按 README 装依赖</li><li>给它链接或本地文件</li><li>转写完成先核对人名与数字</li></ol></details>
+ </div>
 </li><li class="row" data-c="团队基建" data-n="文档重建师 PDF/扫描件重建为可编辑 Markdown：公式还原、图片切出、版式校准稿。" style="--a:#3F7A6B">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>文档重建师</h3><span class="kat">团队基建</span></div>
- <p class="desc">PDF/扫描件重建为可编辑 Markdown：公式还原、图片切出、版式校准稿。</p>
- <div class="r-bot"><span class="meta">87 KB<span class="sep">·</span><code>4478e843</code></span>
-  <a class="get" href="packages/%E6%96%87%E6%A1%A3%E9%87%8D%E5%BB%BA%E5%B8%88.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后按 README 跑 install.sh</li><li>把 PDF 放进输入目录</li><li>重建后逐页比对原稿，别直接当原件</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>文档重建师</h3></div>
+  <p class="desc">PDF/扫描件重建为可编辑 Markdown：公式还原、图片切出、版式校准稿。</p>
+  <div class="r-bot"><span class="meta">87 KB<span class="sep">·</span><code>4478e843</code></span>
+   <a class="get" href="packages/%E6%96%87%E6%A1%A3%E9%87%8D%E5%BB%BA%E5%B8%88.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后按 README 跑 install.sh</li><li>把 PDF 放进输入目录</li><li>重建后逐页比对原稿，别直接当原件</li></ol></details>
+ </div>
 </li><li class="row" data-c="团队基建" data-n="配装师 团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。" style="--a:#3F7A6B">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>配装师</h3><span class="kat">团队基建</span></div>
- <p class="desc">团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。</p>
- <div class="r-bot"><span class="meta">37 KB<span class="sep">·</span><code>93a60df3</code></span>
-  <a class="get" href="packages/%E9%85%8D%E8%A3%85%E5%B8%88.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后跑 install.sh 与 selfcheck</li><li>它需要读取 state.json</li><li>升级卡里会写清缺什么、先装什么</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>配装师</h3></div>
+  <p class="desc">团队能力盘点岗：从状态文件读真实情况，找出空壳 Bot 与环境断点，按 Bot 发升级卡。</p>
+  <div class="r-bot"><span class="meta">37 KB<span class="sep">·</span><code>93a60df3</code></span>
+   <a class="get" href="packages/%E9%85%8D%E8%A3%85%E5%B8%88.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后跑 install.sh 与 selfcheck</li><li>它需要读取 state.json</li><li>升级卡里会写清缺什么、先装什么</li></ol></details>
+ </div>
 </li><li class="row" data-c="团队基建" data-n="高级审核员 独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。" style="--a:#3F7A6B">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>高级审核员</h3><span class="kat">团队基建</span></div>
- <p class="desc">独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。</p>
- <div class="r-bot"><span class="meta">5 KB<span class="sep">·</span><code>fa71cd59</code></span>
-  <a class="get" href="packages/%E9%AB%98%E7%BA%A7%E5%AE%A1%E6%A0%B8%E5%91%98.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后按 manifest 一键创建</li><li>交给它时附产物路径与验收标准</li><li>它只给裁决，返工仍由原岗位做</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%9B%A2%E9%98%9F%E5%9F%BA%E5%BB%BA.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>高级审核员</h3></div>
+  <p class="desc">独立验收位：不写稿不做图，只给「通过 / 有条件通过 / 打回」和缺陷清单。</p>
+  <div class="r-bot"><span class="meta">5 KB<span class="sep">·</span><code>fa71cd59</code></span>
+   <a class="get" href="packages/%E9%AB%98%E7%BA%A7%E5%AE%A1%E6%A0%B8%E5%91%98.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后按 manifest 一键创建</li><li>交给它时附产物路径与验收标准</li><li>它只给裁决，返工仍由原岗位做</li></ol></details>
+ </div>
 </li><li class="row" data-c="学习与运营" data-n="学科助手 K12 学科陪练的学生端包：错题本、知识点查询、七板块导航，含 Mac/Win 一键安装器。" style="--a:#96773A">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>学科助手</h3><span class="kat">学习与运营</span></div>
- <p class="desc">K12 学科陪练的学生端包：错题本、知识点查询、七板块导航，含 Mac/Win 一键安装器。</p>
- <div class="r-bot"><span class="meta">608 KB<span class="sep">·</span><code>441ac345</code></span>
-  <a class="get" href="packages/%E5%AD%A6%E7%A7%91%E5%8A%A9%E6%89%8B.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>Mac 双击 .command，Windows 双击 .bat</li><li>首次运行允许权限，按提示装到本地目录</li><li>打开学生包里的 index.html 即可用</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>学科助手</h3></div>
+  <p class="desc">K12 学科陪练的学生端包：错题本、知识点查询、七板块导航，含 Mac/Win 一键安装器。</p>
+  <div class="r-bot"><span class="meta">608 KB<span class="sep">·</span><code>441ac345</code></span>
+   <a class="get" href="packages/%E5%AD%A6%E7%A7%91%E5%8A%A9%E6%89%8B.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>Mac 双击 .command，Windows 双击 .bat</li><li>首次运行允许权限，按提示装到本地目录</li><li>打开学生包里的 index.html 即可用</li></ol></details>
+ </div>
 </li><li class="row" data-c="学习与运营" data-n="旋翼工坊 帮初二学生把一架无人机设计出来：需求、推重比、选型、机架、试飞数据与报告。" style="--a:#96773A">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>旋翼工坊</h3><span class="kat">学习与运营</span></div>
- <p class="desc">帮初二学生把一架无人机设计出来：需求、推重比、选型、机架、试飞数据与报告。</p>
- <div class="r-bot"><span class="meta">8 KB<span class="sep">·</span><code>5d7b1d67</code></span>
-  <a class="get" href="packages/%E6%97%8B%E7%BF%BC%E5%B7%A5%E5%9D%8A.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后读 README 与 BOT.md</li><li>把 BOT.md 的指令贴进 Bot 设定</li><li>先给载重与预算，它会先算推重比再选型</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>旋翼工坊</h3></div>
+  <p class="desc">帮初二学生把一架无人机设计出来：需求、推重比、选型、机架、试飞数据与报告。</p>
+  <div class="r-bot"><span class="meta">8 KB<span class="sep">·</span><code>5d7b1d67</code></span>
+   <a class="get" href="packages/%E6%97%8B%E7%BF%BC%E5%B7%A5%E5%9D%8A.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后读 README 与 BOT.md</li><li>把 BOT.md 的指令贴进 Bot 设定</li><li>先给载重与预算，它会先算推重比再选型</li></ol></details>
+ </div>
 </li><li class="row" data-c="学习与运营" data-n="润途移居助手 海外移居路线研究：比成本、算门槛、给材料清单与时间线。" style="--a:#96773A">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>润途移居助手</h3><span class="kat">学习与运营</span></div>
- <p class="desc">海外移居路线研究：比成本、算门槛、给材料清单与时间线。</p>
- <div class="r-bot"><span class="meta">16 KB<span class="sep">·</span><code>b5afa53d</code></span>
-  <a class="get" href="packages/%E6%B6%A6%E9%80%94%E7%A7%BB%E5%B1%85%E5%8A%A9%E6%89%8B.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后打开工作台 HTML</li><li>先填背景与目标国</li><li>政策类信息标注核实日期，自己再核一遍</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>润途移居助手</h3></div>
+  <p class="desc">海外移居路线研究：比成本、算门槛、给材料清单与时间线。</p>
+  <div class="r-bot"><span class="meta">16 KB<span class="sep">·</span><code>b5afa53d</code></span>
+   <a class="get" href="packages/%E6%B6%A6%E9%80%94%E7%A7%BB%E5%B1%85%E5%8A%A9%E6%89%8B.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后打开工作台 HTML</li><li>先填背景与目标国</li><li>政策类信息标注核实日期，自己再核一遍</li></ol></details>
+ </div>
 </li><li class="row" data-c="学习与运营" data-n="雅思词汇教练 基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。" style="--a:#96773A">
- <div class="r-top"><span class="dot" aria-hidden="true"></span>
-   <h3>雅思词汇教练</h3><span class="kat">学习与运营</span></div>
- <p class="desc">基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。</p>
- <div class="r-bot"><span class="meta">2.5 MB<span class="sep">·</span><code>daac2de2</code></span>
-  <a class="get" href="packages/%E9%9B%85%E6%80%9D%E8%AF%8D%E6%B1%87%E6%95%99%E7%BB%83.zip" download>下载</a></div>
- <details class="how"><summary>使用步骤 · 3</summary><ol><li>解压后按 README 建 Bot</li><li>先做一次摸底，按目标分排期</li><li>练靶场是本地网页，双击就能开</li></ol></details>
+ <img class="thumb" src="assets/cat-%E5%AD%A6%E4%B9%A0%E4%B8%8E%E8%BF%90%E8%90%A5.jpg" width="34" height="34" alt="" loading="lazy">
+ <div class="rmain">
+  <div class="r-top"><h3>雅思词汇教练</h3></div>
+  <p class="desc">基于 word-atlas 词库的雅思词汇训练：词表、闯关页、复习排程与错因归类。</p>
+  <div class="r-bot"><span class="meta">2.5 MB<span class="sep">·</span><code>daac2de2</code></span>
+   <a class="get" href="packages/%E9%9B%85%E6%80%9D%E8%AF%8D%E6%B1%87%E6%95%99%E7%BB%83.zip" download>下载</a></div>
+  <details class="how"><summary>怎么用</summary><ol><li>解压后按 README 建 Bot</li><li>先做一次摸底，按目标分排期</li><li>练靶场是本地网页，双击就能开</li></ol></details>
+ </div>
 </li></ul>
 </section>
 
-<section class="custom" id="upload">
- <div>
-  <span class="mini">投稿 / 定制</span>
-  <h2>想把自己的 Bot 摆上来？</h2>
-  <ol>
-   <li>目前<b>还没开放自助上传</b>——先由管理员过一道手，免得货架上混进半成品</li>
-   <li>加微信说清楚要上什么，附一句「<b>它能替人干什么</b>」</li>
-   <li>通过后我们帮你打包、配图标、写简介，再挂到货架上</li>
-  </ol>
-  <p class="hint">想改造已有 Bot、或者要一条多 Bot 串起来的自动化工作流，也走同一个微信。</p>
-  <div class="wx"><span>管理员微信</span><b id="wxid">583456045</b>
-   <button id="copywx" class="copybtn" type="button">复制微信号</button></div>
+<section class="custom" id="custom">
+ <div class="c-top">
+  <div>
+   <span class="mini">投稿 / 定制</span>
+   <h2>定制你的个性化 Bot</h2>
+   <p class="sub">货架上没正合适的？说一句，我们动手做。</p>
+   <div class="wx">
+    <span class="lab">管理员微信</span>
+    <b id="wxid">583456045</b>
+    <button id="copywx" class="copybtn" type="button">一键复制</button>
+   </div>
+   <p class="note">投稿也是一样：自助上传还没开放，先找管理员过一道手。</p>
+  </div>
+  <figure>
+   <img class="qr-img" src="assets/wechat-qr.png" width="360" height="353" alt="管理员微信二维码" loading="lazy">
+   <figcaption>扫码，直接找管理员</figcaption>
+  </figure>
  </div>
- <div class="qr"><img src="assets/wechat-qr.png" width="360" height="353" alt="管理员微信二维码" loading="lazy">
-  <span>扫一下，直接找管理员</span></div>
+ <div class="svcs"><article class="card">
+ <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><path d="M12 16.2V7.8m0 0-3.3 3.3M12 7.8l3.3 3.3"/></svg></span><h3>改造 / 升级</h3><p>手里的 Bot 不太顺手？给它加本事、换流程、接上你自己的数据和工具。</p></article><article class="card">
+ <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.6 7h6.2M3.6 12h9.4M3.6 17h5"/><path d="M16.4 8.4v7.2l4.8-3.6z"/></svg></span><h3>定制工作流</h3><p>几个 Bot 串成一条线，整件事自己跑完，出结果再叫你。</p></article><article class="card">
+ <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l1.9 5.4 5.4 1.9-5.4 1.9L12 18.2l-1.9-5.4L4.7 10.9l5.4-1.9z"/><path d="M18.6 16.4l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></span><h3>从零做一个</h3><p>只有一个想法也行。说清它要替你干什么，我们把它做出来。</p></article></div>
+ <ol class="steps">
+  <li><span class="n">1</span>加微信</li><span class="arw">→</span>
+  <li><span class="n">2</span>说清要它替你干什么</li><span class="arw">→</span>
+  <li><span class="n">3</span>做好，直接上架</li>
+ </ol>
 </section>
 
 <footer>
- <p>BOTHUB · 25 个包 · 81 MB · 版本 v5 · 更新 2026-11-05</p>
+ <p>BOTHUB · 25 个包 · 81 MB · 版本 v6 · 更新 2026-11-05</p>
  <p>包内如含开源底座，许可约束见包内 README。</p>
 </footer>
 </div>
 <script>
 const q=document.getElementById('q'),cnt=document.getElementById('cnt'),
-list=[...document.querySelectorAll('.row')],segs=[...document.querySelectorAll('.seg')];let cur='all';
+list=[...document.querySelectorAll('.row')],segs=[...document.querySelectorAll('.cat')];let cur='all';
 function apply(){const s=q.value.trim().toLowerCase();let n=0;
  list.forEach(r=>{const okc=cur==='all'||r.dataset.c===cur;const okq=!s||r.dataset.n.toLowerCase().includes(s);
   const show=okc&&okq;r.hidden=!show;if(show)n++;});
@@ -387,6 +472,6 @@ const cw=document.getElementById('copywx'),wid=document.getElementById('wxid');
 if(cw){cw.addEventListener('click',async()=>{const t=wid.textContent.trim();
  try{await navigator.clipboard.writeText(t);}catch(e){const ta=document.createElement('textarea');ta.value=t;
   document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(_){}ta.remove();}
- cw.textContent='已复制';cw.classList.add('done');
- setTimeout(()=>{cw.textContent='复制微信号';cw.classList.remove('done');},1800);});}
+ cw.textContent='已复制 ✓';cw.classList.add('done');
+ setTimeout(()=>{cw.textContent='一键复制';cw.classList.remove('done');},1800);});}
 </script></body></html>
