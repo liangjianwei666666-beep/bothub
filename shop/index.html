@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>赛博带货部 · 这个带货部，只有你一个真人</title>
+<meta name="description" content="赛博带货部：电商与直播带货团队的数字员工团队。选品、卖点、素材、出片、上架、复盘，六道工序连成一条线。">
+<meta property="og:title" content="赛博带货部 · 这个带货部，只有你一个真人">
+<meta property="og:description" content="电商带货团队的数字员工。六道工序连成一条线，跑完再叫你。">
+<meta name="theme-color" content="#FCFAF4">
+<style>
+:root{--paper:#FCFAF4;--card:#FFFFFF;--ivory:#F6F1E7;--ink:#23211C;--ink2:#555046;--ink3:#8A8274;
+--line:#E4DECD;--line2:#EFEAD9;--acc:#2F4F45;--acc2:#9A6A1E;
+--serif:"Songti SC","STSong","SimSun",serif;
+--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 var(--sans);
+-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 72px}
+h1,h2,h3{letter-spacing:.01em}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:36px;
+align-items:center;padding:52px 0 34px}
+.brand{display:inline-flex;align-items:center;gap:11px;font-size:16px;letter-spacing:.16em;
+color:var(--ink2);font-weight:600}
+.brand s{width:30px;height:2px;background:var(--ink3)}
+h1{font-family:var(--serif);font-weight:600;font-size:46px;line-height:1.25;margin:15px 0 14px}
+.lede{color:var(--ink2);font-size:17px;margin:0 0 22px;max-width:30em}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 22px;
+font-size:15px;text-decoration:none;border-radius:4px;transition:background .18s,color .18s,border-color .18s}
+.btn-primary{background:var(--ink);color:var(--paper);border:1px solid var(--ink)}
+.btn-primary:hover{background:#3A362D}
+.btn-ghost{border:1px solid var(--line);color:var(--ink2);background:var(--card)}
+.btn-ghost:hover{border-color:var(--ink3);color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.art{margin:0;justify-self:end;width:100%;min-width:0}
+.art img{border-radius:10px;border:1px solid var(--line);background:var(--card);
+box-shadow:0 24px 48px -36px #7E7358}
+.art figcaption{margin-top:10px;text-align:right}
+.art figcaption span{display:inline-block;font-size:12.5px;color:var(--ink3);
+background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+
+/* ---------- 章节标题 ---------- */
+.sec{padding:46px 0 0}
+.sec-h{margin:0 0 20px}
+.sec-h h2{font-family:var(--serif);font-size:30px;font-weight:600;margin:0 0 6px}
+.sec-h p{margin:0;color:var(--ink2);font-size:15.5px}
+
+/* ---------- 指挥台 ---------- */
+.deck{background:#221F1A;border-radius:12px;padding:0;overflow:hidden;
+box-shadow:0 30px 60px -44px #4A4232}
+.deck-top{display:flex;align-items:center;gap:10px;padding:14px 22px;
+border-bottom:1px solid #3A352C;color:#E8E1D2;font-size:14px}
+.deck-top .live-dot{width:7px;height:7px;border-radius:50%;background:#7DBE9A;
+box-shadow:0 0 0 3px rgba(125,190,154,.18);flex:none}
+.deck-top b{font-weight:600;letter-spacing:.04em}
+.deck-top .demo{margin-left:auto;font-size:11.5px;letter-spacing:.1em;color:#9C9484;
+border:1px solid #4A4438;border-radius:999px;padding:2px 10px}
+.lanes{list-style:none;margin:0;padding:6px 0 4px}
+.lane{display:grid;grid-template-columns:132px minmax(0,1fr) 96px minmax(0,1.04fr);
+gap:18px;align-items:center;padding:15px 22px;border-bottom:1px solid #312C24}
+.lane:last-child{border-bottom:0}
+.lane-id{display:flex;align-items:baseline;gap:9px;min-width:0}
+.lane-id i{font-style:normal;font-size:11.5px;color:#7E7768;letter-spacing:.06em;flex:none}
+.lane-id b{font-size:16px;font-weight:600;color:#F1EBDD;letter-spacing:.02em}
+.lane-bots{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+.chip{font-size:12.5px;color:#D9D2C2;background:#332E26;border:1px solid #423B31;
+border-radius:3px;padding:3px 9px;white-space:nowrap}
+.lane-state{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;
+color:#B9B1A0;white-space:nowrap}
+.lane-state em{width:6px;height:6px;border-radius:50%;background:#8C8474;font-style:normal;flex:none}
+.lane-state.live em{background:#7DBE9A}
+.lane-state.gate em{background:#D8AC5A}
+.lane-state.done em{background:#6C8FA8}
+.lane-out{font-size:13px;color:#9E9686;min-width:0}
+.deck-note{margin:0;padding:13px 22px 16px;font-size:12.5px;color:#857D6D;
+border-top:1px solid #312C24;background:#1D1A16}
+
+/* ---------- 同事卡片 ---------- */
+.grid{list-style:none;margin:0;padding:0;display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);
+border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.card{background:var(--card);padding:20px 20px 16px;display:flex;flex-direction:column;
+min-width:0;transition:background .18s}
+.card:hover{background:#FDFCF7}
+.num{font-style:normal;font-size:11.5px;color:var(--ink3);letter-spacing:.08em}
+.card h3{font-size:16.5px;font-weight:600;margin:4px 0 6px;line-height:1.4}
+.card p{font-size:13.5px;color:var(--ink2);line-height:1.62;margin:0 0 14px;flex:1}
+.card-bot{display:flex;align-items:center;justify-content:space-between;gap:10px;
+border-top:1px solid var(--line2);padding-top:11px}
+.card-bot span{font-size:12px;color:var(--ink3)}
+.card-bot a{font-size:13.5px;font-weight:500;text-decoration:none;color:var(--ink);
+border-bottom:1px solid var(--line)}
+.card-bot a:hover{border-color:var(--ink)}
+
+/* ---------- 定制 ---------- */
+.make{margin-top:46px;background:var(--ivory);border-radius:10px;padding:30px 30px 26px}
+.make h2{font-family:var(--serif);font-size:26px;font-weight:600;margin:0 0 10px}
+.make p{margin:0 0 18px;color:var(--ink2);font-size:15px;max-width:44em}
+.steps{list-style:none;display:flex;flex-wrap:wrap;gap:10px 26px;margin:0 0 20px;padding:0}
+.steps li{display:flex;align-items:center;gap:9px;font-size:14.5px;color:var(--ink2)}
+.steps b{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+border-radius:50%;background:var(--card);border:1px solid var(--line);font-size:12px;
+font-weight:600;color:var(--ink);flex:none}
+.wx{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.wx code{font:15px/1 var(--sans);font-weight:600;letter-spacing:.08em;background:var(--card);
+border:1px solid var(--line);border-radius:4px;padding:10px 14px}
+.wx span{font-size:13.5px;color:var(--ink3)}
+
+footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
+display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+font-size:12.5px;color:var(--ink3)}
+footer a{text-decoration:none;border-bottom:1px solid var(--line2)}
+footer a:hover{border-color:var(--ink3)}
+
+
+/* ---------- 系列导航（三个垂直版互跳） ---------- */
+.series{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto}
+.series a{text-decoration:none;border-bottom:1px solid var(--line2)}
+.series a:hover{border-color:var(--ink3);color:var(--ink)}
+.series .cur{color:var(--ink);font-weight:500}
+.series .sep{color:var(--ink3);opacity:.6}
+footer .tail{color:var(--ink3)}
+@media (max-width:680px){.series{margin-left:0;width:100%;order:3}}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lane{grid-template-columns:104px minmax(0,1fr);gap:6px 14px}
+  .lane-bots{grid-column:2}
+  .lane-state{grid-column:2;margin-top:2px}
+  .lane-out{grid-column:2}
+}
+@media (max-width:680px){
+  .wrap{padding:0 18px 56px}
+  .hero{grid-template-columns:minmax(0,1fr);gap:26px;padding:34px 0 10px}
+  .art{justify-self:stretch;order:-1}
+  .art figcaption{text-align:left}
+  h1{font-size:34px}
+  .lede{font-size:16px}
+  .sec-h h2{font-size:24px}
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .lane{grid-template-columns:minmax(0,1fr)}
+  .lane-bots,.lane-state,.lane-out{grid-column:1}
+  .lane-id{justify-content:flex-start}
+  .deck-top{padding:12px 16px;font-size:13px}
+  .lane{padding:14px 16px}
+  .deck-note{padding:12px 16px 14px}
+  .make{padding:24px 20px 22px}
+  footer{font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+
+:root{--acc:#8C4A2F}
+</style></head>
+<body><div class="wrap">
+
+<section class="hero">
+  <div class="hero-txt">
+    <span class="brand"><s></s>赛博带货部 · CYBERH SHOP</span>
+    <h1>这个带货部<br>只有你一个真人。</h1>
+    <p class="lede">电商与直播带货团队的数字员工团队。选品、卖点、素材、出片、上架、复盘——六道工序连成一条线，跑完再叫你。</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#deck">看指挥台</a>
+      <a class="btn btn-ghost" href="#team">挑同事</a>
+    </div>
+  </div>
+  <figure class="art">
+    <img src="hero.jpg" width="900" height="1200" alt="带货工作室里几个分工不同的小机器人同事">
+    <figcaption><span>概念演示图</span></figcaption>
+  </figure>
+</section>
+<section class="sec" id="deck">
+  <div class="sec-h">
+    <h2>多流程指挥台</h2>
+    <p>选品到复盘六道工序并排跑。复盘那一条会把结论喂回选品，下一批就有依据。</p>
+  </div>
+  <div class="deck">
+    <div class="deck-top">
+      <span class="live-dot"></span><b>带货部 · 今日值班</b>
+      <span class="demo">演示数据</span>
+    </div>
+    <ol class="lanes">
+      <li class="lane">
+        <div class="lane-id"><i>01</i><b>选品与货盘</b></div>
+        <div class="lane-bots"><span class="chip">选品雷达</span><span class="chip">社媒洞察</span></div>
+        <div class="lane-state live"><em></em>运行中</div>
+        <div class="lane-out">18 个候选品 · 4 个核过需求 · 2 个待打样</div>
+      </li>
+      <li class="lane">
+        <div class="lane-id"><i>02</i><b>卖点与脚本</b></div>
+        <div class="lane-bots"><span class="chip">文档重建师</span></div>
+        <div class="lane-state gate"><em></em>等你定稿</div>
+        <div class="lane-out">5 条卖点卡 · 2 份口播稿待你点头</div>
+      </li>
+      <li class="lane">
+        <div class="lane-id"><i>03</i><b>视觉素材</b></div>
+        <div class="lane-bots"><span class="chip">信息图大师</span><span class="chip">设计Bot-水彩编辑</span><span class="chip">设计Bot-微缩织物</span></div>
+        <div class="lane-state live"><em></em>运行中</div>
+        <div class="lane-out">12 张主图 · 3 套详情页 · 6 组场景图</div>
+      </li>
+      <li class="lane">
+        <div class="lane-id"><i>04</i><b>短视频出片</b></div>
+        <div class="lane-bots"><span class="chip">数字人口播</span><span class="chip">3D动画Bot</span><span class="chip">闪电手绘与粉笔微课</span></div>
+        <div class="lane-state live"><em></em>运行中</div>
+        <div class="lane-out">4 条挂车短视频 · 1 条待重录</div>
+      </li>
+      <li class="lane">
+        <div class="lane-id"><i>05</i><b>上架与投放</b></div>
+        <div class="lane-bots"><span class="chip">五平台发布</span></div>
+        <div class="lane-state gate"><em></em>等你确认</div>
+        <div class="lane-out">3 个平台已上传未提交 · 标题和文案待核</div>
+      </li>
+      <li class="lane">
+        <div class="lane-id"><i>06</i><b>复盘与下一批</b></div>
+        <div class="lane-bots"><span class="chip">拉片分析师</span><span class="chip">高级审核员</span></div>
+        <div class="lane-state done"><em></em>今日已完成</div>
+        <div class="lane-out">昨日 5 条数据复盘 · 3 个品建议下架</div>
+      </li>
+    </ol>
+    <p class="deck-note">以上是演示数据，不是真实业务数字。真跑起来时，这里显示的是你自己团队的产出。</p>
+  </div>
+</section>
+<section class="sec" id="team">
+  <div class="sec-h">
+    <h2>谁在替你干活</h2>
+    <p>14 位同事，下载一个包就是招一个人。把下载好的整个文件发给主Bot（DeepSeekHarness+DSBOT插件），这个Bot就能自动被创建出来。</p>
+  </div>
+  <ul class="grid">
+      <li class="card">
+        <i class="num">01</i>
+        <h3>选品雷达</h3>
+        <p>在火锅、烧烤两个品类里找「下一款可能爆的新品」，并说清为什么。</p>
+        <div class="card-bot"><span>116 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E9%80%89%E5%93%81%E9%9B%B7%E8%BE%BE.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">02</i>
+        <h3>社媒洞察</h3>
+        <p>把社媒真实讨论变成可核对的洞察：趋势、人群、竞品、口碑。</p>
+        <div class="card-bot"><span>76 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E7%A4%BE%E5%AA%92%E6%B4%9E%E5%AF%9F.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">03</i>
+        <h3>拉片分析师</h3>
+        <p>把同行的爆款成片拆成逐镜头分析表，看它到底怎么留人。</p>
+        <div class="card-bot"><span>117 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E6%8B%89%E7%89%87%E5%88%86%E6%9E%90%E5%B8%88.tar.gz" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">04</i>
+        <h3>信息图大师</h3>
+        <p>主图、卖点卡、详情页模块，一个卖点做成一页。</p>
+        <div class="card-bot"><span>596 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E4%BF%A1%E6%81%AF%E5%9B%BE%E5%A4%A7%E5%B8%88.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">05</i>
+        <h3>设计Bot-水彩编辑</h3>
+        <p>传统透明水彩 + 图文编辑式版面，一套风格走到底。</p>
+        <div class="card-bot"><span>4 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E8%AE%BE%E8%AE%A1Bot-%E6%B0%B4%E5%BD%A9%E7%BC%96%E8%BE%91.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">06</i>
+        <h3>设计Bot-微缩织物</h3>
+        <p>微缩织物与手作质感，适合做面料、家居类的场景图。</p>
+        <div class="card-bot"><span>3 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E8%AE%BE%E8%AE%A1Bot-%E5%BE%AE%E7%BC%A9%E7%BB%87%E7%89%A9.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">07</i>
+        <h3>设计Bot-毛绒词卡</h3>
+        <p>毛绒玩偶与布艺刺绣字效，做玩偶、母婴类的视觉。</p>
+        <div class="card-bot"><span>4 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E8%AE%BE%E8%AE%A1Bot-%E6%AF%9B%E7%BB%92%E8%AF%8D%E5%8D%A1.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">08</i>
+        <h3>数字人口播</h3>
+        <p>文案 + 形象 + 声音 → 1080×1920 竖屏口播片。</p>
+        <div class="card-bot"><span>41 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E6%95%B0%E5%AD%97%E4%BA%BA%E5%8F%A3%E6%92%AD.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">09</i>
+        <h3>3D动画Bot</h3>
+        <p>一句话创意进，3D 动画短片出，适合展示结构和卖点。</p>
+        <div class="card-bot"><span>32 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/3D%E5%8A%A8%E7%94%BBBot.tar.gz" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">10</i>
+        <h3>闪电手绘与粉笔微课</h3>
+        <p>两个视频技能合装：闪电手绘短片 + 粉笔微课。</p>
+        <div class="card-bot"><span>19 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E9%97%AA%E7%94%B5%E6%89%8B%E7%BB%98%E4%B8%8E%E7%B2%89%E7%AC%94%E5%BE%AE%E8%AF%BE.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">11</i>
+        <h3>五平台发布</h3>
+        <p>一条竖屏成片发到小红书、视频号、抖音、X、YouTube，发布后回后台核对。</p>
+        <div class="card-bot"><span>44 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E4%BA%94%E5%B9%B3%E5%8F%B0%E5%8F%91%E5%B8%83.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">12</i>
+        <h3>高级审核员</h3>
+        <p>独立验收位：只给「通过 / 有条件通过 / 打回」和缺陷清单。</p>
+        <div class="card-bot"><span>5 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E9%AB%98%E7%BA%A7%E5%AE%A1%E6%A0%B8%E5%91%98.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">13</i>
+        <h3>文档重建师</h3>
+        <p>供应商资料、检测报告、资质文件重建为可编辑稿，方便核。</p>
+        <div class="card-bot"><span>87 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E6%96%87%E6%A1%A3%E9%87%8D%E5%BB%BA%E5%B8%88.zip" download>下载 ↓</a></div>
+      </li>
+      <li class="card">
+        <i class="num">14</i>
+        <h3>小工具工厂</h3>
+        <p>一个想法做成能上传的小工具，用来引流和测需求。</p>
+        <div class="card-bot"><span>87 KB</span><a href="https://liangjianwei666666-beep.github.io/bothub/packages/%E5%B0%8F%E5%B7%A5%E5%85%B7%E5%B7%A5%E5%8E%82.tar.gz" download>下载 ↓</a></div>
+      </li>
+  </ul>
+</section>
+<section class="make">
+  <h2>缺的工位，我们可以现做一个</h2>
+  <p>带货最费人的从来不是选品，是那些接不完的活——直播场控、客服话术、催评催收货、整理供应商报价、把一场直播的素材切成几十条。说清它每天怎么耗你时间，我们把它做成一个数字同事。</p>
+  <ol class="steps">
+    <li><b>1</b>加微信</li>
+    <li><b>2</b>说清要它替你干什么</li>
+    <li><b>3</b>做好了直接给你</li>
+  </ol>
+  <div class="wx">
+    <code>583456045</code>
+    <span>管理员微信 · 备注「带货部」</span>
+  </div>
+</section>
+<footer>
+  <span>赛博带货部 · 概念版 v1 · 2026-11-06</span>
+  <nav class="series"><a href="../">赛博人事局</a><span class="sep">·</span><a href="../edu/">赛博教研室</a><span class="sep">·</span><a href="../studio/">赛博编辑部</a><span class="sep">·</span><span class="cur">赛博带货部</span></nav>
+  <span class="tail">演示页面，业务数据均为示例</span>
+</footer>
+
+</div></body></html>
